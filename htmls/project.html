@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="../dist/css/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato|Merriweather|Montserrat|Open+Sans|Oswald|Playfair+Display|Roboto|Roboto+Condensed|Roboto+Mono|Roboto+Slab|Source+Sans+Pro&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Wixa</title>
+  </head>
+  <body>
+    <div class="header">
+      <div class="nav">
+        <ul class="nav__items">
+          <li><a href="../index.html">Home</a></li>
+          <li><a class="active" href="htmls/project.html">Project</a></li>
+          <li><a href="#">Templates</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="tutorial-btn-wrapper">
+        <button class="tutorial">tutorial</button>
+      </div>
+    </div>
+
+    <div class="menu-toggle" title="Toggle navigation bar">
+      <i class="fas fa-sort-down"></i>
+    </div>
+
+    <div class="wrapper">
+      <div class="menu">
+        <div class="subsites-btn"><i class="fas fa-clipboard"></i></div>
+        <div class="subsites-wrapper invisible"></div>
+
+        <div class="create-btn"><i class="fas fa-shapes"></i></div>
+        <div class="create-wrapper invisible">
+          <div class="div-create create-indicator">
+            Div
+            <div class="div-options">
+              <p class="div-options-p">SHAPES</p>
+              <div class="div-shapes-container">
+                <div class="div-shape1 options"></div>
+                <div class="div-shape2 options"></div>
+                <div class="div-shape3 options"></div>
+                <div class="div-shape4 options"></div>
+              </div>
+
+              <p class="div-options-p">LINES</p>
+              <div class="div-shapes-container ">
+                <div class="div-line-wrapper">
+                  <div class="div-line1 options"></div>
+                </div>
+                <div class="div-line-wrapper">
+                  <div class="div-line2 options"></div>
+                </div>
+              </div>
+
+              <div class="div-shapes-container ">
+                <div class="div-line-wrapper">
+                  <div class="div-line3 options"></div>
+                </div>
+                <div class="div-line-wrapper">
+                  <div class="div-line4 options"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="text-create create-indicator">
+            Text
+            
+            <div class="text-options">
+              <button class="create-new-text">Create Text</button>
+              
+              <div class="text-input-wrapper">
+                <p class="div-options-p">TEXT</p>
+                <textarea
+                  class="text-input"
+                  placeholder="write text here"
+                ></textarea>
+              </div>
+
+              <div class="wrap-options">
+                <div class="font-size-wrapper">
+                  <div class="font-size">
+                    <p class="div-options-p">FONT SIZE</p>
+                    <form>
+                      <input
+                        type="number"
+                        class="font-size-input"
+                        min="0"
+                        value="18"
+                      />
+                    </form>
+                  </div>
+                </div>
+
+                <div class="font-family-wrapper">
+                  <p class="div-options-p">FONT STYLE</p>
+                  <select class="select-font">
+                    <option class="font-1" style="font-family: Roboto"
+                      >Roboto</option
+                    ><option class="font-1" style="font-family: fantasy;"
+                      >Fantasy</option
+                    ><option class="font-1" style="font-family: Verdana"
+                      >Verdana</option
+                    ><option class="font-1" style="font-family: Georgia"
+                      >Georgia</option
+                    ><option class="font-1" style="font-family: Lato"
+                      >Lato</option
+                    ><option class="font-1" style="font-family: Open Sans"
+                      >Open Sans</option
+                    ><option class="font-1" style="font-family: Montserrat"
+                      >Montserrat</option
+                    ><option
+                      class="font-1"
+                      style="font-family: Roboto Condensed"
+                      >Roboto Condensed</option
+                    ><option class="font-1" style="font-family: Source Sans Pro"
+                      >Source Sans Pro</option
+                    ><option class="font-1" style="font-family: Oswald"
+                      >Oswald</option
+                    ><option class="font-1" style="font-family: Roboto Mono"
+                      >Roboto Mono</option
+                    ><option class="font-1" style="font-family: Merriweather"
+                      >Merriweather</option
+                    ><option class="font-1" style="font-family: Roboto Slab"
+                      >Roboto Slab</option
+                    ><option
+                      class="font-1"
+                      style="font-family: Playfair Display"
+                      >Playfair Display</option
+                    >
+                  </select>
+                </div>
+              </div>
+
+              <div class="color-options-wrapper">
+                <div class="font-color-wrapper">
+                  <p class="div-options-p">FONT COLOR</p>
+                  <form>
+                    <input
+                      type="text"
+                      class="font-color-input"
+                      placeholder="white / #ffffff"
+                    />
+                  </form>
+                  <div class="color-preview"></div>
+                </div>
+
+                <div class="background-color-wrapper">
+                  <p class="div-options-p">BACKGROUND </br> COLOR</p>
+                  <form>
+                    <input
+                      type="text"
+                      class="background-color-input"
+                      placeholder="white / #ffffff / blank "
+                    />
+                  </form>
+                  <div class="background-preview"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="btn-create create-indicator">
+            Button
+            <div class="btn-options">
+              <div class="btns-wrapper">
+                <button class="btn1"></button>
+                <button class="btn2"></button>
+                <button class="btn3"></button>
+                <button class="btn4"></button>
+                <button class="btn5"></button>
+                <button class="btn6"></button>
+              </div>
+            </div>
+          </div>
+          <div class="image-create create-indicator">
+            Image
+            <div class="image-options">d</div>
+          </div>
+          <div class="icon-create create-indicator">
+            Icon
+            <div class="icon-options">e</div>
+          </div>
+          <div class="link-create create-indicator">
+            Link
+            <div class="link-options">f</div>
+          </div>
+          <div class="filler"></div>
+        </div>
+
+        <div class="background-btn">
+          <i class="fas fa-images"></i>
+        </div>
+        <div class="background-wrapper invisible">
+          <div class="color"></div>
+          <div class="positioning"></div>
+        </div>
+        
+        <div class="components-btn"><i class="fas fa-plus"></i></div>
+        <div class="components-wrapper invisible"></div>
+
+      </div>
+
+      <div class="work-area">
+        <div class="deleteQuestion invisible">
+          <p>Are you sure you want to delete this element?</p>
+          <div class="btn-wrapper">
+            <button class="delYes">Yes</button>
+            <button class="delNo">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../main.js"></script>
+    <script
+      src="https://kit.fontawesome.com/2c2390af2a.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

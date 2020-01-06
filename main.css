@@ -1,0 +1,283 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.landing__page {
+  width: 100%;
+  height: 100vh;
+  background: #f2f2f2;
+}
+
+.header {
+  width: 100%;
+  height: 70px;
+  background: #fff;
+  -webkit-box-shadow: 0px 3px 8px -5px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 3px 8px -5px rgba(0, 0, 0, 0.75);
+}
+
+.header .nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header .nav .tutorial {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  text-transform: uppercase;
+  background: #fff;
+  font-size: 22px;
+  font-family: "Roboto", sans-serif;
+  width: 150px;
+  height: 50px;
+  border-radius: 25px;
+  border-color: #22262b;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
+.header .nav .tutorial:hover {
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+  background: #22262b;
+  color: #fff;
+  -webkit-box-shadow: 0px 7px 12px -5px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 7px 12px -5px rgba(0, 0, 0, 0.75);
+}
+
+.header .nav__items {
+  padding: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.header .nav__items li,
+.header .nav__items a {
+  margin-left: 40px;
+  padding-bottom: 0px;
+  list-style: none;
+  color: #22262b;
+  text-decoration: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+}
+
+.header .nav__items a:hover {
+  border-bottom: 2px solid #22262b;
+}
+
+.header .nav__items .active {
+  border-bottom: 2px solid #22262b;
+}
+
+.menu {
+  height: 400px;
+  width: 300px;
+  background: #f2f2f2;
+  margin-left: 50px;
+  margin-top: 50px;
+  position: absolute;
+}
+
+.menu__items li {
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin: 3px;
+  list-style: none;
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  border-bottom: 2px solid #fff;
+}
+
+.menu__items li:hover {
+  background: #e3e3e3;
+  cursor: pointer;
+}
+
+.div-config {
+  border-top: 1px solid black;
+  padding-top: 20px;
+}
+
+.div-config p {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  padding-bottom: 20px;
+  border-bottom: 1px solid black;
+}
+
+.div-config li,
+.div-config a {
+  text-align: left;
+  margin-left: 15px;
+}
+
+.div-config input {
+  width: 140px;
+  float: right;
+  margin-right: 10px;
+}
+
+.work-area {
+  width: 70%;
+  height: 120vh;
+  background: darkgray;
+  margin-left: 400px;
+  margin-top: 50px;
+}
+
+.config-btn {
+  width: 18px;
+  height: 3px;
+  background: black;
+  position: absolute;
+  top: 8px;
+  left: 25px;
+  cursor: pointer;
+}
+
+.config-btn::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  width: 18px;
+  height: 3px;
+  background: black;
+}
+
+.config-btn::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  width: 18px;
+  height: 3px;
+  background: black;
+}
+
+.delete-btn {
+  width: 17px;
+  height: 3px;
+  background: black;
+  position: absolute;
+  top: 8px;
+  left: 3px;
+  -webkit-transform: translateX(10px);
+          transform: translateX(10px);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.delete-btn::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  width: 17px;
+  height: 3px;
+  background: black;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.deleteQuestion {
+  width: 200px;
+  height: 100px;
+  background: #fff;
+  position: absolute;
+  left: 100px;
+  right: 0;
+  top: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid #f2f2f2;
+  z-index: 3;
+}
+
+.deleteQuestion p {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  margin-top: 10px;
+}
+
+.deleteQuestion .delYes,
+.deleteQuestion .delNo {
+  background: #22262b;
+  border: none;
+  color: #fff;
+  width: 50px;
+  height: 30px;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+.deleteQuestion .delYes {
+  margin-right: 10px;
+}
+
+.deleteQuestion .delNo {
+  margin-left: 10px;
+}
+
+.deleteQuestion .btn-wrapper {
+  width: 140px;
+  height: 30px;
+  margin-left: 40px;
+  margin-top: 10px;
+}
+
+.config-menu {
+  width: 200px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.7);
+  position: absolute;
+}
+
+.resizerSe {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  cursor: se-resize;
+  z-index: 2;
+}
+
+.resizerEast {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 10px;
+  cursor: e-resize;
+  z-index: 1;
+}
+
+.resizerSouth {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 10px;
+  width: 100%;
+  cursor: s-resize;
+  z-index: 1;
+}
+
+.invisible {
+  display: none;
+}
+/*# sourceMappingURL=main.css.map */
