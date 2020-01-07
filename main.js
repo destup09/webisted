@@ -1,107 +1,49 @@
-(function menuButtons() {
-  const subsitesBtn = document.querySelector(".subsites-btn");
-  const createBtn = document.querySelector(".create-btn");
-  const backgroundBtn = document.querySelector(".background-btn");
-  const componentBtn = document.querySelector(".components-btn");
-
-  const subsitesWrapper = document.querySelector(".subsites-wrapper");
-  const createWrapper = document.querySelector(".create-wrapper");
-  const backgroundWrapper = document.querySelector(".background-wrapper");
-  const componentWrapper = document.querySelector(".components-wrapper");
-
-  subsitesBtn.addEventListener("click", function() {
-    createBtn.classList.remove("btn-active");
-    subsitesBtn.classList.add("btn-active");
-    backgroundBtn.classList.remove("btn-active");
-    componentBtn.classList.remove("btn-active");
-
-    createWrapper.classList.add("invisible");
-    backgroundWrapper.classList.add("invisible");
-    componentWrapper.classList.add("invisible");
-
-    if (subsitesWrapper.classList.contains("invisible")) {
-      subsitesWrapper.classList.remove("invisible");
-    } else {
-      subsitesWrapper.classList.add("invisible");
-    }
-  });
-
-  createBtn.addEventListener("click", function() {
-    createBtn.classList.add("btn-active");
-    subsitesBtn.classList.remove("btn-active");
-    backgroundBtn.classList.remove("btn-active");
-    componentBtn.classList.remove("btn-active");
-
-    subsitesWrapper.classList.add("invisible");
-    backgroundWrapper.classList.add("invisible");
-    componentWrapper.classList.add("invisible");
-
-    if (createWrapper.classList.contains("invisible")) {
-      createWrapper.classList.remove("invisible");
-    } else {
-      createWrapper.classList.add("invisible");
-    }
-  });
-
-  backgroundBtn.addEventListener("click", function() {
-    createBtn.classList.remove("btn-active");
-    subsitesBtn.classList.remove("btn-active");
-    backgroundBtn.classList.add("btn-active");
-    componentBtn.classList.remove("btn-active");
-
-    subsitesWrapper.classList.add("invisible");
-    createWrapper.classList.add("invisible");
-    componentWrapper.classList.add("invisible");
-
-    if (backgroundWrapper.classList.contains("invisible")) {
-      backgroundWrapper.classList.remove("invisible");
-    } else {
-      backgroundWrapper.classList.add("invisible");
-    }
-  });
-
-  componentBtn.addEventListener("click", function() {
-    createBtn.classList.remove("btn-active");
-    subsitesBtn.classList.remove("btn-active");
-    backgroundBtn.classList.remove("btn-active");
-    componentBtn.classList.add("btn-active");
-
-    subsitesWrapper.classList.add("invisible");
-    createWrapper.classList.add("invisible");
-    backgroundWrapper.classList.add("invisible");
-
-    if (componentWrapper.classList.contains("invisible")) {
-      componentWrapper.classList.remove("invisible");
-    } else {
-      componentWrapper.classList.add("invisible");
-    }
-  });
-
-  const firstTarget = document.querySelector(".div-create");
-  let prevTarget;
-  if (prevTarget === undefined) {
-    firstTarget.classList.add("menu-active");
-
-    firstTarget.children[0].style.visibility = "visible";
+const menusWrapper = document.querySelector(".menu");
+let clickedMenu;
+menusWrapper.addEventListener("click", function(e) {
+  if (e.target.classList.contains("fas")) {
+    clickedMenu = e.target.parentNode.className;
+  } else {
+    clickedMenu = e.target.className;
   }
 
-  createWrapper.addEventListener("mousedown", function(e) {
-    if (e.target.classList.contains("create-indicator")) {
-      if (prevTarget !== undefined) {
-        prevTarget.classList.remove("menu-active");
+  let menuSplit = clickedMenu.split("-", 1).join();
 
-        prevTarget.children[0].style.visibility = "hidden";
-      }
+  let menuClass = menuSplit.concat("-wrapper");
+  let correctClass = document.querySelector("." + menuClass);
 
-      firstTarget.classList.remove("menu-active");
+  correctClass.classList.remove("invisible");
 
-      firstTarget.children[0].style.visibility = "hidden";
-      e.target.classList.add("menu-active");
-      e.target.children[0].style.visibility = "visible";
-      prevTarget = e.target;
+  //let lastClickedMenu = correctClass;
+  //btn-active
+});
+
+const createWrapper = document.querySelector(".create-wrapper");
+
+const firstTarget = document.querySelector(".div-create");
+let prevTarget;
+if (prevTarget === undefined) {
+  firstTarget.classList.add("menu-active");
+
+  firstTarget.children[0].style.visibility = "visible";
+}
+
+createWrapper.addEventListener("mousedown", function(e) {
+  if (e.target.classList.contains("create-indicator")) {
+    if (prevTarget !== undefined) {
+      prevTarget.classList.remove("menu-active");
+
+      prevTarget.children[0].style.visibility = "hidden";
     }
-  });
-})();
+
+    firstTarget.classList.remove("menu-active");
+
+    firstTarget.children[0].style.visibility = "hidden";
+    e.target.classList.add("menu-active");
+    e.target.children[0].style.visibility = "visible";
+    prevTarget = e.target;
+  }
+});
 
 //menu toggle
 const menuToggleBtn = document.querySelector(".menu-toggle");
@@ -467,10 +409,116 @@ menuToggleBtn.addEventListener("click", function() {
 // - wincyj opcji!
 // - konsola css - pokazuje style wybranego elementu i mozna za jej pomoca edytowac element
 // - rotate
-// - zmienic workspace na full ekran !!
 // - dodawanie img z linku
 
 //////////////////
 // BUGI
 // - show/hide border na tekscie nie działa poprawie jesli kliknie sie na text
 // - blokada wychodzenia za ekran buguje sie przy scrollu - naprawic
+
+/*
+(function menuButtons() {
+  const subsitesBtn = document.querySelector(".subsites-btn");
+  const createBtn = document.querySelector(".create-btn");
+  const backgroundBtn = document.querySelector(".background-btn");
+  const componentBtn = document.querySelector(".components-btn");
+
+  const subsitesWrapper = document.querySelector(".subsites-wrapper");
+  const createWrapper = document.querySelector(".create-wrapper");
+  const backgroundWrapper = document.querySelector(".background-wrapper");
+  const componentWrapper = document.querySelector(".components-wrapper");
+
+  subsitesBtn.addEventListener("click", function() {
+    createBtn.classList.remove("btn-active");
+    subsitesBtn.classList.add("btn-active");
+    backgroundBtn.classList.remove("btn-active");
+    componentBtn.classList.remove("btn-active");
+
+    createWrapper.classList.add("invisible");
+    backgroundWrapper.classList.add("invisible");
+    componentWrapper.classList.add("invisible");
+
+    if (subsitesWrapper.classList.contains("invisible")) {
+      subsitesWrapper.classList.remove("invisible");
+    } else {
+      subsitesWrapper.classList.add("invisible");
+    }
+  });
+
+  createBtn.addEventListener("click", function() {
+    createBtn.classList.add("btn-active");
+    subsitesBtn.classList.remove("btn-active");
+    backgroundBtn.classList.remove("btn-active");
+    componentBtn.classList.remove("btn-active");
+
+    subsitesWrapper.classList.add("invisible");
+    backgroundWrapper.classList.add("invisible");
+    componentWrapper.classList.add("invisible");
+
+    if (createWrapper.classList.contains("invisible")) {
+      createWrapper.classList.remove("invisible");
+    } else {
+      createWrapper.classList.add("invisible");
+    }
+  });
+
+  backgroundBtn.addEventListener("click", function() {
+    createBtn.classList.remove("btn-active");
+    subsitesBtn.classList.remove("btn-active");
+    backgroundBtn.classList.add("btn-active");
+    componentBtn.classList.remove("btn-active");
+
+    subsitesWrapper.classList.add("invisible");
+    createWrapper.classList.add("invisible");
+    componentWrapper.classList.add("invisible");
+
+    if (backgroundWrapper.classList.contains("invisible")) {
+      backgroundWrapper.classList.remove("invisible");
+    } else {
+      backgroundWrapper.classList.add("invisible");
+    }
+  });
+
+  componentBtn.addEventListener("click", function() {
+    createBtn.classList.remove("btn-active");
+    subsitesBtn.classList.remove("btn-active");
+    backgroundBtn.classList.remove("btn-active");
+    componentBtn.classList.add("btn-active");
+
+    subsitesWrapper.classList.add("invisible");
+    createWrapper.classList.add("invisible");
+    backgroundWrapper.classList.add("invisible");
+
+    if (componentWrapper.classList.contains("invisible")) {
+      componentWrapper.classList.remove("invisible");
+    } else {
+      componentWrapper.classList.add("invisible");
+    }
+  });
+
+  const firstTarget = document.querySelector(".div-create");
+  let prevTarget;
+  if (prevTarget === undefined) {
+    firstTarget.classList.add("menu-active");
+
+    firstTarget.children[0].style.visibility = "visible";
+  }
+
+  createWrapper.addEventListener("mousedown", function(e) {
+    if (e.target.classList.contains("create-indicator")) {
+      if (prevTarget !== undefined) {
+        prevTarget.classList.remove("menu-active");
+
+        prevTarget.children[0].style.visibility = "hidden";
+      }
+
+      firstTarget.classList.remove("menu-active");
+
+      firstTarget.children[0].style.visibility = "hidden";
+      e.target.classList.add("menu-active");
+      e.target.children[0].style.visibility = "visible";
+      prevTarget = e.target;
+    }
+  });
+})();
+*/
