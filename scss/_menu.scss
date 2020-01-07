@@ -30,7 +30,7 @@
     border-radius: 5px;
 
     &:hover {
-      border: 1px solid -color;
+      border: 1px solid;
       color: $secondary-color;
       background: $primary-color;
     }
@@ -41,7 +41,7 @@
     @include transition-ease-fast;
 
     &__items {
-      padding-top: 10px;
+      padding-top: 8px;
       display: flex;
 
       li,
@@ -55,6 +55,7 @@
         text-transform: uppercase;
         font-family: "Roboto", sans-serif;
         font-size: 16px;
+        padding-top: 4px;
       }
       a:hover {
         border-bottom: 1px solid $secondary-color;
@@ -64,21 +65,28 @@
         border-bottom: 1px solid $secondary-color;
       }
     }
+
+    .menu-logo {
+      font-weight: 800;
+      font-size: 20px;
+      margin-top: -3px;
+      margin-right: 32px;
+    }
   }
 }
 
 .fa-sort-down {
   position: absolute;
   left: 4px;
-  top: 9px;
+  top: 11px;
   font-size: 46px;
-  color: $secondary-color;
+  color: #a9a9a9;
   transform: rotate(180deg);
 }
 
 .menu-toggle {
   position: absolute;
-  left: 8px;
+  left: 26px;
   top: 12px;
   width: 40px;
   height: 40px;
@@ -87,6 +95,10 @@
 
 .rotate {
   transform: rotate(180deg);
-  top: -10px;
-  left: 10px;
+  top: -11px;
+  left: 22px;
+}
+
+.menu-toggle-white {
+  color: #fff;
 }
