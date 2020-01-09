@@ -15,17 +15,19 @@
   <body>
     <div class="header">
       <div class="nav">
-        <ul class="nav__items">
-          <li class="menu-logo">website creator</li>
+        <p class="menu-logo">website creator</p>
+        <ul class="nav__items">         
           <li><a href="../index.html">Home</a></li>
           <li><a class="active" href="htmls/project.html">Project</a></li>
           <li><a href="#">Templates</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
+
+        <div class="tutorial-btn-wrapper">
+          <button class="tutorial">tutorial</button>
+        </div>
       </div>
-      <div class="tutorial-btn-wrapper">
-        <button class="tutorial">tutorial</button>
-      </div>
+      
     </div>
 
     <div class="menu-toggle" title="Toggle navigation bar">
@@ -35,10 +37,22 @@
     <div class="wrapper">
       <div class="menu">
         <div class="subsites-btn"><i class="fas fa-clipboard"></i></div>
-        <div class="subsites-wrapper invisible"></div>
-
         <div class="create-btn"><i class="fas fa-shapes"></i></div>
-        <div class="create-wrapper invisible">
+        <div class="background-btn">
+          <i class="fas fa-images"></i>
+        </div>
+        
+        
+        <div class="components-btn"><i class="fas fa-plus"></i></div>
+        
+
+      </div>
+
+      <div class="menu-options-wrapper">
+
+        <div class="menu-options subsites-wrapper invisible"></div>
+
+        <div class="menu-options create-wrapper invisible">
           <div class="div-create create-indicator">
             Div
             <div class="div-options">
@@ -194,17 +208,15 @@
           <div class="filler"></div>
         </div>
 
-        <div class="background-btn">
-          <i class="fas fa-images"></i>
+        <div class="menu-options background-wrapper invisible">
+          <div class="bg-inner-wrapper">
+            <div class="bg-color"></div>
+            <div class="bg-position"></div>
+            <div class="bg-image"></div>
+          </div>
         </div>
-        <div class="background-wrapper invisible">
-          <div class="color"></div>
-          <div class="positioning"></div>
-        </div>
-        
-        <div class="components-btn"><i class="fas fa-plus"></i></div>
-        <div class="components-wrapper invisible"></div>
 
+        <div class="menu-options components-wrapper invisible"></div>
       </div>
 
       <div class="work-area">

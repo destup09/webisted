@@ -1,94 +1,86 @@
 (function menuControl() {
-  const menusWrapper = document.querySelector(".menu");
-  let clickedMenu;
-  let prevMenu;
+  (function leftMenuToggle() {
+    const menusWrapper = document.querySelector(".menu");
+    let clickedMenu;
+    let lastMenu;
 
-  function menuHide(correct) {
-    if (prevMenu && !prevMenu.classList.contains("invisible")) {
-      prevMenu.classList.add("invisible");
-      //? \/
-    }
-  }
-
-  menusWrapper.addEventListener("click", function(e) {
-    if (e.target.classList.contains("fas")) {
-      clickedMenu = e.target.parentNode.className;
-    } else {
-      clickedMenu = e.target.className;
-    }
-
-    let menuSplit = clickedMenu.split("-", 1).join();
-
-    let menuClass = menuSplit.concat("-wrapper");
-    let correctClass = document.querySelector("." + menuClass);
-
-    if (correctClass.classList.contains("invisible")) {
-      correctClass.classList.remove("invisible");
-    } else {
-      correctClass.classList.add("invisible");
-    }
-
-    menuHide(correctClass);
-
-    prevMenu = correctClass;
-
-    //let lastClickedMenu = correctClass;
-    //btn-active
-  });
-
-  const createWrapper = document.querySelector(".create-wrapper");
-
-  const firstTarget = document.querySelector(".div-create");
-  let prevTarget;
-  if (prevTarget === undefined) {
-    firstTarget.classList.add("menu-active");
-
-    firstTarget.children[0].style.visibility = "visible";
-  }
-
-  createWrapper.addEventListener("mousedown", function(e) {
-    if (e.target.classList.contains("create-indicator")) {
-      if (prevTarget !== undefined) {
-        prevTarget.classList.remove("menu-active");
-
-        prevTarget.children[0].style.visibility = "hidden";
+    menusWrapper.addEventListener("click", function(e) {
+      if (e.target.classList.contains("fas")) {
+        clickedMenu = e.target.parentNode.className;
+      } else {
+        clickedMenu = e.target.className;
       }
 
-      firstTarget.classList.remove("menu-active");
+      let menusArray = document.getElementsByClassName("menu-options");
+      let menuSplit = clickedMenu.split("-", 1).join();
+      let menuClass = menuSplit.concat("-wrapper");
+      let correctClass = document.querySelector("." + menuClass);
 
-      firstTarget.children[0].style.visibility = "hidden";
-      e.target.classList.add("menu-active");
-      e.target.children[0].style.visibility = "visible";
-      prevTarget = e.target;
+      for (let i = 0; i < menusArray.length; i++) {
+        menusArray[i].classList.add("invisible");
+      }
+
+      correctClass.classList.remove("invisible");
+      if (lastMenu == correctClass) {
+        correctClass.classList.add("invisible");
+      }
+      lastMenu = correctClass;
+    });
+  })();
+
+  (function leftMenuInnerOptions() {
+    const createWrapper = document.querySelector(".create-wrapper");
+    const firstTarget = document.querySelector(".div-create");
+    let prevTarget;
+
+    if (prevTarget === undefined) {
+      firstTarget.classList.add("menu-active");
+      firstTarget.children[0].style.visibility = "visible";
     }
-  });
 
-  //menu toggle
-  const menuToggleBtn = document.querySelector(".menu-toggle");
-  const menuToggleIcon = document.querySelector(".fa-sort-down");
-  const header = document.querySelector(".header");
-  const nav = document.querySelector(".nav");
-  const tutorial = document.querySelector(".tutorial-btn-wrapper");
-  let headerToggle = 0;
+    createWrapper.addEventListener("mousedown", function(e) {
+      if (e.target.classList.contains("create-indicator")) {
+        if (prevTarget !== undefined) {
+          prevTarget.classList.remove("menu-active");
+          prevTarget.children[0].style.visibility = "hidden";
+        }
 
-  menuToggleBtn.addEventListener("click", function() {
-    if (headerToggle == 0) {
-      header.style.height = "0px";
-      nav.style.marginTop = "-40px";
-      tutorial.style.marginTop = "-40px";
-      menuToggleBtn.classList.add("rotate");
+        firstTarget.classList.remove("menu-active");
+        firstTarget.children[0].style.visibility = "hidden";
+        e.target.classList.add("menu-active");
+        e.target.children[0].style.visibility = "visible";
+        prevTarget = e.target;
+      }
+    });
+  })();
 
-      menuToggleIcon.classList.add("menu-toggle-white");
-      headerToggle = 1;
-    } else {
-      header.style.height = "40px";
-      nav.style.marginTop = "0px";
-      tutorial.style.marginTop = "0px";
-      menuToggleBtn.classList.remove("rotate");
-      menuToggleIcon.classList.remove("menu-toggle-white");
-      headerToggle = 0;
-    }
-  });
+  (function menuToggle() {
+    const menuToggleBtn = document.querySelector(".menu-toggle");
+    const menuToggleIcon = document.querySelector(".fa-sort-down");
+    const header = document.querySelector(".header");
+    const nav = document.querySelector(".nav");
+    const tutorial = document.querySelector(".tutorial-btn-wrapper");
+    let headerToggle = 0;
+
+    menuToggleBtn.addEventListener("click", function() {
+      if (headerToggle == 0) {
+        header.style.height = "0px";
+        nav.style.marginTop = "-40px";
+        tutorial.style.marginTop = "-40px";
+        menuToggleBtn.classList.add("rotate");
+
+        menuToggleIcon.classList.add("menu-toggle-white");
+        headerToggle = 1;
+      } else {
+        header.style.height = "40px";
+        nav.style.marginTop = "0px";
+        tutorial.style.marginTop = "0px";
+        menuToggleBtn.classList.remove("rotate");
+        menuToggleIcon.classList.remove("menu-toggle-white");
+        headerToggle = 0;
+      }
+    });
+  })();
 })();
 
 ///////////////////

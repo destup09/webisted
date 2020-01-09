@@ -61,7 +61,7 @@
 .background-wrapper,
 .components-wrapper {
   position: absolute;
-  left: 70px;
+  left: 85px;
   width: 400px;
   height: 400px;
   background: $primary-color;
@@ -69,7 +69,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  top: 0px;
+  top: 140px;
 }
 
 .div-create,
@@ -144,30 +144,8 @@
   color: $primary-color;
 }
 
-.div-config {
-  border-top: 1px solid black;
-  padding-top: 20px;
-
-  p {
-    text-align: center;
-    font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
-    padding-bottom: 20px;
-    border-bottom: 1px solid black;
-  }
-
-  li,
-  a {
-    text-align: left;
-    margin-left: 15px;
-  }
-
-  input {
-    width: 140px;
-    float: right;
-    margin-right: 10px;
-  }
-}
+//////////////
+//TEXT CREATE
 
 .create-new-text {
   background: none;
@@ -307,24 +285,28 @@
   border-bottom: 5px double #333333;
 }
 
-//text
-.text-style {
-  background: transparent;
-  width: 300px;
-  height: 50px;
-}
-
 .border {
   border: 1px solid $secondary-color;
 }
 
-//buttons
+////////////
+//BUTTONS
 .btn1 {
   width: 100px;
   height: 50px;
 }
 
-//work area
+////////////
+//BACKGROUND
+
+.bg-inner-wrapper {
+  width: 380px;
+  height: 380px;
+  margin: 0 auto;
+}
+
+////////////
+//WORK AREA
 
 .work-area {
   width: 100%;
@@ -429,13 +411,6 @@
     margin-left: 85px;
     margin-top: 10px;
   }
-}
-
-.config-menu {
-  width: 200px;
-  height: 400px;
-  background: rgba(255, 255, 255, 0.7);
-  position: absolute;
 }
 
 .resizerSe {

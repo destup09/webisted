@@ -4,13 +4,20 @@
   background: $primary-color;
   box-shadow: 0px 3px 8px -5px rgba(0, 0, 0, 0.75);
   @include transition-ease-fast;
-  display: flex;
-  justify-content: space-around;
 
   .tutorial-btn-wrapper {
     width: 100px;
     height: 32px;
     @include transition-ease-fast;
+  }
+
+  .menu-logo {
+    font-weight: 800;
+    font-size: 20px;
+    margin-top: 8px;
+    font-family: "Roboto";
+    text-transform: uppercase;
+    background: $secondary-color;
   }
 
   .tutorial {
@@ -37,8 +44,9 @@
   }
 
   .nav {
-    display: flex;
     @include transition-ease-fast;
+    display: flex;
+    justify-content: space-around;
 
     &__items {
       padding-top: 8px;
@@ -46,7 +54,8 @@
 
       li,
       a {
-        margin-left: 40px;
+        margin-left: 20px;
+        margin-right: 20px;
         padding-bottom: 0px;
         list-style: none;
         color: $secondary-color;
@@ -64,13 +73,6 @@
       .active {
         border-bottom: 1px solid $secondary-color;
       }
-    }
-
-    .menu-logo {
-      font-weight: 800;
-      font-size: 20px;
-      margin-top: -3px;
-      margin-right: 32px;
     }
   }
 }
@@ -100,5 +102,5 @@
 }
 
 .menu-toggle-white {
-  color: #fff;
+  color: $secondary-color;
 }

@@ -1,5 +1,203 @@
 .landing__page {
   width: 100%;
   height: 100vh;
-  background: $accent-color;
+  background: $secondary-color;
+  overflow-x: hidden;
+  background: linear-gradient(
+      to right,
+      rgba($secondary-color, 0.4),
+      rgba($secondary-color, 0.1)
+    ),
+    url("../../files/landing-page-bg-1920x1280.jpg") center top;
+  background-size: cover;
+}
+
+.header-landing {
+  width: 100%;
+  height: 80px;
+  @include transition-ease-fast;
+  box-shadow: 0px 3px 8px -5px rgba(0, 0, 0, 0.75);
+  z-index: 20;
+  position: fixed;
+  top: 0;
+
+  .tutorial-btn-wrapper {
+    width: 100px;
+    height: 32px;
+    @include transition-ease-fast;
+  }
+
+  .menu-logo {
+    font-weight: 800;
+    font-size: 24px;
+    margin-top: 26px;
+    font-family: "Roboto";
+    text-transform: uppercase;
+    color: $secondary-color;
+  }
+
+  .tutorial {
+    padding-bottom: 0px;
+    margin-top: 23px;
+    color: $secondary-color;
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    @include transition-ease-fast;
+    background: none;
+    border: 1px solid $secondary-color;
+    width: 110px;
+    height: 36px;
+    border-radius: 15px;
+
+    &:hover {
+      border: 1px solid;
+      color: $secondary-color;
+      background: $primary-color;
+    }
+  }
+
+  .nav {
+    @include transition-ease-fast;
+    display: flex;
+    justify-content: space-around;
+
+    &__items {
+      padding-top: 24px;
+      display: flex;
+
+      li,
+      a {
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-bottom: 0px;
+        list-style: none;
+        color: $secondary-color;
+        text-decoration: none;
+        cursor: pointer;
+        text-transform: uppercase;
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        padding-top: 4px;
+      }
+      a:hover {
+        border-bottom: 1px solid $secondary-color;
+      }
+
+      .active {
+        border-bottom: 1px solid $secondary-color;
+      }
+    }
+  }
+}
+
+.landing-page-info {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 200px;
+  padding: 0 80px 0 80px;
+
+  .spoiler-image1 {
+    width: 680px;
+    height: 500px;
+    background: white;
+    box-shadow: -12px 12px 8px -5px rgba(0, 0, 0, 0.75);
+  }
+
+  .img-wrapper {
+    width: 660px;
+    height: 480px;
+    background-size: cover;
+    margin: 10px auto 0 auto;
+    background: url("../../files/landing-page-bg-1920x1280.jpg") center top;
+  }
+
+  .spoiler-info1 {
+    width: 680px;
+    height: 500px;
+    margin-top: 60px;
+    background: white;
+    box-shadow: -12px 12px 8px -5px rgba(0, 0, 0, 0.75);
+
+    .spoiler-inner {
+      width: 660px;
+      height: 480px;
+      background: $accent-color;
+      margin: 0 auto;
+      margin-top: -30px;
+    }
+
+    h2 {
+      color: $secondary-color;
+      font-family: "Roboto";
+      text-align: center;
+      margin-top: 42px;
+      padding-top: 62px;
+      font-size: 32px;
+      text-transform: uppercase;
+    }
+
+    p {
+      color: $secondary-color;
+      font-family: "Roboto";
+      text-align: center;
+      margin-top: 22px;
+      line-height: 24px;
+      font-size: 18px;
+    }
+
+    .example_f {
+      border-radius: 12px;
+
+      border: 1px solid $secondary-color;
+      color: $secondary-color;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 22px;
+      font-family: "Roboto";
+      padding: 15px;
+      width: 200px;
+      transition: all 0.4s;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+    .example_f span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.4s;
+    }
+    .example_f span:after {
+      content: "\00bb";
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+    .example_f:hover span {
+      padding-right: 25px;
+    }
+    .example_f:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
+  }
+
+  .landing-page-bg {
+    margin-top: -80px;
+    opacity: 0.015;
+    z-index: 1;
+  }
+
+  .more-info {
+    margin-top: -4px;
+    height: 1000px;
+    width: 100%;
+    background: #24282c;
+  }
 }
