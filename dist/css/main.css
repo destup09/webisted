@@ -14,9 +14,21 @@ button:focus {
   height: 100vh;
   background: #22262b;
   overflow-x: hidden;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(34, 38, 43, 0.4)), to(rgba(34, 38, 43, 0.1))), url("../../files/landing-page-bg-1920x1280.jpg") center top;
-  background: linear-gradient(to right, rgba(34, 38, 43, 0.4), rgba(34, 38, 43, 0.1)), url("../../files/landing-page-bg-1920x1280.jpg") center top;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.85))), url("../../files/landing-page2.jpg") center bottom;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)), url("../../files/landing-page2.jpg") center bottom;
   background-size: cover;
+}
+
+.main-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-flow: column wrap;
+      flex-flow: column wrap;
 }
 
 .header-landing {
@@ -24,11 +36,19 @@ button:focus {
   height: 80px;
   -webkit-transition: 0.25s ease-in-out;
   transition: 0.25s ease-in-out;
-  -webkit-box-shadow: 0px 3px 8px -5px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 3px 8px -5px rgba(0, 0, 0, 0.75);
   z-index: 20;
   position: fixed;
   top: 0;
+}
+
+.header-landing::after {
+  content: "";
+  position: absolute;
+  top: 80px;
+  width: 84%;
+  margin-left: 8%;
+  height: 1px;
+  background: white;
 }
 
 .header-landing .tutorial-btn-wrapper {
@@ -44,13 +64,13 @@ button:focus {
   margin-top: 26px;
   font-family: "Roboto";
   text-transform: uppercase;
-  color: #22262b;
+  color: #fff;
 }
 
 .header-landing .tutorial {
   padding-bottom: 0px;
   margin-top: 23px;
-  color: #22262b;
+  color: #fff;
   text-decoration: none;
   cursor: pointer;
   text-transform: uppercase;
@@ -59,7 +79,7 @@ button:focus {
   -webkit-transition: 0.25s ease-in-out;
   transition: 0.25s ease-in-out;
   background: none;
-  border: 1px solid #22262b;
+  border: 1px solid #fff;
   width: 110px;
   height: 36px;
   border-radius: 15px;
@@ -67,8 +87,8 @@ button:focus {
 
 .header-landing .tutorial:hover {
   border: 1px solid;
-  color: #22262b;
-  background: #fff;
+  color: #fff;
+  background: #22262b;
 }
 
 .header-landing .nav {
@@ -94,7 +114,7 @@ button:focus {
   margin-right: 20px;
   padding-bottom: 0px;
   list-style: none;
-  color: #22262b;
+  color: #fff;
   text-decoration: none;
   cursor: pointer;
   text-transform: uppercase;
@@ -104,81 +124,67 @@ button:focus {
 }
 
 .header-landing .nav__items a:hover {
-  border-bottom: 1px solid #22262b;
+  border-bottom: 1px solid #fff;
 }
 
 .header-landing .nav__items .active {
-  border-bottom: 1px solid #22262b;
+  border-bottom: 1px solid #fff;
 }
 
 .landing-page-info {
   height: 100vh;
   width: 100%;
+  margin: 150px auto 0 auto;
+  padding: 0 80px 0 80px;
+}
+
+.landing-page-info .info-page-bg {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  margin-top: 200px;
-  padding: 0 80px 0 80px;
+  width: 80%;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.32);
+  margin: 0 auto;
 }
 
 .landing-page-info .spoiler-image1 {
-  width: 680px;
-  height: 500px;
+  width: 668px;
+  height: 371px;
   background: white;
-  -webkit-box-shadow: -12px 12px 8px -5px rgba(0, 0, 0, 0.75);
-          box-shadow: -12px 12px 8px -5px rgba(0, 0, 0, 0.75);
+  margin-top: 20px;
 }
 
 .landing-page-info .img-wrapper {
-  width: 660px;
-  height: 480px;
-  background-size: cover;
+  width: 648px;
+  height: 351px;
+  background-size: cover !important;
   margin: 10px auto 0 auto;
-  background: url("../../files/landing-page-bg-1920x1280.jpg") center top;
+  background: url("../../files/img-laptop.jpg") no-repeat center;
 }
 
 .landing-page-info .spoiler-info1 {
-  width: 680px;
-  height: 500px;
-  margin-top: 60px;
-  background: white;
-  -webkit-box-shadow: -12px 12px 8px -5px rgba(0, 0, 0, 0.75);
-          box-shadow: -12px 12px 8px -5px rgba(0, 0, 0, 0.75);
-}
-
-.landing-page-info .spoiler-info1 .spoiler-inner {
-  width: 660px;
-  height: 480px;
-  background: #f2f2f2;
-  margin: 0 auto;
-  margin-top: -30px;
-}
-
-.landing-page-info .spoiler-info1 h2 {
-  color: #22262b;
-  font-family: "Roboto";
-  text-align: center;
-  margin-top: 42px;
-  padding-top: 62px;
-  font-size: 32px;
-  text-transform: uppercase;
+  margin-top: 20px;
+  width: 640px;
+  height: 380px;
 }
 
 .landing-page-info .spoiler-info1 p {
-  color: #22262b;
-  font-family: "Roboto";
+  color: #fff;
+  font-family: "Montserrat";
   text-align: center;
-  margin-top: 22px;
+  padding: 0 25px 0 25px;
   line-height: 24px;
   font-size: 18px;
+  font-weight: lighter;
+  margin-top: 20px;
 }
 
 .landing-page-info .spoiler-info1 .example_f {
-  border-radius: 12px;
-  border: 1px solid #22262b;
   color: #22262b;
+  background: #e5c320;
   text-align: center;
   text-transform: uppercase;
   font-size: 22px;
@@ -188,7 +194,6 @@ button:focus {
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
   cursor: pointer;
-  margin-top: 5px;
 }
 
 .landing-page-info .spoiler-info1 .example_f span {
@@ -218,17 +223,37 @@ button:focus {
   right: 0;
 }
 
+.landing-page-info .spoiler-info1 .btn-wrapper {
+  height: 56px;
+  width: 180px;
+  border: 2px solid #e5c320;
+  margin: 0 auto;
+}
+
 .landing-page-info .landing-page-bg {
   margin-top: -80px;
   opacity: 0.015;
   z-index: 1;
 }
 
-.landing-page-info .more-info {
-  margin-top: -4px;
-  height: 1000px;
+.landing-page-info .websites-slider {
+  width: 80%;
+  height: 400px;
+  margin: 150px auto 0 auto;
+  padding-left: 25px;
+}
+
+.landing-page-info .websites-slider p {
+  color: #fff;
+  font-family: "Montserrat";
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.landing-page-info .websites-slider .slider-wrapper {
+  height: 320px;
   width: 100%;
-  background: #24282c;
+  border: 1px solid white;
 }
 
 .header {
@@ -254,7 +279,6 @@ button:focus {
   margin-top: 8px;
   font-family: "Roboto";
   text-transform: uppercase;
-  background: #22262b;
 }
 
 .header .tutorial {
