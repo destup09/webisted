@@ -16,7 +16,7 @@
 
 .header-landing {
   width: 100%;
-  height: 80px;
+  height: 5rem;
   @include transition-ease-fast;
   z-index: 20;
   position: fixed;
@@ -40,7 +40,7 @@
 
   .menu-logo {
     font-weight: 800;
-    font-size: 24px;
+    font-size: 2rem;
     margin-top: 26px;
     font-family: "Roboto";
     text-transform: uppercase;
@@ -198,23 +198,80 @@
     z-index: 1;
   }
 
+  //slider
+
   .websites-slider {
     width: 80%;
     height: 400px;
-    margin: 150px auto 0 auto;
+    margin: 130px auto 0 auto;
     padding-left: 25px;
 
     p {
       color: $primary-color;
       font-family: "Montserrat";
       font-size: 18px;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
 
     .slider-wrapper {
       height: 320px;
+      width: 1300px;
+      display: flex;
+      flex: 1 0 auto;
+      align-items: center;
+      @include transition-ease-fast;
+    }
+
+    .slider-container {
+      height: 320px;
       width: 100%;
-      border: 1px solid white;
+      overflow: hidden;
+    }
+
+    .fas {
+      font-size: 32px;
+      color: white;
+    }
+
+    .slider-arrows {
+      height: 30px;
+      width: 120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .make-it-right {
+      transform: rotate(180deg);
+    }
+
+    .arrow-right,
+    .arrow-left {
+      width: 30px;
+      cursor: pointer;
+    }
+
+    .image1,
+    .image2,
+    .image3,
+    .image4,
+    .image5 {
+      background: white;
+      border: black;
+      height: 220px;
+      min-width: 380px;
+      margin-left: 18px;
+      margin-right: 18px;
+    }
+
+    .image2,
+    .image4 {
+      background: black;
+    }
+
+    .image-focus {
+      min-width: 500px;
+      height: 300px;
     }
   }
 }

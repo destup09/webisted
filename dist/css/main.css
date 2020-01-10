@@ -33,7 +33,7 @@ button:focus {
 
 .header-landing {
   width: 100%;
-  height: 80px;
+  height: 5rem;
   -webkit-transition: 0.25s ease-in-out;
   transition: 0.25s ease-in-out;
   z-index: 20;
@@ -60,7 +60,7 @@ button:focus {
 
 .header-landing .menu-logo {
   font-weight: 800;
-  font-size: 24px;
+  font-size: 2rem;
   margin-top: 26px;
   font-family: "Roboto";
   text-transform: uppercase;
@@ -239,7 +239,7 @@ button:focus {
 .landing-page-info .websites-slider {
   width: 80%;
   height: 400px;
-  margin: 150px auto 0 auto;
+  margin: 130px auto 0 auto;
   padding-left: 25px;
 }
 
@@ -247,13 +247,80 @@ button:focus {
   color: #fff;
   font-family: "Montserrat";
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .landing-page-info .websites-slider .slider-wrapper {
   height: 320px;
+  width: 1300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
+.landing-page-info .websites-slider .slider-container {
+  height: 320px;
   width: 100%;
-  border: 1px solid white;
+  overflow: hidden;
+}
+
+.landing-page-info .websites-slider .fas {
+  font-size: 32px;
+  color: white;
+}
+
+.landing-page-info .websites-slider .slider-arrows {
+  height: 30px;
+  width: 120px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.landing-page-info .websites-slider .make-it-right {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.landing-page-info .websites-slider .arrow-right,
+.landing-page-info .websites-slider .arrow-left {
+  width: 30px;
+  cursor: pointer;
+}
+
+.landing-page-info .websites-slider .image1,
+.landing-page-info .websites-slider .image2,
+.landing-page-info .websites-slider .image3,
+.landing-page-info .websites-slider .image4,
+.landing-page-info .websites-slider .image5 {
+  background: white;
+  border: black;
+  height: 220px;
+  min-width: 380px;
+  margin-left: 18px;
+  margin-right: 18px;
+}
+
+.landing-page-info .websites-slider .image2,
+.landing-page-info .websites-slider .image4 {
+  background: black;
+}
+
+.landing-page-info .websites-slider .image-focus {
+  min-width: 500px;
+  height: 300px;
 }
 
 .header {
