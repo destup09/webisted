@@ -238,12 +238,32 @@ button:focus {
 
 .landing-page-info .websites-slider {
   width: 80%;
-  height: 400px;
+  height: 300px;
   margin: 130px auto 0 auto;
   padding-left: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  margin-top: 170px;
 }
 
-.landing-page-info .websites-slider p {
+.landing-page-info .websites-slider .content-wrapper {
+  width: 1050px;
+  height: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background: rgba(255, 255, 255, 0.32);
+  margin-right: 20px;
+}
+
+.landing-page-info .websites-slider .content-wrapper p {
   color: #fff;
   font-family: "Montserrat";
   font-size: 18px;
@@ -251,25 +271,33 @@ button:focus {
 }
 
 .landing-page-info .websites-slider .slider-wrapper {
-  height: 320px;
-  width: 1300px;
+  height: 264px;
+  width: 470px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 auto;
-          flex: 1 0 auto;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-transition: 0.25s ease-in-out;
   transition: 0.25s ease-in-out;
+  overflow: hidden;
 }
 
 .landing-page-info .websites-slider .slider-container {
-  height: 320px;
-  width: 100%;
+  height: 304px;
+  width: 510px;
   overflow: hidden;
+  background: white;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 20px;
+  margin-right: -20px;
 }
 
 .landing-page-info .websites-slider .fas {
@@ -307,20 +335,9 @@ button:focus {
 .landing-page-info .websites-slider .image5 {
   background: white;
   border: black;
-  height: 220px;
-  min-width: 380px;
-  margin-left: 18px;
-  margin-right: 18px;
-}
-
-.landing-page-info .websites-slider .image2,
-.landing-page-info .websites-slider .image4 {
-  background: black;
-}
-
-.landing-page-info .websites-slider .image-focus {
-  min-width: 500px;
-  height: 300px;
+  height: 264px;
+  min-width: 470px;
+  border: 1px solid black;
 }
 
 .header {
