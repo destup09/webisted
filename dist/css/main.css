@@ -19,6 +19,11 @@ button:focus {
   background-size: cover;
 }
 
+.transition-ease {
+  -webkit-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
 .main-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -150,19 +155,13 @@ button:focus {
   margin: 0 auto;
 }
 
-.landing-page-info .spoiler-image1 {
-  width: 668px;
-  height: 371px;
-  background: white;
-  margin-top: 20px;
-}
-
 .landing-page-info .img-wrapper {
   width: 648px;
   height: 351px;
   background-size: cover !important;
-  margin: 10px auto 0 auto;
+  margin: 22px auto 0 auto;
   background: url("../../files/img-laptop.jpg") no-repeat center;
+  border: 10px solid white;
 }
 
 .landing-page-info .spoiler-info1 {
@@ -180,6 +179,7 @@ button:focus {
   font-size: 18px;
   font-weight: lighter;
   margin-top: 20px;
+  line-height: 34px;
 }
 
 .landing-page-info .spoiler-info1 .example_f {
@@ -272,18 +272,17 @@ button:focus {
 
 .landing-page-info .websites-slider .slider-wrapper {
   height: 264px;
-  width: 470px;
+  width: 2420px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-transition: 0.25s ease-in-out;
-  transition: 0.25s ease-in-out;
   overflow: hidden;
+  position: relative;
 }
 
 .landing-page-info .websites-slider .slider-container {
-  height: 304px;
-  width: 510px;
+  height: 287px;
+  width: 493px;
   overflow: hidden;
   background: white;
   position: relative;
@@ -334,10 +333,15 @@ button:focus {
 .landing-page-info .websites-slider .image4,
 .landing-page-info .websites-slider .image5 {
   background: white;
-  border: black;
+  border: 1px solid black;
   height: 264px;
   min-width: 470px;
-  border: 1px solid black;
+  margin-left: 12px;
+}
+
+.landing-page-info .image2,
+.landing-page-info .image4 {
+  background: darkcyan;
 }
 
 .header {

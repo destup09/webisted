@@ -3,33 +3,38 @@
   const slider = document.querySelector(".slider-wrapper");
   const arrowLeft = document.querySelector(".arrow-left");
   const arrowRight = document.querySelector(".arrow-right");
-  let width = 380;
   const image1 = document.querySelector(".image1");
-  const image2 = document.querySelector(".image2");
-  const image3 = document.querySelector(".image3");
-  const image4 = document.querySelector(".image4");
-  const image5 = document.querySelector(".image5");
 
-  let nextClass = 0;
-  let correctClass;
-
-  image2.classList.add("image-focus");
+  let imageWidth = image1.offsetWidth + 12;
+  slider.style.marginLeft = imageWidth * -1 + "px";
+  let margin = -482;
 
   function sliderAnim() {
     arrowLeft.addEventListener("click", function() {
-      console.log("elo");
-      width += -380;
-      image2.classList.remove("image-focus");
-      nextClass = 3;
-      image3.classList.add("image-focus");
+      margin += imageWidth;
+      slider.style.marginLeft = margin + "px";
 
-      slider.style.transform = "translateX(" + width + "px)";
+      if (slider.style.marginLeft == "0px") {
+        setInterval(function() {
+          slider.classList.remove("transition-ease");
+        }, 500);
+
+        slider.style.marginLeft = 3 * -imageWidth + "px";
+        margin = 3 * -imageWidth;
+      } else {
+        slider.classList.add("transition-ease");
+      }
+      console.log(slider.style.marginLeft);
     });
 
     arrowRight.addEventListener("click", function() {
-      width += 380;
-      slider.style.transform = "translateX(" + width + "px)";
+      margin -= imageWidth;
+      slider.style.marginLeft = margin + "px";
+      console.log(slider.style.marginLeft);
     });
   }
+
+  console.log(slider.style.marginLeft);
+
   sliderAnim();
 })();
