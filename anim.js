@@ -1,3 +1,19 @@
+function buttonAnim() {
+	const arrow = document.querySelector(".fa-arrow-right");
+	const btn = document.querySelector(".text-btn");
+
+	btn.addEventListener("mouseenter", function() {
+		arrow.style.paddingLeft = "1.6rem";
+		arrow.style.paddingRight = "0rem";
+	});
+
+	btn.addEventListener("mouseleave", function() {
+		arrow.style.paddingLeft = "0.7rem";
+	});
+}
+buttonAnim();
+
+/*
 (function anim() {
   const sliderWrapper = document.querySelector(".slider-container");
   const slider = document.querySelector(".slider-wrapper");
@@ -38,3 +54,4 @@
 
   sliderAnim();
 })();
+*/
