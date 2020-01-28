@@ -54,6 +54,19 @@ button:focus {
 .left-slider-wrapper {
   height: 100%;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+.slide1,
+.slide2 {
+  height: 100%;
+  min-width: 100%;
 }
 
 .slider-image {
@@ -103,6 +116,8 @@ button:focus {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  position: absolute;
+  width: 100%;
 }
 
 .left-slider-nav .dot {
@@ -168,6 +183,8 @@ button:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-shadow: inset 10px 10px 15px -3px rgba(0, 0, 0, 0.64);
+          box-shadow: inset 10px 10px 15px -3px rgba(0, 0, 0, 0.64);
 }
 
 .middle-wrapper {
@@ -177,7 +194,7 @@ button:focus {
 }
 
 .middle-top {
-  margin-top: 12%;
+  margin-top: 10.5%;
   width: 60%;
   height: 28%;
 }
@@ -193,6 +210,7 @@ button:focus {
           transform: translateY(-100%);
   -webkit-box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.45);
           box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.45);
+  margin-top: -1.5%;
 }
 
 .middle-top .text-wrapper {
@@ -202,6 +220,7 @@ button:focus {
 
 .middle-top .text-wrapper h1 {
   padding: 30px 0 20px 0;
+  color: #e5c320;
 }
 
 .middle-top button {
@@ -251,6 +270,8 @@ button:focus {
   top: 50%;
   -webkit-box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.45);
           box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.45);
+  margin-top: 4.5%;
+  margin-bottom: 5%;
 }
 
 .middle-bottom .middle-slider-wrapper {
@@ -281,7 +302,43 @@ button:focus {
 .middle-bottom .middle-image2 {
   height: auto;
   width: 45%;
-  background: black;
+  border: 4px solid white;
+}
+
+.middle-bottom .middle-image1 {
+  background: url("../files/slide1.jpg") center center;
+  background-size: cover;
+}
+
+.middle-bottom .middle-image2 {
+  background: url("../files/slide2.jpg") center left;
+  background-size: cover;
+}
+
+.middle-bottom .middle-slider-nav {
+  width: 30%;
+  height: 10%;
+  margin: 2% auto 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.middle-bottom .middle-slider-nav .fas {
+  color: white;
+  font-size: 2.3rem;
+  cursor: pointer;
+}
+
+.middle-bottom .middle-slider-nav .fa-chevron-left {
+  margin-right: 50%;
+}
+
+.middle-bottom .middle-slider-nav .fa-chevron-right {
+  margin-right: 32%;
 }
 
 .social-icons {
@@ -337,7 +394,7 @@ button:focus {
           box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.75);
   -webkit-transform: translateY(-100%);
           transform: translateY(-100%);
-  margin-top: 45%;
+  margin-top: 92%;
   margin-left: -57%;
 }
 
@@ -680,7 +737,7 @@ button:focus {
   background: #fff;
 }
 
-.header .nav {
+.header .project-nav {
   -webkit-transition: 0.25s ease-in-out;
   transition: 0.25s ease-in-out;
   display: -webkit-box;
@@ -690,15 +747,15 @@ button:focus {
       justify-content: space-around;
 }
 
-.header .nav__items {
+.header .project-nav ul {
   padding-top: 8px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.header .nav__items li,
-.header .nav__items a {
+.header .project-nav ul li,
+.header .project-nav ul a {
   margin-left: 20px;
   margin-right: 20px;
   padding-bottom: 0px;
@@ -712,18 +769,18 @@ button:focus {
   padding-top: 4px;
 }
 
-.header .nav__items a:hover {
+.header .project-nav ul a:hover {
   border-bottom: 1px solid #22262b;
 }
 
-.header .nav__items .active {
+.header .project-nav ul .active {
   border-bottom: 1px solid #22262b;
 }
 
 .fa-sort-down {
   position: absolute;
   left: 4px;
-  top: 11px;
+  top: -8px;
   font-size: 46px;
   color: #a9a9a9;
   -webkit-transform: rotate(180deg);
@@ -751,78 +808,133 @@ button:focus {
   color: #22262b;
 }
 
+.toggled {
+  height: 0px;
+}
+
+.object-menu {
+  width: 320px;
+  height: 420px;
+  background: #fff;
+  position: absolute;
+  top: 50px;
+  right: 500px;
+  border-radius: 8px;
+}
+
+.object-menu .shape-config {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.object-menu .shape-config .shape-colors {
+  width: 100%;
+  height: 200px;
+  border: 1px solid black;
+}
+
+.object-menu .shape-config .shape-colors .shape-bg-input,
+.object-menu .shape-config .shape-colors .shape-border-input {
+  width: 90px;
+}
+
 .wrapper {
   height: 100vh;
   width: 100%;
 }
 
-.menu {
-  width: 100px;
-  height: 400px;
-  position: absolute;
-  left: 10px;
-  margin-top: 100px;
+.menu-toggle {
+  margin-top: 18px;
 }
 
-.menu .subsites-btn,
-.menu .create-btn,
-.menu .background-btn,
-.menu .components-btn {
-  width: 58px;
-  height: 58px;
-  background: #fff;
-  margin-bottom: 10px;
-  text-align: center;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 2px solid #22262b;
+.invisible {
+  display: none;
+}
+
+.menu-hide {
+  margin-left: -800px;
+}
+
+.m {
+  width: 820px;
+  height: 800px;
+  position: absolute;
+  top: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-transition: 0.5s ease-in-out;
   transition: 0.5s ease-in-out;
 }
 
-.menu .subsites-btn:hover,
-.menu .create-btn:hover,
-.menu .background-btn:hover,
-.menu .components-btn:hover {
-  background: #676a6d;
-}
-
-.menu .btn-active {
-  background: #676a6d;
-}
-
-.menu .fas {
+.m .m-toggle {
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  font-size: 55px;
   color: #22262b;
-  font-size: 36px;
-  margin-top: 12px;
+  cursor: pointer;
 }
 
-.menu .fa-clipboard {
-  margin-top: 8px;
+.m .m-toggle .fas {
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
-.menu .fa-plus {
-  margin-top: 10px;
+.m .m-toggle .lefty {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  margin-left: -21px;
 }
 
-.menu .fa-shapes {
-  margin-top: 9px;
+.m .m-l {
+  width: 120px;
+  height: 100%;
+  background: white;
 }
 
-.menu .fa-images {
-  margin-top: 10px;
+.m .m-l p {
+  text-align: center;
+  padding: 20px;
+  cursor: pointer;
+  font-family: "Lato";
 }
 
-.subsites-wrapper,
-.create-wrapper,
-.background-wrapper,
-.components-wrapper {
+.m .m-l p:hover {
+  background: #f2f2f2;
+}
+
+.m .btn-clicked {
+  background: #dfdfdf;
+}
+
+.m .m-r .div-options,
+.m .m-r .text-options,
+.m .m-r .image-options,
+.m .m-r .background-options {
   position: absolute;
-  left: 85px;
-  width: 400px;
-  height: 400px;
-  background: #fff;
-  border-radius: 5px;
+  top: 0px;
+  left: 120px;
+  width: 680px;
+  height: 800px;
+  background: #dfdfdf;
+  font-family: "Lato";
+  border-radius: 0 15px 15px 0;
+}
+
+.m .m-r .div-options {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -830,91 +942,33 @@ button:focus {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  top: 140px;
 }
 
-.div-create,
-.text-create,
-.btn-create,
-.image-create,
-.icon-create,
-.link-create,
-.filler {
-  width: 120px;
-  height: 30px;
-  cursor: pointer;
-  padding-top: 5px;
-  padding-left: 5px;
-  font-size: 18px;
-  font-family: sans-serif;
-  text-transform: capitalize;
-  list-style-type: none;
-  background: #f2f2f2;
-}
-
-.div-create {
-  margin-top: 0px;
-  border-radius: 5px 0 0 0;
-}
-
-.filler {
-  height: 220px;
-  border-radius: 0 0 0 5px;
-}
-
-.div-options,
-.text-options,
-.btn-options,
-.image-options,
-.icon-options,
-.link-options {
-  position: absolute;
-  left: 120px;
-  top: 0;
-  width: 350px;
-  height: 400px;
-  border-radius: 0 5px 5px 0;
-  visibility: hidden;
-  z-index: 5;
-  cursor: initial;
-  background: #fff;
-}
-
-.div-options input,
-.text-options input,
-.btn-options input,
-.image-options input,
-.icon-options input,
-.link-options input {
-  width: 150px;
-}
-
-.div-options-p {
-  margin-top: 10px;
-  color: black;
+.m .m-r .div-options p {
   text-align: center;
+  padding: 20px;
+  background: #22262b;
+  color: white;
+  margin-bottom: 15px;
 }
 
-.div-shapes-container {
-  margin: 10px;
+.m .m-r .div-options .top-p {
+  border-radius: 0 15px 0 0;
+}
+
+.m .m-r .div-options .div-shapes-container {
+  width: 80%;
+  height: 120px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-}
-
-.invisible {
-  display: none;
-}
-
-.menu-active {
-  background-color: #22262b;
-  color: #fff;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 auto;
 }
 
 .create-new-text {
@@ -937,14 +991,28 @@ button:focus {
 
 .text-input-wrapper {
   color: #22262b;
-  margin-top: 10px;
-  margin-left: 10px;
+  margin: 10px auto 20px auto;
+  width: 500px;
+  height: 130px;
 }
 
 .text-input-wrapper .text-input {
   resize: none;
-  width: 330px;
-  height: 80px;
+  width: 500px;
+  height: 130px;
+}
+
+.wrap-options,
+.color-options-wrapper {
+  margin: 0 auto;
+  width: 380px;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .font-size-wrapper,
@@ -995,21 +1063,21 @@ button:focus {
 }
 
 .div-shape1 {
-  width: 45px;
-  height: 45px;
+  width: 55px;
+  height: 55px;
   background: #333333;
 }
 
 .div-shape2 {
-  width: 45px;
-  height: 45px;
+  width: 55px;
+  height: 55px;
   background: #333333;
   border-radius: 10px;
 }
 
 .div-shape3 {
-  width: 45px;
-  height: 45px;
+  width: 55px;
+  height: 55px;
   background: #333333;
   border-radius: 1000px;
 }
@@ -1019,7 +1087,14 @@ button:focus {
   height: 0;
   border-left: 30px solid transparent;
   border-right: 30px solid transparent;
-  border-bottom: 45px solid #333333;
+  border-bottom: 55px solid #333333;
+}
+
+.div-shape5 {
+  width: 55px;
+  height: 55px;
+  background: none;
+  border: 2px solid #333333;
 }
 
 .div-line-wrapper {
@@ -1063,6 +1138,41 @@ button:focus {
   height: 50px;
 }
 
+.image-options .image-inner-wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.image-options .image-inner-wrapper .image-top {
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.api-images-wrapper {
+  width: 600px;
+  height: 700px;
+  background: #dfdfdf;
+  margin: 15px auto 0 auto;
+  overflow-y: scroll;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.api-img {
+  padding: 10px;
+  cursor: pointer;
+  width: 280px;
+  height: auto;
+}
+
 .bg-inner-wrapper {
   width: 380px;
   height: 380px;
@@ -1077,55 +1187,22 @@ button:focus {
 
 .config-btn {
   width: 18px;
-  height: 3px;
+  height: 18px;
   background: black;
   position: absolute;
-  top: -10px;
+  top: -6px;
   left: 25px;
   cursor: pointer;
 }
 
-.config-btn::before {
-  content: "";
-  position: absolute;
-  top: -5px;
-  width: 18px;
-  height: 3px;
-  background: black;
-}
-
-.config-btn::after {
-  content: "";
-  position: absolute;
-  top: 5px;
-  width: 18px;
-  height: 3px;
-  background: black;
-}
-
 .delete-btn {
-  width: 17px;
-  height: 3px;
+  width: 18px;
+  height: 18px;
   background: black;
   position: absolute;
-  top: -10px;
+  top: -6px;
   left: 3px;
-  -webkit-transform: translateX(10px);
-          transform: translateX(10px);
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
   cursor: pointer;
-}
-
-.delete-btn::before {
-  content: "";
-  position: absolute;
-  top: 0px;
-  width: 17px;
-  height: 3px;
-  background: black;
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
 }
 
 .deleteQuestion {

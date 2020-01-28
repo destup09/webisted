@@ -1,17 +1,32 @@
 function buttonAnim() {
-	const arrow = document.querySelector(".fa-arrow-right");
-	const btn = document.querySelector(".text-btn");
+  const arrow = document.querySelector(".fa-arrow-right");
+  const btn = document.querySelector(".text-btn");
 
-	btn.addEventListener("mouseenter", function() {
-		arrow.style.paddingLeft = "1.6rem";
-		arrow.style.paddingRight = "0rem";
-	});
+  btn.addEventListener("mouseenter", function() {
+    arrow.style.paddingLeft = "1.6rem";
+    arrow.style.paddingRight = "0rem";
+  });
 
-	btn.addEventListener("mouseleave", function() {
-		arrow.style.paddingLeft = "0.7rem";
-	});
+  btn.addEventListener("mouseleave", function() {
+    arrow.style.paddingLeft = "0.7rem";
+  });
 }
 buttonAnim();
+
+function sliderLeft() {
+  const leftSliderWrapper = document.querySelector(".left-slider-wrapper");
+  const leftNav = document.querySelector(".left-slider-nav");
+
+  leftNav.addEventListener("click", function(e) {
+    let slideNum = 1 - parseInt(e.target.classList[0]);
+    let slideWidth = leftSliderWrapper.offsetWidth;
+    console.log(slideNum * slideWidth);
+
+    leftSliderWrapper.style.marginLeft = slideWidth * slideNum + "px";
+    console.log(leftSliderWrapper.style.marginLeft);
+  });
+}
+sliderLeft();
 
 /*
 (function anim() {
