@@ -155,6 +155,65 @@
         this.children[1].classList.add("invisible");
       });
 
+      //shape config
+      const shapeConfig = document.querySelector(".object-menu");
+      div.children[0].addEventListener("click", function() {
+        let currentlyStyling = this.parentNode;
+
+        shapeConfig.classList.remove("invisible");
+        let styleApply = document.querySelectorAll(".style-apply");
+
+        styleApply.forEach(function(style) {
+          style.addEventListener("change", function() {
+            const fillCheckbox = document.querySelector(".fill-chbox");
+            const borderCheckbox = document.querySelector(".border-chbox");
+            const fillColorInput = document.querySelector(".shape-color-input")
+              .value;
+            const borderColorInput = document.querySelector(
+              ".border-color-input"
+            ).value;
+            const shapeBorderWidth = document.querySelector(
+              ".shape-border-width-input"
+            ).value;
+            const borderRadius1 = document.querySelector(".border-radius1")
+              .value;
+            const borderRadius2 = document.querySelector(".border-radius2")
+              .value;
+            const borderRadius3 = document.querySelector(".border-radius3")
+              .value;
+            const borderRadius4 = document.querySelector(".border-radius4")
+              .value;
+
+            const shapeShadowX = document.querySelector(".shape-shadow-x")
+              .value;
+            const shapeShadowY = document.querySelector(".shape-shadow-y")
+              .value;
+            const shapeShadowB = document.querySelector(".shape-shadow-b")
+              .value;
+
+            ////////
+            // Pododawać img krawędzi na border radiusie
+
+            //checkbox
+            if (fillCheckbox.checked) {
+              currentlyStyling.backgroundColor = fillColorInput;
+            } else {
+              currentlyStyling.backgroundColor = "none";
+            }
+
+            if (borderCheckbox.checked) {
+              currentlyStyling.border =
+                "solid" + borderColorInput + " " + shapeBorderWidth;
+            } else {
+              currentlyStyling.border = "none";
+            }
+
+            //adding styles
+            currentlyStyling.style.borderRadius = `${borderRadius1}px ${borderRadius2}px ${borderRadius3}px ${borderRadius4}px`;
+          });
+        });
+      });
+
       //////////////////
       //text create
       if (create == createText) {
@@ -346,6 +405,7 @@
           "mousemove",
           function(event) {
             //resitrict moving div outside workarea
+
             function restric() {
               var rectWorkArea = workArea.getBoundingClientRect();
               var rectDiv = div.getBoundingClientRect();

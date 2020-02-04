@@ -296,10 +296,26 @@
   height: 700px;
   background: $accent-color;
   margin: 15px auto 0 auto;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    width: 8px;
+    border-radius: 8px;
+    background: #8f8f8f;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: 6px;
+    border-radius: 8px;
+    background: $secondary-color;
+  }
 }
 
 .api-img {

@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/monolith.min.css"/>
     <link rel="stylesheet" href="../dist/main.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Lato|Merriweather|Montserrat|Open+Sans|Oswald|Playfair+Display|Roboto|Roboto+Condensed|Roboto+Mono|Roboto+Slab|Source+Sans+Pro&display=swap"
       rel="stylesheet"
     />
+    
 
     <title>Wixa</title>
   </head>
@@ -202,24 +204,74 @@
           </div>
         </div>
 
-        <div class="object-menu">
-          <div class="shape-config">
-            <div class="shape-colors">
-              <p>Background color:</p>
-              <input type="text" class="shape-bg-input"><br />
-              <p>Border color:</p>
-              <input type="text" class="shape-border-input">
+        
+      </div>
+
+      <div class="object-menu invisible">
+        <div class="shape-config">
+
+          <div class="top">Shape Configuration</div>
+          <div class="shape-colors">
+            <div class="color-pickers">
+              <div class="first">
+                <input type="checkbox" class="fill-chbox style-apply"checked> 
+                <p>Fill:</p>
+                <div class="shape-color-wrapper">
+                  <input type="color" class="shape-color-input style-apply">
+                </div>
+              </div>
+              <div class="second">
+                <input type="checkbox" class="border-chbox style-apply" checked>  
+                <p>Border:</p>               
+                <div class="border-color-wrapper">
+                  <input type="color" class="border-color-input style-apply">
+                </div>
+              </div>
+            </div>
+            
+           
+    
+            <div class="border-style">  
+              <p>Border width:</p>               
+              <input type="number" min="0" value="1" class="shape-border-width-input style-apply"><span style="color: #a3a3a3;">px</span>
+            </div>
+
+            
+
+            <div class="border-radius">
+              <p>Border Radius:</p>
+              <input type="number" min="0" value='0' class="border-radius1 style-apply">
+              <input type="number" min="0" value='0' class="border-radius2 style-apply">
+              <input type="number" min="0" value='0' class="border-radius3 style-apply">
+              <input type="number" min="0" value='0' class="border-radius4 style-apply">
+            </div>
+
+            <div class="shape-shadow"> 
+              <p>Shadow:</p>
+              <p>x:</p><input type="number"  class="shape-shadow-x style-apply"><br/>
+              <p>y:</p><input type="number"  class="shape-shadow-y style-apply"><br/>
+              <p>b:</p><input type="number"  class="shape-shadow-b style-apply">
+            </div>
+
+            <div class="text-decoration">
+              <div class="bold"><b>B</b></div>
+              <div class="oblique"><i>I</i></div>
+              <div class="underline">U</div>              
             </div>
 
             
           </div>
+
+          
         </div>
       </div>
     </div>
 
+    
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
     <script src="../main.js"></script>
     <script src="../api.js"></script>
-
+    
     <script
       src="https://kit.fontawesome.com/2c2390af2a.js"
       crossorigin="anonymous"

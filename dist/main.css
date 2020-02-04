@@ -813,13 +813,14 @@ button:focus {
 }
 
 .object-menu {
-  width: 320px;
-  height: 420px;
+  width: 310px;
+  height: 460px;
   background: #fff;
   position: absolute;
   top: 50px;
   right: 500px;
   border-radius: 8px;
+  font-family: "Lato";
 }
 
 .object-menu .shape-config {
@@ -828,20 +829,178 @@ button:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.object-menu .shape-config::-webkit-scrollbar {
+  width: 8px;
+}
+
+.object-menu .shape-config::-webkit-scrollbar-track {
+  width: 8px;
+  border-radius: 8px;
+  background: #8f8f8f;
+}
+
+.object-menu .shape-config::-webkit-scrollbar-thumb {
+  width: 6px;
+  border-radius: 8px;
+  background: #22262b;
+}
+
+.object-menu .shape-config .top {
+  font-size: 20px;
+  background: #22262b;
+  color: white;
+  width: 100%;
+  height: 45px;
+  border-radius: 8px 8px 0 0;
+  font-weight: lighter;
+  text-align: center;
+  padding-top: 10px;
 }
 
 .object-menu .shape-config .shape-colors {
   width: 100%;
   height: 200px;
-  border: 1px solid black;
 }
 
-.object-menu .shape-config .shape-colors .shape-bg-input,
-.object-menu .shape-config .shape-colors .shape-border-input {
-  width: 90px;
+.object-menu .shape-config .shape-colors .color-pickers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.object-menu .shape-config .shape-colors .color-pickers .shape-color-wrapper,
+.object-menu .shape-config .shape-colors .color-pickers .border-color-wrapper {
+  width: 26.66px;
+  height: 26.66px;
+  background: #42445a;
+  border-radius: 2px;
+}
+
+.object-menu .shape-config .shape-colors .color-pickers .shape-color-wrapper .shape-color-input,
+.object-menu .shape-config .shape-colors .color-pickers .shape-color-wrapper .border-color-input,
+.object-menu .shape-config .shape-colors .color-pickers .border-color-wrapper .shape-color-input,
+.object-menu .shape-config .shape-colors .color-pickers .border-color-wrapper .border-color-input {
+  width: 30px;
+  height: 30px;
+  border: none;
+  padding: 0;
+}
+
+.object-menu .shape-config .shape-colors p {
+  padding: 0 8px 0 8px;
+}
+
+.object-menu .shape-config .shape-colors .first,
+.object-menu .shape-config .shape-colors .second,
+.object-menu .shape-config .shape-colors .border-radius,
+.object-menu .shape-config .shape-colors .border-style,
+.object-menu .shape-config .shape-colors .shape-shadow {
+  width: 100%;
+  height: 55px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.object-menu .shape-config .shape-colors .first .shape-border-style-input,
+.object-menu .shape-config .shape-colors .second .shape-border-style-input,
+.object-menu .shape-config .shape-colors .border-radius .shape-border-style-input,
+.object-menu .shape-config .shape-colors .border-style .shape-border-style-input,
+.object-menu .shape-config .shape-colors .shape-shadow .shape-border-style-input {
+  width: 50px;
+}
+
+.object-menu .shape-config .shape-colors .first .fill-chbox,
+.object-menu .shape-config .shape-colors .first .border-chbox,
+.object-menu .shape-config .shape-colors .second .fill-chbox,
+.object-menu .shape-config .shape-colors .second .border-chbox,
+.object-menu .shape-config .shape-colors .border-radius .fill-chbox,
+.object-menu .shape-config .shape-colors .border-radius .border-chbox,
+.object-menu .shape-config .shape-colors .border-style .fill-chbox,
+.object-menu .shape-config .shape-colors .border-style .border-chbox,
+.object-menu .shape-config .shape-colors .shape-shadow .fill-chbox,
+.object-menu .shape-config .shape-colors .shape-shadow .border-chbox {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.object-menu .shape-config .shape-colors .first {
+  padding-left: 8px;
+}
+
+.object-menu .shape-config .shape-colors .border-radius input {
+  width: 40px;
+  margin-left: 4px;
+}
+
+.object-menu .shape-config .shape-colors .shape-shadow input {
+  width: 40px;
+}
+
+.object-menu .shape-config .shape-colors .text-decoration {
+  font-size: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  padding-top: 8px;
+}
+
+.object-menu .shape-config .shape-colors .text-decoration .bold,
+.object-menu .shape-config .shape-colors .text-decoration .oblique,
+.object-menu .shape-config .shape-colors .text-decoration .underline {
+  width: 30px;
+  height: 30px;
+  background: #f2f2f2;
+  border-radius: 4px;
+  text-align: center;
+  color: #22262b;
+  cursor: pointer;
+}
+
+.object-menu .shape-config .shape-colors .text-decoration .bold:hover,
+.object-menu .shape-config .shape-colors .text-decoration .oblique:hover,
+.object-menu .shape-config .shape-colors .text-decoration .underline:hover {
+  background: #dddddd;
+}
+
+.object-menu .shape-config .shape-colors .text-decoration .bold,
+.object-menu .shape-config .shape-colors .text-decoration .oblique {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.object-menu .shape-config .shape-colors .text-decoration .oblique {
+  padding-right: 3px;
+  padding-bottom: 2px;
+}
+
+.object-menu .shape-config .shape-colors .text-decoration .underline {
+  text-decoration: underline;
+  padding-top: 2px;
 }
 
 .wrapper {
@@ -1153,7 +1312,7 @@ button:focus {
   height: 700px;
   background: #dfdfdf;
   margin: 15px auto 0 auto;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1164,6 +1323,22 @@ button:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.api-images-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.api-images-wrapper::-webkit-scrollbar-track {
+  width: 8px;
+  border-radius: 8px;
+  background: #8f8f8f;
+}
+
+.api-images-wrapper::-webkit-scrollbar-thumb {
+  width: 6px;
+  border-radius: 8px;
+  background: #22262b;
 }
 
 .api-img {
