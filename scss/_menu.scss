@@ -187,6 +187,7 @@
 
       .first,
       .second,
+      .border-type,
       .border-radius,
       .border-style,
       .shape-shadow {
@@ -205,6 +206,35 @@
           width: 17px;
           height: 17px;
           cursor: pointer;
+        }
+      }
+
+      .border-type {
+        .brdr {
+          width: 38px;
+          height: 38px;
+          margin-left: 8px;
+          cursor: pointer;
+
+          &:hover {
+            background: #f2f2f2;
+          }
+        }
+
+        .solid {
+          border: 3px solid $secondary-color;
+        }
+
+        .dashed {
+          border: 3px dashed $secondary-color;
+        }
+
+        .dotted {
+          border: 3px dotted $secondary-color;
+        }
+
+        .double {
+          border: 3px double $secondary-color;
         }
       }
 

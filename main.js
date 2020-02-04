@@ -157,8 +157,9 @@
 
       //shape config
       const shapeConfig = document.querySelector(".object-menu");
-      div.children[0].addEventListener("click", function() {
-        let currentlyStyling = this.parentNode;
+      div.children[0].addEventListener("click", function(e) {
+        let currentlyStyling = null;
+        currentlyStyling = e.target.parentNode;
 
         shapeConfig.classList.remove("invisible");
         let styleApply = document.querySelectorAll(".style-apply");
@@ -184,6 +185,8 @@
             const borderRadius4 = document.querySelector(".border-radius4")
               .value;
 
+            const borderStyleWrapper = document.querySelectorAll(".brdr");
+
             const shapeShadowX = document.querySelector(".shape-shadow-x")
               .value;
             const shapeShadowY = document.querySelector(".shape-shadow-y")
@@ -194,22 +197,40 @@
             ////////
             // Pododawać img krawędzi na border radiusie
 
-            //checkbox
+            console.log(fillCheckbox.checked);
+
+            //bg, border
+
+            let borderType;
+
+            borderStyleWrapper.forEach(function(border) {
+              border.addEventListener("click", function() {
+                borderType = this.classList[0];
+                console.log(borderType);
+              });
+            });
+            console.log(borderType);
+
             if (fillCheckbox.checked) {
-              currentlyStyling.backgroundColor = fillColorInput;
+              currentlyStyling.style.backgroundColor = fillColorInput;
             } else {
-              currentlyStyling.backgroundColor = "none";
+              currentlyStyling.style.backgroundColor = "transparent";
             }
 
             if (borderCheckbox.checked) {
-              currentlyStyling.border =
-                "solid" + borderColorInput + " " + shapeBorderWidth;
+              currentlyStyling.style.border =
+                borderType + borderColorInput + " " + shapeBorderWidth + "px";
             } else {
-              currentlyStyling.border = "none";
+              currentlyStyling.style.border = "none";
             }
 
-            //adding styles
+            console.log(currentlyStyling.style.border);
+
             currentlyStyling.style.borderRadius = `${borderRadius1}px ${borderRadius2}px ${borderRadius3}px ${borderRadius4}px`;
+
+            // currentlyStyling.style.boxShadow
+
+            console.log(currentlyStyling);
           });
         });
       });
@@ -372,6 +393,7 @@
 
       /////////////////////
       //moving div with mouse
+      const leftMenu = document.querySelector(".m");
 
       //restriction config
       let isOut = false;
@@ -389,6 +411,9 @@
             offset = [div.offsetLeft - e.clientX, div.offsetTop - e.clientY];
             isOut = false;
             OutDirection = 0;
+
+            leftMenu.children[0].classList.add("invisible");
+            leftMenu.children[1].classList.add("invisible");
           },
           true
         );
@@ -397,6 +422,9 @@
           "mouseup",
           function() {
             isDown = false;
+
+            leftMenu.children[0].classList.remove("invisible");
+            leftMenu.children[1].classList.remove("invisible");
           },
           true
         );
