@@ -157,9 +157,14 @@
 
       //shape config
       const shapeConfig = document.querySelector(".object-menu");
-      div.children[0].addEventListener("click", function(e) {
+      let borderType;
+
+      div.children[0].addEventListener("click", updateShape);
+
+      function updateShape(e) {
         let currentlyStyling = null;
-        currentlyStyling = e.target.parentNode;
+        currentlyStyling = this.parentNode;
+        //zobaczyc czy to array, wybrac 1szy el
 
         shapeConfig.classList.remove("invisible");
         let styleApply = document.querySelectorAll(".style-apply");
@@ -185,8 +190,6 @@
             const borderRadius4 = document.querySelector(".border-radius4")
               .value;
 
-            const borderStyleWrapper = document.querySelectorAll(".brdr");
-
             const shapeShadowX = document.querySelector(".shape-shadow-x")
               .value;
             const shapeShadowY = document.querySelector(".shape-shadow-y")
@@ -197,19 +200,11 @@
             ////////
             // Pododawać img krawędzi na border radiusie
 
-            console.log(fillCheckbox.checked);
+            //console.log(fillCheckbox.checked);
 
             //bg, border
 
-            let borderType;
-
-            borderStyleWrapper.forEach(function(border) {
-              border.addEventListener("click", function() {
-                borderType = this.classList[0];
-                console.log(borderType);
-              });
-            });
-            console.log(borderType);
+            //console.log(borderType);
 
             if (fillCheckbox.checked) {
               currentlyStyling.style.backgroundColor = fillColorInput;
@@ -219,7 +214,12 @@
 
             if (borderCheckbox.checked) {
               currentlyStyling.style.border =
-                borderType + borderColorInput + " " + shapeBorderWidth + "px";
+                borderType +
+                " " +
+                borderColorInput +
+                " " +
+                shapeBorderWidth +
+                "px";
             } else {
               currentlyStyling.style.border = "none";
             }
@@ -232,6 +232,15 @@
 
             console.log(currentlyStyling);
           });
+        });
+      }
+      const borderStyleWrapper = document.querySelectorAll(".brdr");
+
+      borderStyleWrapper.forEach(function(border) {
+        console.log(border);
+        border.addEventListener("click", function() {
+          borderType = this.classList[0];
+          updateShape();
         });
       });
 
