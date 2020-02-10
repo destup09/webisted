@@ -159,11 +159,17 @@
       const shapeConfig = document.querySelector(".object-menu");
       let borderType;
 
-      div.children[0].addEventListener("click", updateShape);
+      config.addEventListener("click", updateShape);
 
       function updateShape(e) {
-        let currentlyStyling = null;
-        currentlyStyling = this.parentNode;
+        let currentlyStyling;
+        currentlyStylingObject = "";
+        currentlyStyling = "";
+
+        currentlyStylingObject = e.target.parentNode.className;
+        currentlyStyling = document.querySelector("." + currentlyStylingObject);
+
+        console.log(e.target.parentNode);
         //zobaczyc czy to array, wybrac 1szy el
 
         shapeConfig.classList.remove("invisible");
@@ -224,20 +230,18 @@
               currentlyStyling.style.border = "none";
             }
 
-            console.log(currentlyStyling.style.border);
+            //console.log(currentlyStyling.style.border);
 
             currentlyStyling.style.borderRadius = `${borderRadius1}px ${borderRadius2}px ${borderRadius3}px ${borderRadius4}px`;
 
             // currentlyStyling.style.boxShadow
-
-            console.log(currentlyStyling);
           });
         });
       }
       const borderStyleWrapper = document.querySelectorAll(".brdr");
 
       borderStyleWrapper.forEach(function(border) {
-        console.log(border);
+        //console.log(border);
         border.addEventListener("click", function() {
           borderType = this.classList[0];
           updateShape();
