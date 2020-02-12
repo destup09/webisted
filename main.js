@@ -100,7 +100,8 @@
 
       //div style config menu
       var config = document.createElement("div");
-      config.className = "config-btn";
+      config.className = click;
+      config.classList.add("config-btn");
       config.classList.add("invisible");
 
       //div delete btn
@@ -155,98 +156,52 @@
         this.children[1].classList.add("invisible");
       });
 
+      ///////////////////
       //shape config
-      const shapeConfig = document.querySelector(".object-menu");
-      let borderType;
 
       config.addEventListener("click", updateShape);
+      let styleApply = document.querySelectorAll(".style-apply");
+      const shapeConfig = document.querySelector(".object-menu");
 
       function updateShape(e) {
-        let currentlyStyling;
-        currentlyStylingObject = "";
-        currentlyStyling = "";
-
-        currentlyStylingObject = e.target.parentNode.className;
-        currentlyStyling = document.querySelector("." + currentlyStylingObject);
-
-        console.log(e.target.parentNode);
-        //zobaczyc czy to array, wybrac 1szy el
-
+        let configBtnClassName = this.classList[0];
         shapeConfig.classList.remove("invisible");
-        let styleApply = document.querySelectorAll(".style-apply");
+
+        currentlyStyling = document.querySelector(".div" + configBtnClassName);
+        console.log(currentlyStyling);
+
+        let fillCheckbox = document.querySelector(".fill-chbox");
+        let borderCheckbox = document.querySelector(".border-chbox");
+        let fillColorInput = document.querySelector(".shape-color-input");
+        let borderColorInput = document.querySelector(".border-color-input");
+        let shapeBorderWidth = document.querySelector(
+          ".shape-border-width-input"
+        );
+        let borderRadius1 = document.querySelector(".border-radius1");
+        let borderRadius2 = document.querySelector(".border-radius2");
+        let borderRadius3 = document.querySelector(".border-radius3");
+        let borderRadius4 = document.querySelector(".border-radius4");
+        let shapeShadowX = document.querySelector(".shape-shadow-x");
+        let shapeShadowY = document.querySelector(".shape-shadow-y");
+        let shapeShadowB = document.querySelector(".shape-shadow-b");
 
         styleApply.forEach(function(style) {
           style.addEventListener("change", function() {
-            const fillCheckbox = document.querySelector(".fill-chbox");
-            const borderCheckbox = document.querySelector(".border-chbox");
-            const fillColorInput = document.querySelector(".shape-color-input")
-              .value;
-            const borderColorInput = document.querySelector(
-              ".border-color-input"
-            ).value;
-            const shapeBorderWidth = document.querySelector(
-              ".shape-border-width-input"
-            ).value;
-            const borderRadius1 = document.querySelector(".border-radius1")
-              .value;
-            const borderRadius2 = document.querySelector(".border-radius2")
-              .value;
-            const borderRadius3 = document.querySelector(".border-radius3")
-              .value;
-            const borderRadius4 = document.querySelector(".border-radius4")
-              .value;
-
-            const shapeShadowX = document.querySelector(".shape-shadow-x")
-              .value;
-            const shapeShadowY = document.querySelector(".shape-shadow-y")
-              .value;
-            const shapeShadowB = document.querySelector(".shape-shadow-b")
-              .value;
-
-            ////////
-            // Pododawać img krawędzi na border radiusie
-
-            //console.log(fillCheckbox.checked);
-
-            //bg, border
-
-            //console.log(borderType);
-
-            if (fillCheckbox.checked) {
-              currentlyStyling.style.backgroundColor = fillColorInput;
-            } else {
-              currentlyStyling.style.backgroundColor = "transparent";
-            }
-
-            if (borderCheckbox.checked) {
-              currentlyStyling.style.border =
-                borderType +
-                " " +
-                borderColorInput +
-                " " +
-                shapeBorderWidth +
-                "px";
-            } else {
-              currentlyStyling.style.border = "none";
-            }
-
-            //console.log(currentlyStyling.style.border);
-
-            currentlyStyling.style.borderRadius = `${borderRadius1}px ${borderRadius2}px ${borderRadius3}px ${borderRadius4}px`;
-
-            // currentlyStyling.style.boxShadow
+            console.log(style.value);
+            console.log(fillColorInput.value);
+            currentlyStyling.style.backgroundColor = fillColorInput.value;
+            console.log(currentlyStyling);
           });
         });
-      }
-      const borderStyleWrapper = document.querySelectorAll(".brdr");
 
-      borderStyleWrapper.forEach(function(border) {
-        //console.log(border);
-        border.addEventListener("click", function() {
-          borderType = this.classList[0];
-          updateShape();
-        });
-      });
+        ////////
+        // Pododawać img krawędzi na border radiusie
+        // dac wyższy z-index klikniętego elementu zeby byl na górze.
+
+        //bg, border
+
+        //console.log(borderType);
+      }
 
       //////////////////
       //text create
@@ -520,108 +475,104 @@
 // - blokada wychodzenia za ekran buguje sie przy scrollu - naprawic
 
 /*
-(function menuButtons() {
-  const subsitesBtn = document.querySelector(".subsites-btn");
-  const createBtn = document.querySelector(".create-btn");
-  const backgroundBtn = document.querySelector(".background-btn");
-  const componentBtn = document.querySelector(".components-btn");
+//shape config
+      const shapeConfig = document.querySelector(".object-menu");
+      let borderType;
 
-  const subsitesWrapper = document.querySelector(".subsites-wrapper");
-  const createWrapper = document.querySelector(".create-wrapper");
-  const backgroundWrapper = document.querySelector(".background-wrapper");
-  const componentWrapper = document.querySelector(".components-wrapper");
+      config.addEventListener("click", updateShape);
 
-  subsitesBtn.addEventListener("click", function() {
-    createBtn.classList.remove("btn-active");
-    subsitesBtn.classList.add("btn-active");
-    backgroundBtn.classList.remove("btn-active");
-    componentBtn.classList.remove("btn-active");
+      function updateShape(e) {
+        let currentlyStyling;
+        currentlyStylingObject = false;
 
-    createWrapper.classList.add("invisible");
-    backgroundWrapper.classList.add("invisible");
-    componentWrapper.classList.add("invisible");
+        currentlyStylingObject = e.target.parentNode.className;
+        currentlyStyling = document.querySelector("." + currentlyStylingObject);
 
-    if (subsitesWrapper.classList.contains("invisible")) {
-      subsitesWrapper.classList.remove("invisible");
-    } else {
-      subsitesWrapper.classList.add("invisible");
-    }
-  });
+        console.log(currentlyStyling);
+        //zobaczyc czy to array, wybrac 1szy el
 
-  createBtn.addEventListener("click", function() {
-    createBtn.classList.add("btn-active");
-    subsitesBtn.classList.remove("btn-active");
-    backgroundBtn.classList.remove("btn-active");
-    componentBtn.classList.remove("btn-active");
+        shapeConfig.classList.remove("invisible");
+        let styleApply = document.querySelectorAll(".style-apply");
 
-    subsitesWrapper.classList.add("invisible");
-    backgroundWrapper.classList.add("invisible");
-    componentWrapper.classList.add("invisible");
+        let rand = Math.floor(Math.random() * 100000) + 200000;
+        console.log(currentlyStyling.style.backgroundColor);
 
-    if (createWrapper.classList.contains("invisible")) {
-      createWrapper.classList.remove("invisible");
-    } else {
-      createWrapper.classList.add("invisible");
-    }
-  });
+        currentlyStyling.style.backgroundColor = "#" + rand;
 
-  backgroundBtn.addEventListener("click", function() {
-    createBtn.classList.remove("btn-active");
-    subsitesBtn.classList.remove("btn-active");
-    backgroundBtn.classList.add("btn-active");
-    componentBtn.classList.remove("btn-active");
+        for (let i = 0; i < styleApply.length; i++) {
+          styleApply[i].addEventListener("change", function() {
+            const fillCheckbox = document.querySelector(".fill-chbox");
+            const borderCheckbox = document.querySelector(".border-chbox");
+            const fillColorInput = document.querySelector(".shape-color-input")
+              .value;
+            const borderColorInput = document.querySelector(
+              ".border-color-input"
+            ).value;
+            const shapeBorderWidth = document.querySelector(
+              ".shape-border-width-input"
+            ).value;
+            const borderRadius1 = document.querySelector(".border-radius1")
+              .value;
+            const borderRadius2 = document.querySelector(".border-radius2")
+              .value;
+            const borderRadius3 = document.querySelector(".border-radius3")
+              .value;
+            const borderRadius4 = document.querySelector(".border-radius4")
+              .value;
 
-    subsitesWrapper.classList.add("invisible");
-    createWrapper.classList.add("invisible");
-    componentWrapper.classList.add("invisible");
+            const shapeShadowX = document.querySelector(".shape-shadow-x")
+              .value;
+            const shapeShadowY = document.querySelector(".shape-shadow-y")
+              .value;
+            const shapeShadowB = document.querySelector(".shape-shadow-b")
+              .value;
 
-    if (backgroundWrapper.classList.contains("invisible")) {
-      backgroundWrapper.classList.remove("invisible");
-    } else {
-      backgroundWrapper.classList.add("invisible");
-    }
-  });
+            ////////
+            // Pododawać img krawędzi na border radiusie
 
-  componentBtn.addEventListener("click", function() {
-    createBtn.classList.remove("btn-active");
-    subsitesBtn.classList.remove("btn-active");
-    backgroundBtn.classList.remove("btn-active");
-    componentBtn.classList.add("btn-active");
+            //console.log(fillCheckbox.checked);
 
-    subsitesWrapper.classList.add("invisible");
-    createWrapper.classList.add("invisible");
-    backgroundWrapper.classList.add("invisible");
+            //bg, border
 
-    if (componentWrapper.classList.contains("invisible")) {
-      componentWrapper.classList.remove("invisible");
-    } else {
-      componentWrapper.classList.add("invisible");
-    }
-  });
+            //console.log(borderType);
 
-  const firstTarget = document.querySelector(".div-create");
-  let prevTarget;
-  if (prevTarget === undefined) {
-    firstTarget.classList.add("menu-active");
+            /*
+            if (fillCheckbox.checked) {
+              currentlyStyling.style.backgroundColor = fillColorInput;
+            } else {
+              currentlyStyling.style.backgroundColor = "transparent";
+            }
+*/
+/*
+if (borderCheckbox.checked) {
+  currentlyStyling.style.border =
+    borderType +
+    " " +
+    borderColorInput +
+    " " +
+    shapeBorderWidth +
+    "px";
+} else {
+  currentlyStyling.style.border = "none";
+}
 
-    firstTarget.children[0].style.visibility = "visible";
-  }
+currentlyStyling.style.borderRadius = `${borderRadius1}px ${borderRadius2}px ${borderRadius3}px ${borderRadius4}px`;
 
-  createWrapper.addEventListener("mousedown", function(e) {
-    if (e.target.classList.contains("create-indicator")) {
-      if (prevTarget !== undefined) {
-        prevTarget.classList.remove("menu-active");
+setStyle(fillColorInput);
+});
+}
 
-        prevTarget.children[0].style.visibility = "hidden";
-      }
+function setStyle(fillColorInput) {
+currentlyStyling.style.backgroundColor = fillColorInput;
+}
+}
+const borderStyleWrapper = document.querySelectorAll(".brdr");
 
-      firstTarget.classList.remove("menu-active");
-
-      firstTarget.children[0].style.visibility = "hidden";
-      e.target.classList.add("menu-active");
-      e.target.children[0].style.visibility = "visible";
-      prevTarget = e.target;
-    }
-  });
-})();
+borderStyleWrapper.forEach(function(border) {
+//console.log(border);
+border.addEventListener("click", function() {
+borderType = this.classList[0];
+updateShape();
+});
+});
 */
