@@ -978,6 +978,44 @@ button:focus {
   margin-left: 4px;
 }
 
+.object-menu .shape-config .shape-colors .shape-shadow {
+  height: 90px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.object-menu .shape-config .shape-colors .shape-shadow .shadow-1st,
+.object-menu .shape-config .shape-colors .shape-shadow .shadow-2nd,
+.object-menu .shape-config .shape-colors .shape-shadow .shadow-3rd {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.object-menu .shape-config .shape-colors .shape-shadow .shadow-1st {
+  margin-bottom: 14px;
+  margin-top: 6px;
+}
+
+.object-menu .shape-config .shape-colors .shape-shadow .shadow-2nd {
+  margin-bottom: 10px;
+}
+
+.object-menu .shape-config .shape-colors .shape-shadow .shadow-color-input {
+  width: 30px;
+  height: 30px;
+  border: none;
+  padding: 0;
+}
+
+.object-menu .shape-config .shape-colors .shape-shadow .shadow-chbox {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
 .object-menu .shape-config .shape-colors .shape-shadow input {
   width: 40px;
 }

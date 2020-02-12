@@ -157,7 +157,7 @@
       });
 
       ///////////////////
-      //shape config
+      //SHAPE CONFIG
 
       config.addEventListener("click", updateShape);
       let styleApply = document.querySelectorAll(".style-apply");
@@ -168,7 +168,6 @@
         shapeConfig.classList.remove("invisible");
 
         currentlyStyling = document.querySelector(".div" + configBtnClassName);
-        console.log(currentlyStyling);
 
         let fillCheckbox = document.querySelector(".fill-chbox");
         let borderCheckbox = document.querySelector(".border-chbox");
@@ -181,26 +180,56 @@
         let borderRadius2 = document.querySelector(".border-radius2");
         let borderRadius3 = document.querySelector(".border-radius3");
         let borderRadius4 = document.querySelector(".border-radius4");
-        let shapeShadowX = document.querySelector(".shape-shadow-x");
-        let shapeShadowY = document.querySelector(".shape-shadow-y");
-        let shapeShadowB = document.querySelector(".shape-shadow-b");
+        let shapeShadowVertical = document.querySelector(".shape-shadow-v");
+        let shapeShadowHorizontal = document.querySelector(".shape-shadow-h");
+        let shapeShadowBlur = document.querySelector(".shape-shadow-b");
+        let shapeShadowSpread = document.querySelector(".shape-shadow-s");
 
         styleApply.forEach(function(style) {
           style.addEventListener("change", function() {
-            console.log(style.value);
-            console.log(fillColorInput.value);
-            currentlyStyling.style.backgroundColor = fillColorInput.value;
-            console.log(currentlyStyling);
+            //bg
+            if (fillCheckbox.checked) {
+              currentlyStyling.style.backgroundColor = fillColorInput.value;
+            } else {
+              currentlyStyling.style.backgroundColor = "transparent";
+            }
+
+            //border
+            if (borderCheckbox.checked) {
+              currentlyStyling.style.border =
+                "solid" +
+                " " +
+                borderColorInput.value +
+                " " +
+                shapeBorderWidth.value +
+                "px";
+            } else {
+              currentlyStyling.style.borderColor = "transparent";
+            }
+
+            //border radius
+            currentlyStyling.style.borderRadius = `${borderRadius1.value}px ${borderRadius2.value}px ${borderRadius3.value}px ${borderRadius4.value}px`;
+
+            //shadow
+            currentlyStyling.style.boxShadow =
+              shapeShadowHorizontal.value +
+              "px " +
+              shapeShadowVertical.value +
+              "px " +
+              shapeShadowBlur.value +
+              "px " +
+              shapeShadowSpread.value +
+              "px black";
+
+            console.log(shapeShadowVertical.value);
+            console.log(currentlyStyling.style.boxShadow);
           });
         });
 
         ////////
         // Pododawać img krawędzi na border radiusie
         // dac wyższy z-index klikniętego elementu zeby byl na górze.
-
-        //bg, border
-
-        //console.log(borderType);
+        // dac opacity config
       }
 
       //////////////////

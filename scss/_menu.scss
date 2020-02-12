@@ -250,6 +250,37 @@
       }
 
       .shape-shadow {
+        height: 90px;
+        flex-direction: column;
+
+        .shadow-1st,
+        .shadow-2nd,
+        .shadow-3rd {
+          display: flex;
+        }
+
+        .shadow-1st {
+          margin-bottom: 14px;
+          margin-top: 6px;
+        }
+
+        .shadow-2nd {
+          margin-bottom: 10px;
+        }
+
+        .shadow-color-input {
+          width: 30px;
+          height: 30px;
+          border: none;
+          padding: 0;
+        }
+
+        .shadow-chbox {
+          width: 17px;
+          height: 17px;
+          cursor: pointer;
+        }
+
         input {
           width: 40px;
         }
