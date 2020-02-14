@@ -162,11 +162,10 @@
       config.addEventListener("click", updateShape);
       let styleApply = document.querySelectorAll(".style-apply");
       const shapeConfig = document.querySelector(".object-menu");
-      let currentlyStyling;
 
+      //opacity
       const shapeOpacityRange = document.querySelector(".opacity-input");
       const shapeOpacityNum = document.querySelector(".opacity-input-num");
-      //opacity
       document
         .querySelectorAll(".style-apply-opacity")
         .forEach(function(opacity) {
@@ -180,7 +179,7 @@
           });
         });
 
-      function updateShape(e) {
+      function updateShape() {
         let configBtnClassName = this.classList[0];
         shapeConfig.classList.remove("invisible");
 
@@ -205,7 +204,7 @@
         let shadowChbox = document.querySelector(".shadow-chbox");
 
         styleApply.forEach(function(style) {
-          style.addEventListener("change", function() {
+          style.addEventListener("input", function() {
             //bg
             if (fillCheckbox.checked) {
               currentlyStyling.style.backgroundColor = fillColorInput.value;
@@ -390,7 +389,7 @@
           }
         }
 
-        function stopDrag(e) {
+        function stopDrag() {
           document.documentElement.removeEventListener(
             "mousemove",
             doDrag,
@@ -416,33 +415,48 @@
 
       /////////////////////
       //moving div with mouse
-      const leftMenu = document.querySelector(".m");
       div.style.cursor = "move";
 
-      //restriction config
-      let isOut = false;
-      let OutDirection = 0;
+      const leftMenu = document.querySelector(".m");
+      const shapeMenuTop = document.querySelector(".top");
+      const shapeMenu = document.querySelector(".object-menu");
+
+      let moveTarget = div;
+
+      shapeMenuTop.addEventListener("mousedown", currentMoveTarget);
+      div.addEventListener("mousedown", currentMoveTarget);
+
+      function currentMoveTarget() {
+        if (this == shapeMenuTop) {
+          moveTarget = shapeMenu;
+          console.log(moveTarget);
+        } else if (this == div) {
+          moveTarget = this;
+        }
+      }
 
       function moveDiv() {
         let mousePosition;
         let offset = [0, 0];
         let isDown = false;
 
-        div.addEventListener(
+        moveTarget.addEventListener(
           "mousedown",
           function(e) {
             isDown = true;
-            offset = [div.offsetLeft - e.clientX, div.offsetTop - e.clientY];
-            isOut = false;
-            OutDirection = 0;
+            offset = [
+              moveTarget.offsetLeft - e.clientX,
+              moveTarget.offsetTop - e.clientY
+            ];
 
+            console.log(moveTarget);
             leftMenu.children[0].classList.add("invisible");
             leftMenu.children[1].classList.add("invisible");
           },
           true
         );
 
-        div.addEventListener(
+        moveTarget.addEventListener(
           "mouseup",
           function() {
             isDown = false;
@@ -458,49 +472,18 @@
           function(event) {
             //resitrict moving div outside workarea
 
-            function restric() {
-              var rectWorkArea = workArea.getBoundingClientRect();
-              var rectDiv = div.getBoundingClientRect();
-
-              if (OutDirection == "w") {
-                div.style.left = rectWorkArea.left + "px";
-              } else if (OutDirection == "e") {
-                div.style.left = 1679 - div.offsetWidth + "px";
-              } else if (OutDirection == "n") {
-                div.style.top = rectWorkArea.top + "px";
-              } else if (OutDirection == "s") {
-                div.style.top =
-                  rectWorkArea.bottom - div.offsetHeight - 1 + "px";
-                OutDirection = 0;
-              }
-
-              if (rectDiv.left <= rectWorkArea.left - 1) {
-                isOut = true;
-                OutDirection = "w";
-              } else if (rectDiv.right >= rectWorkArea.right) {
-                isOut = true;
-                OutDirection = "e";
-              } else if (rectDiv.top <= rectWorkArea.top - 1) {
-                isOut = true;
-                OutDirection = "n";
-              } else if (rectDiv.bottom >= rectWorkArea.bottom) {
-                isOut = true;
-                OutDirection = "s";
-              }
-            }
-            restric();
-
             event.preventDefault();
             if (isDown) {
               if (!isResizing) {
-                if (!isOut) {
-                  mousePosition = {
-                    x: event.clientX,
-                    y: event.clientY
-                  };
-                  div.style.left = mousePosition.x + offset[0] + "px";
-                  div.style.top = mousePosition.y + offset[1] + "px";
-                }
+                mousePosition = {
+                  x: event.clientX,
+                  y: event.clientY
+                };
+                moveTarget.style.left = mousePosition.x + offset[0] + "px";
+                moveTarget.style.top = mousePosition.y + offset[1] + "px";
+
+                console.log(moveTarget.style.left);
+                console.log(moveTarget.style.top);
               }
             }
           },
