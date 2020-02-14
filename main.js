@@ -162,6 +162,23 @@
       config.addEventListener("click", updateShape);
       let styleApply = document.querySelectorAll(".style-apply");
       const shapeConfig = document.querySelector(".object-menu");
+      let currentlyStyling;
+
+      const shapeOpacityRange = document.querySelector(".opacity-input");
+      const shapeOpacityNum = document.querySelector(".opacity-input-num");
+      //opacity
+      document
+        .querySelectorAll(".style-apply-opacity")
+        .forEach(function(opacity) {
+          opacity.addEventListener("change", function(e) {
+            if (e.target == shapeOpacityRange) {
+              shapeOpacityNum.value = shapeOpacityRange.value;
+            } else {
+              shapeOpacityRange.value = shapeOpacityNum.value;
+            }
+            currentlyStyling.style.opacity = shapeOpacityRange.value / 100;
+          });
+        });
 
       function updateShape(e) {
         let configBtnClassName = this.classList[0];
@@ -184,6 +201,8 @@
         let shapeShadowHorizontal = document.querySelector(".shape-shadow-h");
         let shapeShadowBlur = document.querySelector(".shape-shadow-b");
         let shapeShadowSpread = document.querySelector(".shape-shadow-s");
+        let shadowColorinput = document.querySelector(".shadow-color-input");
+        let shadowChbox = document.querySelector(".shadow-chbox");
 
         styleApply.forEach(function(style) {
           style.addEventListener("change", function() {
@@ -211,6 +230,13 @@
             currentlyStyling.style.borderRadius = `${borderRadius1.value}px ${borderRadius2.value}px ${borderRadius3.value}px ${borderRadius4.value}px`;
 
             //shadow
+            let shadowInset;
+            if (shadowChbox.checked) {
+              shadowInset = " inset";
+            } else {
+              shadowInset = "";
+            }
+
             currentlyStyling.style.boxShadow =
               shapeShadowHorizontal.value +
               "px " +
@@ -219,10 +245,9 @@
               shapeShadowBlur.value +
               "px " +
               shapeShadowSpread.value +
-              "px black";
-
-            console.log(shapeShadowVertical.value);
-            console.log(currentlyStyling.style.boxShadow);
+              "px " +
+              shadowColorinput.value +
+              shadowInset;
           });
         });
 
@@ -309,6 +334,7 @@
         div.style.backgroundPosition = "center center";
         div.style.height = "300px";
         div.style.width = "300px";
+
         console.log(div);
         workArea.appendChild(div);
       }
@@ -391,6 +417,7 @@
       /////////////////////
       //moving div with mouse
       const leftMenu = document.querySelector(".m");
+      div.style.cursor = "move";
 
       //restriction config
       let isOut = false;

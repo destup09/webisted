@@ -181,6 +181,44 @@
         }
       }
 
+      .shape-opacity {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 55px;
+        width: 100%;
+        border-bottom: 1px solid #dbdbdb;
+
+        .opacity-input {
+          -webkit-appearance: none;
+          width: 200px;
+          height: 6px;
+          background: $accent-color;
+          outline: none;
+          opacity: 0.7;
+          margin: 8px 14px 0 14px;
+        }
+
+        .opacity-input::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 18px;
+          height: 18px;
+          background: $secondary-color;
+          border-radius: 20px;
+          cursor: pointer;
+
+          &:hover {
+            background: #11151a;
+          }
+        }
+
+        .opacity-input-num {
+          width: 45px;
+          margin-right: 10px;
+        }
+      }
+
       p {
         padding: 0 8px 0 8px;
       }
@@ -250,7 +288,7 @@
       }
 
       .shape-shadow {
-        height: 90px;
+        height: 110px;
         flex-direction: column;
 
         .shadow-1st,

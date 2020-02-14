@@ -895,6 +895,50 @@ button:focus {
   padding: 0;
 }
 
+.object-menu .shape-config .shape-colors .shape-opacity {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 55px;
+  width: 100%;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.object-menu .shape-config .shape-colors .shape-opacity .opacity-input {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 6px;
+  background: #dfdfdf;
+  outline: none;
+  opacity: 0.7;
+  margin: 8px 14px 0 14px;
+}
+
+.object-menu .shape-config .shape-colors .shape-opacity .opacity-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #22262b;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.object-menu .shape-config .shape-colors .shape-opacity .opacity-input::-webkit-slider-thumb:hover {
+  background: #11151a;
+}
+
+.object-menu .shape-config .shape-colors .shape-opacity .opacity-input-num {
+  width: 45px;
+  margin-right: 10px;
+}
+
 .object-menu .shape-config .shape-colors p {
   padding: 0 8px 0 8px;
 }
@@ -979,7 +1023,7 @@ button:focus {
 }
 
 .object-menu .shape-config .shape-colors .shape-shadow {
-  height: 90px;
+  height: 110px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
