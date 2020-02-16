@@ -79,9 +79,14 @@
 
     if (create.className !== "create-indicator") {
       //div append
+      var divParent = document.createElement("div");
+      divParent.className = "divParent" + click;
+
       var div = document.createElement("div");
+      divParent.appendChild(div);
+
       div.className = "div" + click;
-      workArea.appendChild(div);
+      workArea.appendChild(divParent);
 
       //get style of selected shape
       //lines
@@ -99,37 +104,75 @@
       }
 
       div.style.position = "absolute";
-      div.style.top = "150px";
-      div.style.left = "450px";
       div.style.zIndex = 1;
+
+      divParent.style.position = "absolute";
+      divParent.style.width = div.style.width;
+      divParent.style.height = div.style.height;
+      divParent.style.left = div.getBoundingClientRect().left + "px";
+      divParent.style.top = div.getBoundingClientRect().top + "px";
+
+      div.style.margin = "0 auto";
+      divParent.style.top = "150px";
+      divParent.style.left = "900px";
 
       //div style config menu
       var config = document.createElement("div");
       config.className = click;
       config.classList.add("config-btn");
-      config.classList.add("invisible");
+      config.style.display = "none";
 
       //div delete btn
       var deleteBtn = document.createElement("div");
       deleteBtn.className = "delete-btn";
-      deleteBtn.classList.add("invisible");
+      deleteBtn.style.display = "none";
 
       //resizers
-      var resizerSe = document.createElement("div");
-      resizerSe.className = "resizerSe";
+      var resizerNE = document.createElement("div");
+      resizerNE.className = "resizerNE";
+      resizerNE.classList.add("resizer");
+
+      var resizerSE = document.createElement("div");
+      resizerSE.className = "resizerSE";
+      resizerSE.classList.add("resizer");
+
+      var resizerSW = document.createElement("div");
+      resizerSW.className = "resizerSW";
+      resizerSW.classList.add("resizer");
+
+      var resizerNW = document.createElement("div");
+      resizerNW.className = "resizerNW";
+      resizerNW.classList.add("resizer");
+
+      var resizerN = document.createElement("div");
+      resizerN.className = "resizerN";
+      resizerN.classList.add("resizer");
 
       var resizerE = document.createElement("div");
-      resizerE.className = "resizerEast";
+      resizerE.className = "resizerE";
+      resizerE.classList.add("resizer");
 
       var resizerS = document.createElement("div");
-      resizerS.className = "resizerSouth";
+      resizerS.className = "resizerS";
+      resizerS.classList.add("resizer");
 
-      if (div != undefined) {
-        div.appendChild(config);
-        div.appendChild(deleteBtn);
-        div.appendChild(resizerSe);
-        div.appendChild(resizerE);
-        div.appendChild(resizerS);
+      var resizerW = document.createElement("div");
+      resizerW.className = "resizerW";
+      resizerW.classList.add("resizer");
+
+      //tutaj zmienic na div parenta \/
+
+      if (divParent != undefined) {
+        divParent.appendChild(config);
+        divParent.appendChild(deleteBtn);
+        divParent.appendChild(resizerNE);
+        divParent.appendChild(resizerSE);
+        divParent.appendChild(resizerSW);
+        divParent.appendChild(resizerNW);
+        divParent.appendChild(resizerN);
+        divParent.appendChild(resizerE);
+        divParent.appendChild(resizerS);
+        divParent.appendChild(resizerW);
       }
 
       //delete div
@@ -151,14 +194,28 @@
       });
 
       //hide/show del and menu btn on hover
-      div.addEventListener("mouseenter", function() {
-        this.children[0].classList.remove("invisible");
-        this.children[1].classList.remove("invisible");
+      let resizersArr = document.querySelectorAll(".resizer");
+      console.log(resizersArr);
+      resizersArr.forEach(function(res) {
+        res.style.display = "none";
       });
 
-      div.addEventListener("mouseleave", function() {
-        this.children[0].classList.add("invisible");
-        this.children[1].classList.add("invisible");
+      divParent.addEventListener("mouseenter", function() {
+        let parent = this;
+        parent.style.border = "1px solid #11a7e6";
+        console.log(parent.childNodes);
+        for (i = 1; i <= parent.childNodes.length - 1; i++) {
+          parent.children[i].style.display = "";
+        }
+      });
+
+      divParent.addEventListener("mouseleave", function() {
+        let parent = this;
+        parent.style.border = "none";
+        console.log(parent.childNodes);
+        for (i = 1; i <= parent.childNodes.length - 1; i++) {
+          parent.children[i].style.display = "none";
+        }
       });
 
       ///////////////////
@@ -167,6 +224,13 @@
       config.addEventListener("click", updateShape);
       let styleApply = document.querySelectorAll(".style-apply");
       const shapeConfig = document.querySelector(".object-menu");
+      let imgCreateIndicator;
+
+      if (e.target.className == "api-img") {
+        imgCreateIndicator = e.target;
+      } else {
+        imgCreateIndicator = undefined;
+      }
 
       //opacity
       const shapeOpacityRange = document.querySelector(".opacity-input");
@@ -189,7 +253,13 @@
 
         shapeConfig.classList.remove("invisible");
 
-        currentlyStyling = document.querySelector(".div" + configBtnClassName);
+        if (imgCreateIndicator != undefined) {
+          currentlyStyling = imgCreateIndicator;
+        } else {
+          currentlyStyling = document.querySelector(
+            ".div" + configBtnClassName
+          );
+        }
 
         let divRect = currentlyStyling.getBoundingClientRect().right;
         shapeConfig.style.left = divRect + 25 + "px";
@@ -258,7 +328,6 @@
               shadowInset;
           });
         });
-
         ////////
         // Pododawać img krawędzi na border radiusie
       }
@@ -330,100 +399,117 @@
         }
       }
 
+      /////////////
+      //IMG CREATE
+
       if (create.classList.contains("api-img")) {
         let imgSrc = e.target.getAttribute("src");
         console.log(imgSrc);
 
-        div.style.backgroundImage = "url('" + imgSrc + "')";
-        div.style.backgroundRepeat = "no-repeat";
-        div.style.backgroundSize = "cover";
-        div.style.backgroundPosition = "center center";
-        div.style.height = "300px";
-        div.style.width = "300px";
+        imgCreateIndicator = divParent;
+        divParent.style.backgroundImage = "url('" + imgSrc + "')";
+        divParent.style.backgroundRepeat = "no-repeat";
+        divParent.style.backgroundSize = "cover";
+        divParent.style.backgroundPosition = "center center";
+        divParent.style.height = "300px";
+        divParent.style.width = "300px";
 
         console.log(div);
-        workArea.appendChild(div);
       }
 
       ///////////////////////
       //Resizable div
 
       let isResizing = false;
+      //dac foreach na diva i parent diva
 
-      function resizableDiv() {
-        resizerSe.addEventListener("mousedown", initDrag, false);
-        resizerS.addEventListener("mousedown", initDrag, false);
-        resizerE.addEventListener("mousedown", initDrag, false);
+      let divChild = divParent.children[0];
 
-        let className;
-        resizerS.addEventListener("mousedown", function() {
-          className = "resizerS";
-        });
+      objArr = [divChild, divParent];
+      objArr.forEach(function(obj) {
+        function resizableDiv() {
+          resizerSE.addEventListener("mousedown", initDrag, false);
+          resizerS.addEventListener("mousedown", initDrag, false);
+          resizerNE.addEventListener("mousedown", initDrag, false);
 
-        resizerE.addEventListener("mousedown", function() {
-          className = "resizerE";
-        });
+          let className;
+          resizerS.addEventListener("mousedown", function() {
+            className = "resizerS";
+          });
 
-        resizerSe.addEventListener("mousedown", function() {
-          className = "resizerSe";
-        });
+          resizerNE.addEventListener("mousedown", function() {
+            className = "resizerE";
+          });
 
-        function initDrag(e) {
-          startX = e.clientX;
-          startY = e.clientY;
+          resizerSE.addEventListener("mousedown", function() {
+            className = "resizerSe";
+          });
 
-          startWidth = parseInt(
-            document.defaultView.getComputedStyle(div).width,
-            10
-          );
+          function initDrag(e) {
+            startX = e.clientX;
+            startY = e.clientY;
 
-          startHeight = parseInt(
-            document.defaultView.getComputedStyle(div).height,
-            10
-          );
-          document.documentElement.addEventListener("mousemove", doDrag, false);
-          document.documentElement.addEventListener("mouseup", stopDrag, false);
-        }
+            startWidth = parseInt(
+              document.defaultView.getComputedStyle(obj).width,
+              10
+            );
 
-        function doDrag(e) {
-          isResizing = true;
-          if (className == "resizerSe") {
-            div.style.width = startWidth + e.clientX - startX + "px";
-            div.style.height = startHeight + e.clientY - startY + "px";
-          } else if (className == "resizerE") {
-            div.style.width = startWidth + e.clientX - startX + "px";
-          } else if (className == "resizerS") {
-            div.style.height = startHeight + e.clientY - startY + "px";
+            startHeight = parseInt(
+              document.defaultView.getComputedStyle(obj).height,
+              10
+            );
+            document.documentElement.addEventListener(
+              "mousemove",
+              doDrag,
+              false
+            );
+            document.documentElement.addEventListener(
+              "mouseup",
+              stopDrag,
+              false
+            );
+          }
+
+          function doDrag(e) {
+            isResizing = true;
+            if (className == "resizerSe") {
+              obj.style.width = startWidth + e.clientX - startX + "px";
+              obj.style.height = startHeight + e.clientY - startY + "px";
+            } else if (className == "resizerE") {
+              obj.style.width = startWidth + e.clientX - startX + "px";
+            } else if (className == "resizerS") {
+              obj.style.height = startHeight + e.clientY - startY + "px";
+            }
+          }
+
+          function stopDrag() {
+            document.documentElement.removeEventListener(
+              "mousemove",
+              doDrag,
+              false
+            );
+            document.documentElement.removeEventListener(
+              "mouseup",
+              stopDrag,
+              false
+            );
+          }
+
+          resizerSE.addEventListener("mouseup", stopResizing);
+          resizerNE.addEventListener("mouseup", stopResizing);
+          resizerS.addEventListener("mouseup", stopResizing);
+
+          function stopResizing() {
+            isResizing = false;
           }
         }
 
-        function stopDrag() {
-          document.documentElement.removeEventListener(
-            "mousemove",
-            doDrag,
-            false
-          );
-          document.documentElement.removeEventListener(
-            "mouseup",
-            stopDrag,
-            false
-          );
-        }
-
-        resizerSe.addEventListener("mouseup", stopResizing);
-        resizerE.addEventListener("mouseup", stopResizing);
-        resizerS.addEventListener("mouseup", stopResizing);
-
-        function stopResizing() {
-          isResizing = false;
-        }
-      }
-
-      resizableDiv();
+        resizableDiv();
+      });
 
       /////////////////////
       //moving div with mouse
-      let moveTarget = div;
+      let moveTarget = divParent;
 
       div.style.cursor = "move";
 
@@ -437,8 +523,6 @@
         div.onmousedown = function() {
           currentZIndex++;
           this.style.zIndex = currentZIndex;
-          console.log(currentZIndex);
-          console.log(moveTarget.style.zIndex);
         };
 
         moveTarget.addEventListener(

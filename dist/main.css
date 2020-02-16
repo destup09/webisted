@@ -1501,9 +1501,10 @@ button:focus {
   height: 18px;
   background: black;
   position: absolute;
-  top: -6px;
-  left: 25px;
+  top: -12px;
+  left: 29px;
   cursor: pointer;
+  z-index: 99999999;
 }
 
 .delete-btn {
@@ -1511,9 +1512,10 @@ button:focus {
   height: 18px;
   background: black;
   position: absolute;
-  top: -6px;
-  left: 3px;
+  top: -12px;
+  left: 9px;
   cursor: pointer;
+  z-index: 99999999;
 }
 
 .deleteQuestion {
@@ -1564,39 +1566,79 @@ button:focus {
   margin-top: 10px;
 }
 
-.resizerSe {
-  width: 10px;
-  height: 10px;
+.resizerSE,
+.resizerNE,
+.resizerSW,
+.resizerNW,
+.resizerN,
+.resizerE,
+.resizerS,
+.resizerW {
+  width: 12px;
+  height: 12px;
   position: absolute;
-  right: 0;
-  bottom: 0;
+  z-index: 99999999;
+  border: 1px solid #2872c7;
+  border-radius: 10px;
+  background: #f2f2f2;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: block;
+}
+
+.resizerSE {
+  right: -6px;
+  bottom: -6px;
   cursor: se-resize;
-  z-index: 2;
-  border: 1px solid #2872c7;
-  border-radius: 10px;
 }
 
-.resizerEast {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 10px;
-  width: 10px;
+.resizerNE {
+  top: -6px;
+  right: -6px;
   cursor: e-resize;
-  z-index: 1;
-  border: 1px solid #2872c7;
-  border-radius: 10px;
 }
 
-.resizerSouth {
-  position: absolute;
+.resizerSW {
+  left: -6px;
+  bottom: -6px;
+  cursor: sw-resize;
+}
+
+.resizerNW {
+  left: -6px;
+  top: -6px;
+  cursor: nw-resize;
+}
+
+.resizerN {
+  top: -6px;
+  left: 0px;
+  right: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: n-resize;
+}
+
+.resizerE {
+  right: -6px;
   bottom: 0;
-  height: 10px;
-  width: 10px;
-  margin: 0 auto;
+  top: calc(50% - 6px);
   cursor: s-resize;
-  z-index: 1;
-  border: 1px solid #2872c7;
-  border-radius: 10px;
+}
+
+.resizerS {
+  bottom: -6px;
+  left: 0px;
+  right: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: s-resize;
+}
+
+.resizerW {
+  left: -6px;
+  bottom: 0px;
+  top: calc(50% - 6px);
+  cursor: w-resize;
 }
 /*# sourceMappingURL=main.css.map */
