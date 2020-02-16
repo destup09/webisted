@@ -121,6 +121,7 @@
   right: 500px;
   border-radius: 8px;
   font-family: "Lato";
+  z-index: 5000;
 
   .shape-config {
     width: 100%;
@@ -154,6 +155,7 @@
       font-weight: lighter;
       text-align: center;
       padding-top: 10px;
+      cursor: "move";
     }
 
     .shape-colors {

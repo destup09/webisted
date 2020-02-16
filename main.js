@@ -1,6 +1,7 @@
 (function menuControl() {
   function toggleMenu() {
     const menuLeft = document.querySelector(".m-l");
+    const menuRight = document.querySelector(".m-r");
     const paragraphs = menuLeft.getElementsByTagName("p");
     let elArr = [
       document.querySelector(".shape"),
@@ -8,9 +9,11 @@
       document.querySelector(".image"),
       document.querySelector(".background")
     ];
+    menuRight.style.display = "none";
 
     menuLeft.addEventListener("click", function(e) {
       if (!e.target.classList.contains("m-l")) {
+        menuRight.style.display = "";
         let selectedMenu = e.target.innerHTML.toLowerCase();
         let menuClass = document.querySelector("." + selectedMenu);
         elArr.forEach(function(item) {
@@ -64,6 +67,7 @@
   const apiImagesWrapper = document.querySelector(".api-images-wrapper");
 
   let click = 1;
+  let currentZIndex = 1;
 
   divCreate.addEventListener("mouseup", createNewObject);
   createText.addEventListener("click", createNewObject);
@@ -97,6 +101,7 @@
       div.style.position = "absolute";
       div.style.top = "150px";
       div.style.left = "450px";
+      div.style.zIndex = 1;
 
       //div style config menu
       var config = document.createElement("div");
@@ -169,7 +174,7 @@
       document
         .querySelectorAll(".style-apply-opacity")
         .forEach(function(opacity) {
-          opacity.addEventListener("change", function(e) {
+          opacity.addEventListener("input", function(e) {
             if (e.target == shapeOpacityRange) {
               shapeOpacityNum.value = shapeOpacityRange.value;
             } else {
@@ -181,9 +186,13 @@
 
       function updateShape() {
         let configBtnClassName = this.classList[0];
+
         shapeConfig.classList.remove("invisible");
 
         currentlyStyling = document.querySelector(".div" + configBtnClassName);
+
+        let divRect = currentlyStyling.getBoundingClientRect().right;
+        shapeConfig.style.left = divRect + 25 + "px";
 
         let fillCheckbox = document.querySelector(".fill-chbox");
         let borderCheckbox = document.querySelector(".border-chbox");
@@ -252,8 +261,6 @@
 
         ////////
         // Pododawać img krawędzi na border radiusie
-        // dac wyższy z-index klikniętego elementu zeby byl na górze.
-        // dac opacity config
       }
 
       //////////////////
@@ -340,6 +347,7 @@
 
       ///////////////////////
       //Resizable div
+
       let isResizing = false;
 
       function resizableDiv() {
@@ -415,30 +423,23 @@
 
       /////////////////////
       //moving div with mouse
+      let moveTarget = div;
+
       div.style.cursor = "move";
 
       const leftMenu = document.querySelector(".m");
-      const shapeMenuTop = document.querySelector(".top");
-      const shapeMenu = document.querySelector(".object-menu");
-
-      let moveTarget = div;
-
-      shapeMenuTop.addEventListener("mousedown", currentMoveTarget);
-      div.addEventListener("mousedown", currentMoveTarget);
-
-      function currentMoveTarget() {
-        if (this == shapeMenuTop) {
-          moveTarget = shapeMenu;
-          console.log(moveTarget);
-        } else if (this == div) {
-          moveTarget = this;
-        }
-      }
 
       function moveDiv() {
         let mousePosition;
         let offset = [0, 0];
         let isDown = false;
+
+        div.onmousedown = function() {
+          currentZIndex++;
+          this.style.zIndex = currentZIndex;
+          console.log(currentZIndex);
+          console.log(moveTarget.style.zIndex);
+        };
 
         moveTarget.addEventListener(
           "mousedown",
@@ -449,7 +450,8 @@
               moveTarget.offsetTop - e.clientY
             ];
 
-            console.log(moveTarget);
+            //currentZIndex ++;
+
             leftMenu.children[0].classList.add("invisible");
             leftMenu.children[1].classList.add("invisible");
           },
@@ -481,9 +483,6 @@
                 };
                 moveTarget.style.left = mousePosition.x + offset[0] + "px";
                 moveTarget.style.top = mousePosition.y + offset[1] + "px";
-
-                console.log(moveTarget.style.left);
-                console.log(moveTarget.style.top);
               }
             }
           },
@@ -491,16 +490,60 @@
         );
       }
       moveDiv();
+
+      dragElement(document.querySelector(".object-menu"));
+      const menuTop = document.querySelector(".top");
+      menuTop.style.cursor = "move";
+
+      function dragElement(elmnt) {
+        var pos1 = 0,
+          pos2 = 0,
+          pos3 = 0,
+          pos4 = 0;
+        if (document.querySelector(".top")) {
+          // if present, the header is where you move the DIV from:
+          document.querySelector(".top").onmousedown = dragMouseDown;
+        } else {
+          // otherwise, move the DIV from anywhere inside the DIV:
+          elmnt.onmousedown = dragMouseDown;
+        }
+
+        function dragMouseDown(e) {
+          e = e || window.event;
+          e.preventDefault();
+          // get the mouse cursor position at startup:
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          document.onmouseup = closeDragElement;
+          // call a function whenever the cursor moves:
+          document.onmousemove = elementDrag;
+        }
+
+        function elementDrag(e) {
+          e = e || window.event;
+          e.preventDefault();
+          // calculate the new cursor position:
+          pos1 = pos3 - e.clientX;
+          pos2 = pos4 - e.clientY;
+          pos3 = e.clientX;
+          pos4 = e.clientY;
+          // set the element's new position:
+          elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+          elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+        }
+
+        function closeDragElement() {
+          // stop moving when mouse button is released:
+          document.onmouseup = null;
+          document.onmousemove = null;
+        }
+      }
     }
   }
 })();
 
 ////////////////////
 //TODO
-
-// - text create
-// - text append do diva jeśli został tam upuszczony ??
-// - menu right clickiem na diva?
 // - może jakies template typy - header, right menu , content
 // - pokazywanie który div jest teraz konfigurowany przez menu z prawej
 // - wincyj opcji!
@@ -508,10 +551,13 @@
 // - rotate
 // - dodawanie img z linku
 
+// - ogarnąć kropki do skalowania - ustawienie i dac je z kazdej strony
+// - zrobic kształty tak samo jak tekst. główny div i do niego append kształtu
+// - ogarnąć placement resizerów oraz menu i del buttonów po powiekszeniu bordera
+
 //////////////////
 // BUGI
 // - show/hide border na tekscie nie działa poprawie jesli kliknie sie na text
-// - blokada wychodzenia za ekran buguje sie przy scrollu - naprawic
 
 /*
 //shape config
