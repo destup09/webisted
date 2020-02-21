@@ -122,12 +122,21 @@
       config.classList.add("config-btn");
       config.style.display = "none";
 
+      const menuIcon = document.createElement("i");
+      menuIcon.className = "fas fa-bars";
+      config.appendChild(menuIcon);
+
       //div delete btn
       var deleteBtn = document.createElement("div");
       deleteBtn.className = "delete-btn";
       deleteBtn.style.display = "none";
 
+      const delIcon = document.createElement("i");
+      delIcon.className = "fas fa-times";
+      deleteBtn.appendChild(delIcon);
+
       //resizers
+
       var resizerNE = document.createElement("div");
       resizerNE.className = "resizerNE";
       resizerNE.classList.add("resizer");
@@ -159,8 +168,6 @@
       var resizerW = document.createElement("div");
       resizerW.className = "resizerW";
       resizerW.classList.add("resizer");
-
-      //tutaj zmienic na div parenta \/
 
       if (divParent != undefined) {
         divParent.appendChild(config);
@@ -195,15 +202,13 @@
 
       //hide/show del and menu btn on hover
       let resizersArr = document.querySelectorAll(".resizer");
-      console.log(resizersArr);
       resizersArr.forEach(function(res) {
         res.style.display = "none";
       });
 
       divParent.addEventListener("mouseenter", function() {
         let parent = this;
-        parent.style.border = "1px solid #11a7e6";
-        console.log(parent.childNodes);
+        parent.style.border = "1px solid #2872c7";
         for (i = 1; i <= parent.childNodes.length - 1; i++) {
           parent.children[i].style.display = "";
         }
@@ -212,7 +217,6 @@
       divParent.addEventListener("mouseleave", function() {
         let parent = this;
         parent.style.border = "none";
-        console.log(parent.childNodes);
         for (i = 1; i <= parent.childNodes.length - 1; i++) {
           parent.children[i].style.display = "none";
         }
@@ -404,7 +408,9 @@
 
       if (create.classList.contains("api-img")) {
         let imgSrc = e.target.getAttribute("src");
-        console.log(imgSrc);
+        let imgHeight = e.target.getAttribute("height");
+        let imgWidth = e.target.style.width;
+        console.log(e.target.getComputedStyle);
 
         imgCreateIndicator = divParent;
         divParent.style.backgroundImage = "url('" + imgSrc + "')";
@@ -428,21 +434,9 @@
       objArr = [divChild, divParent];
       objArr.forEach(function(obj) {
         function resizableDiv() {
-          resizerSE.addEventListener("mousedown", initDrag, false);
-          resizerS.addEventListener("mousedown", initDrag, false);
-          resizerNE.addEventListener("mousedown", initDrag, false);
-
-          let className;
-          resizerS.addEventListener("mousedown", function() {
-            className = "resizerS";
-          });
-
-          resizerNE.addEventListener("mousedown", function() {
-            className = "resizerE";
-          });
-
-          resizerSE.addEventListener("mousedown", function() {
-            className = "resizerSe";
+          let resizerArr = document.querySelectorAll(".resizer");
+          resizerArr.forEach(function(currResizer) {
+            currResizer.addEventListener("mousedown", initDrag);
           });
 
           function initDrag(e) {
@@ -472,14 +466,38 @@
 
           function doDrag(e) {
             isResizing = true;
-            if (className == "resizerSe") {
+
+            //console.log("x " + startX); // odległość od lewej strony
+            //console.log("y " + startY); // odległość od góry
+            //console.log("w " + startWidth); // szerokość elementu, update po podnesieniu myszki
+            //console.log("h " + startHeight); // wysokość elementu, update po podnesieniu myszki
+            //console.log(e.clientX); // pozycja myszki oś X
+            //console.log(e.clientY); // pozycja myszki oś Y
+
+            // przez e.target spada myszka z resizera ogarnac
+            if (e.target == resizerSE) {
               obj.style.width = startWidth + e.clientX - startX + "px";
               obj.style.height = startHeight + e.clientY - startY + "px";
-            } else if (className == "resizerE") {
+            } else if (e.target == resizerE) {
               obj.style.width = startWidth + e.clientX - startX + "px";
-            } else if (className == "resizerS") {
+            } else if (e.target == resizerN) {
+              obj.style.height = startHeight + e.clientY + startY + "px";
+            } else if (e.target == resizerS) {
               obj.style.height = startHeight + e.clientY - startY + "px";
             }
+
+            /*
+            if (currentClass.classList.contains("resizerSE")) {
+              obj.style.width = startWidth + e.clientX - startX + "px";
+              obj.style.height = startHeight + e.clientY - startY + "px";
+            } else if (currentClass.classList.contains("resizerE")) {
+              obj.style.width = startWidth + e.clientX - startX + "px";
+            } else if (currentClass.classList.contains("resizerN")) {
+              obj.style.height = startHeight + e.clientY + startY + "px";
+            } else if (currentClass.classList.contains("resizerS")) {
+              obj.style.height = startHeight + e.clientY - startY + "px";
+            }
+            */
           }
 
           function stopDrag() {
@@ -495,9 +513,9 @@
             );
           }
 
-          resizerSE.addEventListener("mouseup", stopResizing);
-          resizerNE.addEventListener("mouseup", stopResizing);
-          resizerS.addEventListener("mouseup", stopResizing);
+          document.querySelectorAll(".resizer").forEach(function(currResizer) {
+            currResizer.addEventListener("mouseup", stopResizing);
+          });
 
           function stopResizing() {
             isResizing = false;
@@ -575,8 +593,9 @@
       }
       moveDiv();
 
-      dragElement(document.querySelector(".object-menu"));
       const menuTop = document.querySelector(".top");
+      dragElement(document.querySelector(".object-menu"));
+
       menuTop.style.cursor = "move";
 
       function dragElement(elmnt) {
@@ -584,9 +603,9 @@
           pos2 = 0,
           pos3 = 0,
           pos4 = 0;
-        if (document.querySelector(".top")) {
+        if (menuTop) {
           // if present, the header is where you move the DIV from:
-          document.querySelector(".top").onmousedown = dragMouseDown;
+          menuTop.onmousedown = dragMouseDown;
         } else {
           // otherwise, move the DIV from anywhere inside the DIV:
           elmnt.onmousedown = dragMouseDown;
@@ -634,6 +653,7 @@
 // - konsola css - pokazuje style wybranego elementu i mozna za jej pomoca edytowac element
 // - rotate
 // - dodawanie img z linku
+// - ogarnąć aspect ratio wstawianych zdj
 
 // - ogarnąć kropki do skalowania - ustawienie i dac je z kazdej strony
 // - zrobic kształty tak samo jak tekst. główny div i do niego append kształtu
@@ -642,6 +662,8 @@
 //////////////////
 // BUGI
 // - show/hide border na tekscie nie działa poprawie jesli kliknie sie na text
+// - szybkie poruszanie resizerem powoduje zatrzymanie powiekszania, nie mozna poruszac divem
+//    dopóki nie kliknie sie znowu na resizera
 
 /*
 //shape config

@@ -346,25 +346,42 @@
 }
 
 .config-btn {
-  width: 18px;
-  height: 18px;
-  background: black;
+  width: 21px;
+  height: 21px;
+  background: white;
   position: absolute;
   top: -12px;
-  left: 29px;
+  left: 34px;
   cursor: pointer;
-  z-index: 99999999;
+  z-index: 9999999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.fa-bars {
+  font-size: 16px;
 }
 
 .delete-btn {
-  width: 18px;
-  height: 18px;
-  background: black;
+  width: 21px;
+  height: 21px;
+  background: white;
   position: absolute;
   top: -12px;
   left: 9px;
   cursor: pointer;
-  z-index: 99999999;
+  z-index: 9999999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.fa-times {
+  color: black;
+  font-size: 20px;
 }
 
 .deleteQuestion {
@@ -415,14 +432,7 @@
   }
 }
 
-.resizerSE,
-.resizerNE,
-.resizerSW,
-.resizerNW,
-.resizerN,
-.resizerE,
-.resizerS,
-.resizerW {
+.resizer {
   width: 12px;
   height: 12px;
   position: absolute;
@@ -443,7 +453,7 @@
 .resizerNE {
   top: -6px;
   right: -6px;
-  cursor: e-resize;
+  cursor: ne-resize;
 }
 
 .resizerSW {
@@ -470,8 +480,8 @@
 .resizerE {
   right: -6px;
   bottom: 0;
-  top: calc(50% - 6px);
-  cursor: s-resize;
+  top: calc(50% - 5px);
+  cursor: e-resize;
 }
 
 .resizerS {
@@ -486,6 +496,6 @@
 .resizerW {
   left: -6px;
   bottom: 0px;
-  top: calc(50% - 6px);
+  top: calc(50% - 5px);
   cursor: w-resize;
 }
