@@ -109,8 +109,6 @@
       divParent.style.position = "absolute";
       divParent.style.width = div.style.width;
       divParent.style.height = div.style.height;
-      divParent.style.left = div.getBoundingClientRect().left + "px";
-      divParent.style.top = div.getBoundingClientRect().top + "px";
 
       div.style.margin = "0 auto";
       divParent.style.top = "150px";
@@ -419,111 +417,100 @@
         divParent.style.backgroundPosition = "center center";
         divParent.style.height = "300px";
         divParent.style.width = "300px";
-
-        console.log(div);
       }
 
       ///////////////////////
       //Resizable div
 
+      let elArr = [];
+      let el;
+      //console.log(el);
+      const resizer = document.querySelectorAll(".resizer");
+
+      resizer.forEach(function(thisresizer) {
+        thisresizer.addEventListener("mousedown", function() {
+          elArr.unshift(this.parentNode);
+          el = elArr[0];
+          console.log(el);
+          elCounter();
+        });
+      });
+
+      let counter;
+      function elCounter() {
+        counter++;
+        console.log(counter);
+      }
+
       let isResizing = false;
-      //dac foreach na diva i parent diva
 
-      let divChild = divParent.children[0];
+      const resizers = divParent.querySelectorAll(".resizer");
+      let currentResizer;
 
-      objArr = [divChild, divParent];
-      objArr.forEach(function(obj) {
-        function resizableDiv() {
-          let resizerArr = document.querySelectorAll(".resizer");
-          resizerArr.forEach(function(currResizer) {
-            currResizer.addEventListener("mousedown", initDrag);
-          });
+      for (let resizer of resizers) {
+        resizer.addEventListener("mousedown", mousedown);
 
-          function initDrag(e) {
-            startX = e.clientX;
-            startY = e.clientY;
+        console.log(el);
 
-            startWidth = parseInt(
-              document.defaultView.getComputedStyle(obj).width,
-              10
-            );
+        function mousedown(e) {
+          currentResizer = e.target;
+          isResizing = true;
 
-            startHeight = parseInt(
-              document.defaultView.getComputedStyle(obj).height,
-              10
-            );
-            document.documentElement.addEventListener(
-              "mousemove",
-              doDrag,
-              false
-            );
-            document.documentElement.addEventListener(
-              "mouseup",
-              stopDrag,
-              false
-            );
-          }
+          //console.log(el);
 
-          function doDrag(e) {
-            isResizing = true;
+          let prevX = e.clientX;
+          let prevY = e.clientY;
 
-            //console.log("x " + startX); // odległość od lewej strony
-            //console.log("y " + startY); // odległość od góry
-            //console.log("w " + startWidth); // szerokość elementu, update po podnesieniu myszki
-            //console.log("h " + startHeight); // wysokość elementu, update po podnesieniu myszki
-            //console.log(e.clientX); // pozycja myszki oś X
-            //console.log(e.clientY); // pozycja myszki oś Y
+          window.addEventListener("mousemove", mousemove);
+          window.addEventListener("mouseup", mouseup);
 
-            // przez e.target spada myszka z resizera ogarnac
-            if (e.target == resizerSE) {
-              obj.style.width = startWidth + e.clientX - startX + "px";
-              obj.style.height = startHeight + e.clientY - startY + "px";
-            } else if (e.target == resizerE) {
-              obj.style.width = startWidth + e.clientX - startX + "px";
-            } else if (e.target == resizerN) {
-              obj.style.height = startHeight + e.clientY + startY + "px";
-            } else if (e.target == resizerS) {
-              obj.style.height = startHeight + e.clientY - startY + "px";
+          function mousemove(e) {
+            const rect = el.getBoundingClientRect();
+
+            if (currentResizer.classList.contains("resizerSE")) {
+              el.style.width = rect.width - (prevX - e.clientX) + "px";
+              el.style.height = rect.height - (prevY - e.clientY) + "px";
+            } else if (currentResizer.classList.contains("resizerSW")) {
+              el.style.width = rect.width + (prevX - e.clientX) + "px";
+              el.style.height = rect.height - (prevY - e.clientY) + "px";
+              el.style.left = rect.left - (prevX - e.clientX) + "px";
+            } else if (currentResizer.classList.contains("resizerNE")) {
+              el.style.width = rect.width - (prevX - e.clientX) + "px";
+              el.style.height = rect.height + (prevY - e.clientY) + "px";
+              el.style.top = rect.top - (prevY - e.clientY) + "px";
+            } else if (currentResizer.classList.contains("resizerNW")) {
+              el.style.width = rect.width + (prevX - e.clientX) + "px";
+              el.style.height = rect.height + (prevY - e.clientY) + "px";
+              el.style.top = rect.top - (prevY - e.clientY) + "px";
+              el.style.left = rect.left - (prevX - e.clientX) + "px";
+            } else if (currentResizer.classList.contains("resizerN")) {
+              el.style.height = rect.height + (prevY - e.clientY) + "px";
+              el.style.top = rect.top - (prevY - e.clientY) + "px";
+            } else if (currentResizer.classList.contains("resizerE")) {
+              el.style.width = rect.width - (prevX - e.clientX) + "px";
+            } else if (currentResizer.classList.contains("resizerS")) {
+              el.style.height = rect.height - (prevY - e.clientY) + "px";
+            } else if (currentResizer.classList.contains("resizerW")) {
+              el.style.width = rect.width + (prevX - e.clientX) + "px";
+              el.style.left = rect.left - (prevX - e.clientX) + "px";
             }
 
-            /*
-            if (currentClass.classList.contains("resizerSE")) {
-              obj.style.width = startWidth + e.clientX - startX + "px";
-              obj.style.height = startHeight + e.clientY - startY + "px";
-            } else if (currentClass.classList.contains("resizerE")) {
-              obj.style.width = startWidth + e.clientX - startX + "px";
-            } else if (currentClass.classList.contains("resizerN")) {
-              obj.style.height = startHeight + e.clientY + startY + "px";
-            } else if (currentClass.classList.contains("resizerS")) {
-              obj.style.height = startHeight + e.clientY - startY + "px";
-            }
-            */
+            el.children[0].style.width = el.style.width;
+            el.children[0].style.height = el.style.height;
+
+            //console.log("prevX: " + prevX + " prevY: " + prevY);
+            //console.log(divParent.style);
+            prevX = e.clientX;
+            prevY = e.clientY;
           }
 
-          function stopDrag() {
-            document.documentElement.removeEventListener(
-              "mousemove",
-              doDrag,
-              false
-            );
-            document.documentElement.removeEventListener(
-              "mouseup",
-              stopDrag,
-              false
-            );
-          }
-
-          document.querySelectorAll(".resizer").forEach(function(currResizer) {
-            currResizer.addEventListener("mouseup", stopResizing);
-          });
-
-          function stopResizing() {
+          function mouseup() {
+            window.removeEventListener("mousemove", mousemove);
+            window.removeEventListener("mouseup", mouseup);
             isResizing = false;
           }
         }
-
-        resizableDiv();
-      });
+      }
 
       /////////////////////
       //moving div with mouse
@@ -767,3 +754,124 @@ updateShape();
 });
 });
 */
+
+/*
+let isResizing = false;
+      //dac foreach na diva i parent diva
+
+      let divChild = divParent.children[0];
+
+      objArr = [divChild, divParent];
+      objArr.forEach(function(obj) {
+        
+     function resizableDiv() {
+          resizerNE.addEventListener("mousedown", initDrag, false);
+          resizerSE.addEventListener("mousedown", initDrag, false);
+          resizerN.addEventListener("mousedown", initDrag, false);
+          resizerS.addEventListener("mousedown", initDrag, false);
+          resizerE.addEventListener("mousedown", initDrag, false);
+
+          let className;
+          resizerNE.addEventListener("mousedown", function() {
+            className = "resizerNE";
+          });
+
+          resizerSE.addEventListener("mousedown", function() {
+            className = "resizerSE";
+          });
+
+          resizerN.addEventListener("mousedown", function() {
+            className = "resizerN";
+          });
+
+          resizerS.addEventListener("mousedown", function() {
+            className = "resizerS";
+          });
+
+          resizerE.addEventListener("mousedown", function() {
+            className = "resizerE";
+          });
+
+          function initDrag(e) {
+            startX = e.clientX;
+            startY = e.clientY;
+
+            startWidth = parseInt(
+              document.defaultView.getComputedStyle(obj).width,
+              10
+            );
+
+            startHeight = parseInt(
+              document.defaultView.getComputedStyle(obj).height,
+              10
+            );
+            document.documentElement.addEventListener(
+              "mousemove",
+              doDrag,
+              false
+            );
+            document.documentElement.addEventListener(
+              "mouseup",
+              stopDrag,
+              false
+            );
+          }
+
+          //console.log("x " + startX); // odległość od lewej strony
+          //console.log("y " + startY); // odległość od góry
+          //console.log("w " + startWidth); // szerokość elementu, update po podnesieniu myszki
+          //console.log("h " + startHeight); // wysokość elementu, update po podnesieniu myszki
+          //console.log(e.clientX); // pozycja myszki oś X
+          //console.log(e.clientY); // pozycja myszki oś Y
+
+          function doDrag(e) {
+            rect = divParent.getBoundingClientRect();
+            isResizing = true;
+            if (className == "resizerSE") {
+              obj.style.width = startWidth + e.clientX - startX + "px";
+              obj.style.height = startHeight + e.clientY - startY + "px";
+            } else if (className == "resizerE") {
+              obj.style.width = startWidth + e.clientX - startX + "px";
+            } else if (className == "resizerS") {
+              obj.style.height = startHeight + e.clientY - startY + "px";
+            } else if (className == "resizerNE") {
+              obj.style.height = startHeight + (e.clientY - startY) + "px";
+            } else if (className == "resizerN") {
+              divParent.style.height = startHeight + e.clientY;
+              divParent.style.top = e.clientY;
+
+              console.log("ec: " + e.clientY);
+              console.log("starty: " + startY);
+
+              //obj.style.height = startHeight + e.clientY + "px";
+              //divParent.style.top = e.clientY + "px";
+              //console.log(e.clientY);
+              //console.log(divParent.style.top);
+            }
+          }
+
+          function stopDrag() {
+            document.documentElement.removeEventListener(
+              "mousemove",
+              doDrag,
+              false
+            );
+            document.documentElement.removeEventListener(
+              "mouseup",
+              stopDrag,
+              false
+            );
+          }
+
+          resizerSE.addEventListener("mouseup", stopResizing);
+          resizerNE.addEventListener("mouseup", stopResizing);
+          resizerS.addEventListener("mouseup", stopResizing);
+
+          function stopResizing() {
+            isResizing = false;
+          }
+        }
+
+        resizableDiv();
+      });
+      */
