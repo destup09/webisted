@@ -25,24 +25,6 @@
   align-items: center;
   @include transition-ease;
 
-  .m-toggle {
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-    font-size: 55px;
-    color: $secondary-color;
-    cursor: pointer;
-
-    .fas {
-      @include transition-ease;
-    }
-
-    .lefty {
-      transform: rotate(180deg);
-      margin-left: -21px;
-    }
-  }
-
   .m-l {
     width: 120px;
     height: 100%;
@@ -77,7 +59,7 @@
       left: 120px;
       width: 680px;
       height: 800px;
-      background: $accent-color;
+      background-color: white;
       font-family: "Lato";
       border-radius: 0 15px 15px 0;
     }
@@ -110,85 +92,89 @@
   }
 }
 
+.close-tab {
+  width: 30px;
+  height: 30px;
+  float: right;
+  margin-top: -40px;
+  margin-right: 8px;
+  background: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+
+  &:hover {
+    background: #fff;
+    cursor: pointer;
+  }
+
+  .fas {
+    font-size: 24px;
+  }
+}
+
 //////////////
 //TEXT CREATE
 
-.create-new-text {
-  background: none;
-  width: 120px;
-  height: 40px;
-  border: 1px solid $secondary-color;
-  font-family: "Roboto";
-  font-size: 18px;
-  transition: background-color 0.5s ease-in-out;
-  margin: 20px auto 20px auto;
+.text-main {
+  display: flex;
+  height: calc(100% - 50px);
+  width: 100%;
+}
+
+.text-title {
+  width: 100%;
+  height: 50px;
+  background: $secondary-color;
+  border-radius: 0 15px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI";
+  font-weight: 500;
+  font-size: 28px;
+  color: white;
+}
+
+.text-left {
+  width: 50%;
+  height: 100%;
+  padding-left: 65px;
+  border: 15px solid white;
+}
+
+.text-right {
+  width: 50%;
+  height: 100%;
+  background: #f2f2f2;
+  border: 15px solid white;
   text-align: center;
-  display: block;
+}
+
+.text-create {
+  margin-bottom: 3px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  cursor: pointer;
 
   &:hover {
-    background: #f2f2f2;
+    color: #555555;
   }
 }
 
-.text-input-wrapper {
-  color: $secondary-color;
-  margin: 10px auto 20px auto;
-  width: 500px;
-  height: 130px;
-
-  .text-input {
-    resize: none;
-    width: 500px;
-    height: 130px;
-  }
+.text-header {
+  text-align: center;
+  margin-top: 20px;
+  padding-bottom: 20px;
 }
 
-.wrap-options,
-.color-options-wrapper {
+.standard-texts,
+.custom-texts {
+  padding-top: 15px;
   margin: 0 auto;
-  width: 380px;
-  height: 100px;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.font-size-wrapper,
-.font-family-wrapper,
-.font-color-wrapper,
-.background-color-wrapper {
-  width: 150px;
-  height: 100px;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-
-.color-options-wrapper {
-  display: flex;
-}
-
-.background-color-wrapper {
-  margin-top: -11px;
-}
-
-.color-preview,
-.background-preview {
-  width: 25px;
-  height: 25px;
-  margin: 8px auto 0 auto;
-  border: 1px solid #e2e2e2;
-}
-
-.font-size-input,
-.select-font {
-  margin-top: 5px;
-}
-
-.select-font {
-  width: 140px;
-}
-
-.wrap-options {
-  display: flex;
+  width: 90%;
+  border-top: 1px solid #8f8f8f;
 }
 
 //////////////
@@ -288,10 +274,38 @@
     width: 100%;
 
     .image-top {
-      margin-left: 20px;
-      margin-top: 15px;
+      margin: 22px auto 0 auto;
+      display: flex;
+      width: 220px;
+      height: 32px;
     }
   }
+}
+
+.img-input {
+  width: 180px;
+  height: 32px;
+  border-radius: 15px 0 0 15px;
+  padding-left: 8px;
+  border: 1px solid $secondary-color;
+  font-size: 17px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.img-btn {
+  height: 32px;
+  width: 32px;
+  padding-right: 4px;
+  background: $secondary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 15px 15px 0;
+  color: white;
+  cursor: pointer;
 }
 
 .api-images-wrapper {

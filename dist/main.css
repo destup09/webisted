@@ -1167,26 +1167,6 @@ button:focus {
   transition: 0.5s ease-in-out;
 }
 
-.m .m-toggle {
-  width: 20px;
-  height: 20px;
-  margin-top: -10px;
-  font-size: 55px;
-  color: #22262b;
-  cursor: pointer;
-}
-
-.m .m-toggle .fas {
-  -webkit-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
-}
-
-.m .m-toggle .lefty {
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
-  margin-left: -21px;
-}
-
 .m .m-l {
   width: 120px;
   height: 100%;
@@ -1224,7 +1204,7 @@ button:focus {
   left: 120px;
   width: 680px;
   height: 800px;
-  background: #dfdfdf;
+  background-color: white;
   font-family: "Lato";
   border-radius: 0 15px 15px 0;
 }
@@ -1266,91 +1246,100 @@ button:focus {
   margin: 0 auto;
 }
 
-.create-new-text {
-  background: none;
-  width: 120px;
-  height: 40px;
-  border: 1px solid #22262b;
-  font-family: "Roboto";
-  font-size: 18px;
-  -webkit-transition: background-color 0.5s ease-in-out;
-  transition: background-color 0.5s ease-in-out;
-  margin: 20px auto 20px auto;
-  text-align: center;
-  display: block;
-}
-
-.create-new-text:hover {
+.close-tab {
+  width: 30px;
+  height: 30px;
+  float: right;
+  margin-top: -40px;
+  margin-right: 8px;
   background: #f2f2f2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 20px;
 }
 
-.text-input-wrapper {
-  color: #22262b;
-  margin: 10px auto 20px auto;
-  width: 500px;
-  height: 130px;
+.close-tab:hover {
+  background: #fff;
+  cursor: pointer;
 }
 
-.text-input-wrapper .text-input {
-  resize: none;
-  width: 500px;
-  height: 130px;
+.close-tab .fas {
+  font-size: 24px;
 }
 
-.wrap-options,
-.color-options-wrapper {
+.text-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: calc(100% - 50px);
+  width: 100%;
+}
+
+.text-title {
+  width: 100%;
+  height: 50px;
+  background: #22262b;
+  border-radius: 0 15px 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: "Segoe UI";
+  font-weight: 500;
+  font-size: 28px;
+  color: white;
+}
+
+.text-left {
+  width: 50%;
+  height: 100%;
+  padding-left: 65px;
+  border: 15px solid white;
+}
+
+.text-right {
+  width: 50%;
+  height: 100%;
+  background: #f2f2f2;
+  border: 15px solid white;
+  text-align: center;
+}
+
+.text-create {
+  margin-bottom: 3px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  cursor: pointer;
+}
+
+.text-create:hover {
+  color: #555555;
+}
+
+.text-header {
+  text-align: center;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+.standard-texts,
+.custom-texts {
+  padding-top: 15px;
   margin: 0 auto;
-  width: 380px;
-  height: 100px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-}
-
-.font-size-wrapper,
-.font-family-wrapper,
-.font-color-wrapper,
-.background-color-wrapper {
-  width: 150px;
-  height: 100px;
-  margin-top: 10px;
-  margin-left: 10px;
-}
-
-.color-options-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.background-color-wrapper {
-  margin-top: -11px;
-}
-
-.color-preview,
-.background-preview {
-  width: 25px;
-  height: 25px;
-  margin: 8px auto 0 auto;
-  border: 1px solid #e2e2e2;
-}
-
-.font-size-input,
-.select-font {
-  margin-top: 5px;
-}
-
-.select-font {
-  width: 140px;
-}
-
-.wrap-options {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  width: 90%;
+  border-top: 1px solid #8f8f8f;
 }
 
 .options {
@@ -1439,8 +1428,44 @@ button:focus {
 }
 
 .image-options .image-inner-wrapper .image-top {
-  margin-left: 20px;
-  margin-top: 15px;
+  margin: 22px auto 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 220px;
+  height: 32px;
+}
+
+.img-input {
+  width: 180px;
+  height: 32px;
+  border-radius: 15px 0 0 15px;
+  padding-left: 8px;
+  border: 1px solid #22262b;
+  font-size: 17px;
+}
+
+.img-input:focus {
+  outline: none;
+}
+
+.img-btn {
+  height: 32px;
+  width: 32px;
+  padding-right: 4px;
+  background: #22262b;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 0 15px 15px 0;
+  color: white;
+  cursor: pointer;
 }
 
 .api-images-wrapper {

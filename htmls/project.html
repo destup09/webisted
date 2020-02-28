@@ -4,14 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="shortcut icon" type="image/x-icon" href="../files/favicon-32x32.png" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/monolith.min.css"/>
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../files/favicon-32x32.png"
+    />
+
     <link rel="stylesheet" href="../dist/main.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Lato|Merriweather|Montserrat|Open+Sans|Oswald|Playfair+Display|Roboto|Roboto+Condensed|Roboto+Mono|Roboto+Slab|Source+Sans+Pro&display=swap"
       rel="stylesheet"
     />
-    
+    <link
+      href="https://fonts.googleapis.com/css?family=Abril+Fatface|Anton|Dancing+Script|Lacquer|Lobster|Odibee+Sans|Open+Sans+Condensed:300|Pacifico|Righteous|Roboto+Mono|Simonetta&display=swap"
+      rel="stylesheet"
+    />
 
     <title>Wixa</title>
   </head>
@@ -19,13 +26,15 @@
     <div class="header">
       <div class="project-nav">
         <p class="menu-logo">website creator</p>
-        <ul class="nav__items">         
+        <ul class="nav__items">
           <li><a href="../index.html">Home</a></li>
           <li><a class="active" href="htmls/project.html">Project</a></li>
           <li><a href="#">Templates</a></li>
           <li><a href="#">Contact</a></li>
-        </ul>    
-      </div>   
+          <li class="save-project">Save</li>
+          <li class="clear-project">Clear</li>
+        </ul>
+      </div>
     </div>
 
     <div class="menu-toggle" title="Toggle navigation bar">
@@ -33,168 +42,152 @@
     </div>
 
     <div class="wrapper">
-
-     
-
-<div class="m">
-  <div class="m-l">
-    <p class="btn-clicked">SHAPE</p>
-    <p>TEXT</p>
-    <p>IMAGE</p>
-    <p style="padding-left: 4px;">BACKGROUND</p>
-  </div>
-  <div class="m-r">
-    <div class="div-options shape">
-      <p class="div-options-p top-p">SHAPES</p>
-      <div class="div-shapes-container">
-        <div class="div-shape1 options"></div>
-        <div class="div-shape2 options"></div>
-        <div class="div-shape3 options"></div>
-        <div class="div-shape4 options"></div>
-        
-      </div>
-
-      <div class="div-shapes-container">
-        <div class="div-shape5 options"></div>
-        <div class="div-shape6 options"></div>
-              
-      </div>
-
-      <p class="div-options-p">LINES</p>
-      <div class="div-shapes-container ">
-        <div class="div-line-wrapper">
-          <div class="div-line1 options"></div>
+      <div class="m">
+        <div class="m-l">
+          <p class="btn-clicked">SHAPE</p>
+          <p>TEXT</p>
+          <p>IMAGE</p>
+          <p style="padding-left: 4px;">BACKGROUND</p>
         </div>
-        <div class="div-line-wrapper">
-          <div class="div-line2 options"></div>
-        </div>
-      </div>
+        <div class="m-r">
+          <!--   SHAPE   -->
 
-      <div class="div-shapes-container ">
-        <div class="div-line-wrapper">
-          <div class="div-line3 options"></div>
-        </div>
-        <div class="div-line-wrapper">
-          <div class="div-line4 options"></div>
-        </div>
-      </div>
-    </div>
+          <div class="div-options shape">
+            <p class="div-options-p top-p">SHAPES</p>
+            <div class="div-shapes-container">
+              <div class="div-shape1 options"></div>
+              <div class="div-shape2 options"></div>
+              <div class="div-shape3 options"></div>
+              <div class="div-shape4 options"></div>
+            </div>
 
-    <div class="text-options text invisible">
-      <button class="create-new-text">Create Text</button>
-      
-      <div class="text-input-wrapper">
-        
-        <textarea
-          class="text-input"
-          placeholder="write text here"
-        ></textarea>
-      </div>
+            <div class="div-shapes-container">
+              <div class="div-shape5 options"></div>
+              <div class="div-shape6 options"></div>
+            </div>
 
-      <div class="wrap-options">
-        <div class="font-size-wrapper">
-          <div class="font-size">
-            <p class="div-options-p">FONT SIZE</p>
-            <form>
-              <input
-                type="number"
-                class="font-size-input"
-                min="0"
-                value="18"
-              />
-            </form>
+            <p class="div-options-p">LINES</p>
+            <div class="div-shapes-container ">
+              <div class="div-line-wrapper">
+                <div class="div-line1 options"></div>
+              </div>
+              <div class="div-line-wrapper">
+                <div class="div-line2 options"></div>
+              </div>
+            </div>
+
+            <div class="div-shapes-container ">
+              <div class="div-line-wrapper">
+                <div class="div-line3 options"></div>
+              </div>
+              <div class="div-line-wrapper">
+                <div class="div-line4 options"></div>
+              </div>
+            </div>
+          </div>
+
+          <!--   TEXT   -->
+
+          <div class="text-options text invisible">
+            <div class="text-title">
+              TEXT
+            </div>
+            <div class="close-tab"><i class="fas fa-times"></i></div>
+            <div class="text-main">
+              <div class="text-left">
+                <h2 class="text-header">STANDARD HTML:</h2>
+
+                <div class="standard-texts">
+                  <h1 class="text-create">Add header 1</h1>
+                  <h2 class="text-create">Add header 2</h2>
+                  <h3 class="text-create">Add header 3</h3>
+                  <h4 class="text-create">Add header 4</h4>
+                  <h5 class="text-create">Add header 5</h5>
+                  <h6 class="text-create">Add header 6</h6>
+                  <p class="text-create">Add paragraph</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <h2 class="text-header">CUSTOM HEADERS:</h2>
+                <div class="custom-texts">
+                  <h2 class="text-create" style="font-family: Lato;">Lato</h2>
+                  <h2 class="text-create" style="font-family: Merriweather;">
+                    Merriweather
+                  </h2>
+
+                  <h2
+                    class="text-create"
+                    style="font-family: Playfair Display;"
+                  >
+                    Playfair Display
+                  </h2>
+
+                  <h2 class="text-create" style="font-family: Roboto Mono;">
+                    Roboto Mono
+                  </h2>
+
+                  <h2 class="text-create" style="font-family: Lobster;">
+                    Lobster
+                  </h2>
+
+                  <h2 class="text-create" style="font-family: Anton;">
+                    Anton
+                  </h2>
+
+                  <h2 class="text-create" style="font-family: Dancing Script;">
+                    Dancing Script
+                  </h2>
+
+                  <h2 class="text-create" style="font-family: Lacquer;">
+                    Lacquer
+                  </h2>
+
+                  <h2 class="text-create" style="font-family: Pacifico;">
+                    Pacifico
+                  </h2>
+
+                  <h2 class="text-create" style="font-family: Righteous;">
+                    Righteous
+                  </h2>
+                  <h2 class="text-create" style="font-family: Simonetta;">
+                    Simonetta
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="image-options image invisible">
+            <div class="image-inner-wrapper">
+              <div class="image-top">
+                <input
+                  type="text"
+                  class="img-input"
+                  placeholder="search images"
+                />
+                <div class="img-btn">
+                  <i class="fas fa-search"></i>
+                </div>
+              </div>
+              <div class="api-images-wrapper"></div>
+            </div>
+          </div>
+
+          <div class="background-options background invisible">
+            <div class="bg-inner-wrapper">
+              <div class="bg-top">
+                <input
+                  type="text"
+                  class="img-input"
+                  placeholder="search images"
+                />
+                <button class="img-btn">Search</button>
+              </div>
+              <div class="bg-images-wrapper"></div>
+            </div>
           </div>
         </div>
-
-        <div class="font-family-wrapper">
-          <p class="div-options-p">FONT STYLE</p>
-          <select class="select-font">
-            <option class="font-1" style="font-family: Roboto"
-              >Roboto</option
-            ><option class="font-1" style="font-family: fantasy;"
-              >Fantasy</option
-            ><option class="font-1" style="font-family: Verdana"
-              >Verdana</option
-            ><option class="font-1" style="font-family: Georgia"
-              >Georgia</option
-            ><option class="font-1" style="font-family: Lato"
-              >Lato</option
-            ><option class="font-1" style="font-family: Open Sans"
-              >Open Sans</option
-            ><option class="font-1" style="font-family: Montserrat"
-              >Montserrat</option
-            ><option
-              class="font-1"
-              style="font-family: Roboto Condensed"
-              >Roboto Condensed</option
-            ><option class="font-1" style="font-family: Source Sans Pro"
-              >Source Sans Pro</option
-            ><option class="font-1" style="font-family: Oswald"
-              >Oswald</option
-            ><option class="font-1" style="font-family: Roboto Mono"
-              >Roboto Mono</option
-            ><option class="font-1" style="font-family: Merriweather"
-              >Merriweather</option
-            ><option class="font-1" style="font-family: Roboto Slab"
-              >Roboto Slab</option
-            ><option
-              class="font-1"
-              style="font-family: Playfair Display"
-              >Playfair Display</option
-            >
-          </select>
-        </div>
       </div>
-
-      <div class="color-options-wrapper">
-        <div class="font-color-wrapper">
-          <p class="div-options-p">FONT COLOR</p>
-          <form>
-            <input
-              type="text"
-              class="font-color-input"
-              placeholder="white / #ffffff"
-            />
-          </form>
-          <div class="color-preview"></div>
-        </div>
-
-        <div class="background-color-wrapper">
-          <p class="div-options-p">BACKGROUND </br> COLOR</p>
-          <form>
-            <input
-              type="text"
-              class="background-color-input"
-              placeholder="white / #ffffff / blank "
-            />
-          </form>
-          <div class="background-preview"></div>
-        </div>
-      </div>
-    </div>
-    <div class="image-options image invisible">
-      <div class="image-inner-wrapper">
-        <div class="image-top">
-          <input type="text" class="img-input" placeholder="search images">
-          <button class="img-btn">Search</button>
-        </div>
-        <div class="api-images-wrapper"></div>
-      </div>
-    </div>
-
-    <div class="background-options background invisible">
-      <div class="bg-inner-wrapper">
-        <div class="bg-top">
-          <input type="text" class="img-input" placeholder="search images">
-          <button class="img-btn">Search</button>
-        </div>
-        <div class="bg-images-wrapper"></div>
-      </div>
-    </div>
-    
-  </div>
-  <div class="m-toggle"><i class="fas fa-caret-right lefty"></i></div>
-</div>
 
       <div class="work-area">
         <div class="deleteQuestion invisible">
@@ -203,40 +196,68 @@
             <button class="delYes">Yes</button>
             <button class="delNo">No</button>
           </div>
-        </div>   
+        </div>
       </div>
 
       <div class="object-menu invisible">
         <div class="shape-config">
-
           <div class="top">Shape Configuration</div>
           <div class="shape-colors">
             <div class="color-pickers">
               <div class="first">
-                <input type="checkbox" class="fill-chbox style-apply"checked> 
+                <input type="checkbox" class="fill-chbox style-apply" checked />
                 <p>Fill:</p>
                 <div class="shape-color-wrapper">
-                  <input type="color" value="#555555" class="shape-color-input style-apply">
+                  <input
+                    type="color"
+                    value="#555555"
+                    class="shape-color-input style-apply"
+                  />
                 </div>
               </div>
               <div class="second">
-                <input type="checkbox" class="border-chbox style-apply" checked>  
-                <p>Border:</p>               
+                <input
+                  type="checkbox"
+                  class="border-chbox style-apply"
+                  checked
+                />
+                <p>Border:</p>
                 <div class="border-color-wrapper">
-                  <input type="color" value="#555555" class="border-color-input style-apply">
+                  <input
+                    type="color"
+                    value="#555555"
+                    class="border-color-input style-apply"
+                  />
                 </div>
               </div>
             </div>
-                
+
             <div class="shape-opacity">
               <p>Opacity:</p>
-              <input type="range" value="100" min="0" max="100" class="opacity-input style-apply-opacity">
-              <input type="number" value='100' min="0" max="100" class="opacity-input-num style-apply-opacity">
+              <input
+                type="range"
+                value="100"
+                min="0"
+                max="100"
+                class="opacity-input style-apply-opacity"
+              />
+              <input
+                type="number"
+                value="100"
+                min="0"
+                max="100"
+                class="opacity-input-num style-apply-opacity"
+              />
             </div>
 
-            <div class="border-style">  
-              <p>Border width:</p>               
-              <input type="number" min="0" value="1" class="shape-border-width-input style-apply"><span style="color: #a3a3a3;">px</span>
+            <div class="border-style">
+              <p>Border width:</p>
+              <input
+                type="number"
+                min="0"
+                value="1"
+                class="shape-border-width-input style-apply"
+              /><span style="color: #a3a3a3;">px</span>
             </div>
 
             <div class="border-type">
@@ -249,51 +270,87 @@
 
             <div class="border-radius">
               <p>Border Radius:</p>
-              <input type="number" min="0" value='0' class="border-radius1 style-apply">
-              <input type="number" min="0" value='0' class="border-radius2 style-apply">
-              <input type="number" min="0" value='0' class="border-radius3 style-apply">
-              <input type="number" min="0" value='0' class="border-radius4 style-apply">
+              <input
+                type="number"
+                min="0"
+                value="0"
+                class="border-radius1 style-apply"
+              />
+              <input
+                type="number"
+                min="0"
+                value="0"
+                class="border-radius2 style-apply"
+              />
+              <input
+                type="number"
+                min="0"
+                value="0"
+                class="border-radius3 style-apply"
+              />
+              <input
+                type="number"
+                min="0"
+                value="0"
+                class="border-radius4 style-apply"
+              />
             </div>
             <p style=" margin-top: 7px; margin-bottom: 5px;">Shadow:</p>
-            <div class="shape-shadow"> 
-              
+            <div class="shape-shadow">
               <div class="shadow-1st">
-                <p>vertical:</p><input type="number" value='0' class="shape-shadow-v style-apply">
-                <p>horizontal:</p><input type="number" value='0' class="shape-shadow-h style-apply">
+                <p>vertical:</p>
+                <input
+                  type="number"
+                  value="0"
+                  class="shape-shadow-v style-apply"
+                />
+                <p>horizontal:</p>
+                <input
+                  type="number"
+                  value="0"
+                  class="shape-shadow-h style-apply"
+                />
               </div>
               <div class="shadow-2nd">
-                <p>blur:</p><input type="number" value='0' class="shape-shadow-b style-apply">
-                <p>spread:</p><input type="number" value='0' class="shape-shadow-s style-apply">
+                <p>blur:</p>
+                <input
+                  type="number"
+                  value="0"
+                  class="shape-shadow-b style-apply"
+                />
+                <p>spread:</p>
+                <input
+                  type="number"
+                  value="0"
+                  class="shape-shadow-s style-apply"
+                />
               </div>
               <div class="shadow-3rd">
-                <p>shadow color:</p><input type="color" value="#555555" class="shadow-color-input style-apply">
-                <p>inset:</p><input type="checkbox" class="shadow-chbox style-apply"> 
-              </div> 
+                <p>shadow color:</p>
+                <input
+                  type="color"
+                  value="#555555"
+                  class="shadow-color-input style-apply"
+                />
+                <p>inset:</p>
+                <input type="checkbox" class="shadow-chbox style-apply" />
+              </div>
             </div>
-
-            
-            
-
 
             <div class="text-decoration">
               <div class="bold"><b>B</b></div>
               <div class="oblique"><i>I</i></div>
-              <div class="underline">U</div>              
+              <div class="underline">U</div>
             </div>
-
-            
           </div>
-
-          
         </div>
       </div>
     </div>
 
-    
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
     <script src="../main.js"></script>
     <script src="../api.js"></script>
-    
+
     <script
       src="https://kit.fontawesome.com/2c2390af2a.js"
       crossorigin="anonymous"
