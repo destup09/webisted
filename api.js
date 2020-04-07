@@ -2,7 +2,7 @@ function ApiFetch() {
   let input = document.querySelector(".img-input");
   let btn = document.querySelector(".img-btn");
 
-  btn.addEventListener("click", function(e) {
+  btn.addEventListener("click", function (e) {
     let imagesWrapper = document.querySelector(".api-images-wrapper");
 
     let clientId =
@@ -26,12 +26,12 @@ function ApiFetch() {
     console.log(url);
 
     fetch(url)
-      .then(function(data) {
+      .then(function (data) {
         return data.json();
       })
-      .then(function(data) {
+      .then(function (data) {
         console.log(data);
-        data.results.forEach(photo => {
+        data.results.forEach((photo) => {
           let img = document.createElement("img");
           img.src = photo.urls.regular;
           img.classList.add("api-img");

@@ -853,6 +853,11 @@ button:focus {
 }
 
 .object-menu .shape-config .top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   font-size: 20px;
   background: #22262b;
   color: white;
@@ -863,6 +868,15 @@ button:focus {
   text-align: center;
   padding-top: 10px;
   cursor: "move";
+}
+
+.object-menu .shape-config .top p {
+  margin-left: 50px;
+}
+
+.object-menu .shape-config .top .fa-times-circle {
+  cursor: pointer;
+  font-size: 24px;
 }
 
 .object-menu .shape-config .shape-colors {

@@ -146,6 +146,8 @@
     }
 
     .top {
+      display: flex;
+      justify-content: space-around;
       font-size: 20px;
       background: $secondary-color;
       color: white;
@@ -156,6 +158,15 @@
       text-align: center;
       padding-top: 10px;
       cursor: "move";
+
+      p {
+        margin-left: 50px;
+      }
+
+      .fa-times-circle {
+        cursor: pointer;
+        font-size: 24px;
+      }
     }
 
     .shape-colors {

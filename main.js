@@ -7,16 +7,16 @@
       document.querySelector(".shape"),
       document.querySelector(".text"),
       document.querySelector(".image"),
-      document.querySelector(".background")
+      document.querySelector(".background"),
     ];
     menuRight.style.display = "none";
 
-    menuLeft.addEventListener("click", function(e) {
+    menuLeft.addEventListener("click", function (e) {
       if (!e.target.classList.contains("m-l")) {
         menuRight.style.display = "";
         let selectedMenu = e.target.innerHTML.toLowerCase();
         let menuClass = document.querySelector("." + selectedMenu);
-        elArr.forEach(function(item) {
+        elArr.forEach(function (item) {
           item.classList.add("invisible");
         });
         for (i = 0; i < paragraphs.length; i++) {
@@ -32,7 +32,7 @@
     const nav = document.querySelector(".project-nav");
     const navItems = document.querySelector(".nav__items");
 
-    headerToggle.addEventListener("click", function() {
+    headerToggle.addEventListener("click", function () {
       header.classList.add("toggled");
       nav.classList.add("toggled");
       navItems.classList.add("toggled");
@@ -44,7 +44,7 @@
 
 ///////////////////
 //create
-(function() {
+(function () {
   const workArea = document.querySelector(".work-area");
   const divCreate = document.querySelector(".div-options");
   let createText = document.querySelectorAll(".text-create");
@@ -54,7 +54,7 @@
   let currentZIndex = 1;
 
   divCreate.addEventListener("mouseup", createNewObject);
-  createText.forEach(function(txt) {
+  createText.forEach(function (txt) {
     txt.addEventListener("click", createNewObject);
   });
   apiImagesWrapper.addEventListener("click", createNewObject);
@@ -83,7 +83,7 @@
 
       if (e.target.parentNode.className == "div-shapes-container") {
         var computedStyle = window.getComputedStyle(create);
-        Array.from(computedStyle).forEach(function(key) {
+        Array.from(computedStyle).forEach(function (key) {
           return div.style.setProperty(
             key,
             computedStyle.getPropertyValue(key),
@@ -98,8 +98,6 @@
       divParent.style.position = "absolute";
       divParent.style.width = div.style.width;
       divParent.style.height = div.style.height;
-
-      //console.log(divParent.style.width);
 
       div.style.margin = "0 auto";
       divParent.style.top = "150px";
@@ -173,17 +171,17 @@
 
       //delete div
 
-      deleteBtn.addEventListener("click", function() {
+      deleteBtn.addEventListener("click", function () {
         const delQ = document.querySelector(".deleteQuestion");
         const delYes = document.querySelector(".delYes");
         const delNo = document.querySelector(".delNo");
         delQ.classList.remove("invisible");
 
-        delNo.addEventListener("click", function() {
+        delNo.addEventListener("click", function () {
           delQ.classList.add("invisible");
         });
 
-        delYes.addEventListener("click", function() {
+        delYes.addEventListener("click", function () {
           delQ.classList.add("invisible");
           workArea.removeChild(div);
         });
@@ -191,15 +189,15 @@
 
       //hide/show del and menu btn on hover
       let resizersArr = document.querySelectorAll(".resizer");
-      resizersArr.forEach(function(res) {
+      resizersArr.forEach(function (res) {
         res.style.display = "none";
       });
 
-      workArea.addEventListener("click", function(e) {
+      workArea.addEventListener("click", function (e) {
         let parent = divParent;
         let isChild = 0;
 
-        parent.childNodes.forEach(function(child) {
+        parent.childNodes.forEach(function (child) {
           if (e.target == child) {
             isChild++;
           }
@@ -248,8 +246,8 @@
       const shapeOpacityNum = document.querySelector(".opacity-input-num");
       document
         .querySelectorAll(".style-apply-opacity")
-        .forEach(function(opacity) {
-          opacity.addEventListener("input", function(e) {
+        .forEach(function (opacity) {
+          opacity.addEventListener("input", function (e) {
             if (e.target == shapeOpacityRange) {
               shapeOpacityNum.value = shapeOpacityRange.value;
             } else {
@@ -260,7 +258,6 @@
         });
 
       function updateShape() {
-        console.log("s");
         let configBtnClassName = this.classList[0];
 
         shapeConfig.classList.remove("invisible");
@@ -294,8 +291,8 @@
         let shadowColorinput = document.querySelector(".shadow-color-input");
         let shadowChbox = document.querySelector(".shadow-chbox");
 
-        styleApply.forEach(function(style) {
-          style.addEventListener("input", function() {
+        styleApply.forEach(function (style) {
+          style.addEventListener("input", function () {
             //bg
             if (fillCheckbox.checked) {
               currentlyStyling.style.backgroundColor = fillColorInput.value;
@@ -340,6 +337,34 @@
               shadowInset;
           });
         });
+
+        (function objectConfig() {
+          const shapeConfigClose = document.querySelector(".fa-times-circle");
+
+          shapeConfigClose.addEventListener("click", function () {
+            shapeConfig.classList.add("invisible");
+            resetMenu();
+          });
+
+          function resetMenu() {
+            fillCheckbox.checked = true;
+            borderCheckbox.checked = true;
+            fillColorInput.value = "#555555";
+            borderColorInput.value = "#555555";
+            shapeBorderWidth.value = "1";
+            borderRadius1.value = "0";
+            borderRadius2.value = "0";
+            borderRadius3.value = "0";
+            borderRadius4.value = "0";
+            shapeShadowVertical.value = "0";
+            shapeShadowHorizontal.value = "0";
+            shapeShadowBlur.value = "0";
+            shapeShadowSpread.value = "0";
+            shadowColorinput.value = "#555555";
+            shadowChbox.checked = "false";
+          }
+        })();
+
         ////////
         // Pododawać img krawędzi na border radiusie
       }
@@ -354,16 +379,17 @@
 
         let currentText;
 
-        div.addEventListener("dblclick", function() {
+        div.addEventListener("dblclick", function () {
           this.setAttribute("contenteditable", "true");
           currentText = this;
           console.log(currentText);
         });
 
-        workArea.addEventListener("click", function(e) {
-          if (e.target !== currentText || e.target !== currentText.parentNode) {
+        workArea.addEventListener("click", function (e) {
+          if (e.target.className == "work-area") {
             div.setAttribute("contenteditable", "false");
             console.log("s");
+            console.log(div);
           }
         });
       }
@@ -373,17 +399,20 @@
 
       if (create.classList.contains("api-img")) {
         let imgSrc = e.target.getAttribute("src");
-        let imgHeight = e.target.getAttribute("height");
-        let imgWidth = e.target.style.width;
-        console.log(e.target.getComputedStyle);
+        imgChild = divParent.children[0];
 
         imgCreateIndicator = divParent;
-        divParent.style.backgroundImage = "url('" + imgSrc + "')";
-        divParent.style.backgroundRepeat = "no-repeat";
-        divParent.style.backgroundSize = "cover";
-        divParent.style.backgroundPosition = "center center";
-        divParent.style.height = "300px";
-        divParent.style.width = "300px";
+        imgChild.style.backgroundImage = "url('" + imgSrc + "')";
+        imgChild.style.backgroundRepeat = "no-repeat";
+        imgChild.style.backgroundSize = "cover";
+        imgChild.style.backgroundPosition = "center center";
+        imgChild.style.height = "300px";
+        imgChild.style.width = "300px";
+        divParent.style.width = imgChild.style.width;
+        divParent.style.height = imgChild.style.height;
+
+        //divParent.childNodes.style.display = "";
+        console.log(divParent);
       }
 
       ///////////////////////
@@ -391,11 +420,10 @@
 
       let elArr = [];
       let el;
-      //console.log(el);
       const resizer = document.querySelectorAll(".resizer");
 
-      resizer.forEach(function(thisresizer) {
-        thisresizer.addEventListener("mousedown", function() {
+      resizer.forEach(function (thisresizer) {
+        thisresizer.addEventListener("mousedown", function () {
           elArr.unshift(this.parentNode);
           el = elArr[0];
           console.log(el);
@@ -490,21 +518,19 @@
         let offset = [0, 0];
         let isDown = false;
 
-        div.onmousedown = function() {
+        div.onmousedown = function () {
           currentZIndex++;
           this.style.zIndex = currentZIndex;
         };
 
         moveTarget.addEventListener(
           "mousedown",
-          function(e) {
+          function (e) {
             isDown = true;
             offset = [
               moveTarget.offsetLeft - e.clientX,
-              moveTarget.offsetTop - e.clientY
+              moveTarget.offsetTop - e.clientY,
             ];
-
-            //currentZIndex ++;
 
             leftMenu.children[0].classList.add("invisible");
             leftMenu.children[1].classList.add("invisible");
@@ -514,7 +540,7 @@
 
         moveTarget.addEventListener(
           "mouseup",
-          function() {
+          function () {
             isDown = false;
 
             leftMenu.children[0].classList.remove("invisible");
@@ -525,7 +551,7 @@
 
         workArea.addEventListener(
           "mousemove",
-          function(event) {
+          function (event) {
             //resitrict moving div outside workarea
 
             event.preventDefault();
@@ -533,7 +559,7 @@
               if (!isResizing) {
                 mousePosition = {
                   x: event.clientX,
-                  y: event.clientY
+                  y: event.clientY,
                 };
                 moveTarget.style.left = mousePosition.x + offset[0] + "px";
                 moveTarget.style.top = mousePosition.y + offset[1] + "px";
@@ -616,10 +642,10 @@
 // - rotate
 // - dodawanie img z linku
 // - ogarnąć aspect ratio wstawianych zdj
-
-// - ogarnąć kropki do skalowania - ustawienie i dac je z kazdej strony
 // - zrobic kształty tak samo jak tekst. główny div i do niego append kształtu
-// - ogarnąć placement resizerów oraz menu i del buttonów po powiekszeniu bordera
+// - Ogarnąć kod co typo na stackoverflow napisał
+// - przesówanie obiektu strzałkami
+// - skróty klawiszowe (ctrl+c , dokładne skalowanie - shift+mouse) itd...
 
 // !!! // - ogarnąć poruszanie diva myszką, podpiąć divy i menu config pod 1 skrypt
 
