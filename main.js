@@ -193,7 +193,7 @@
         res.style.display = "none";
       });
 
-      workArea.addEventListener("click", function (e) {
+      workArea.addEventListener("mousedown", function (e) {
         let parent = divParent;
         let isChild = 0;
 
@@ -229,7 +229,6 @@
       ///////////////////
       //SHAPE CONFIG
 
-      console.log("e");
       config.addEventListener("click", updateShape);
       let styleApply = document.querySelectorAll(".style-apply");
       const shapeConfig = document.querySelector(".object-menu");
@@ -341,28 +340,148 @@
         (function objectConfig() {
           const shapeConfigClose = document.querySelector(".fa-times-circle");
 
+          config.addEventListener("click", resetMenu());
+
           shapeConfigClose.addEventListener("click", function () {
             shapeConfig.classList.add("invisible");
             resetMenu();
           });
 
+          //reset
           function resetMenu() {
+            const reset = [
+              borderRadius1,
+              borderRadius2,
+              borderRadius3,
+              borderRadius4,
+              shapeShadowVertical,
+              shapeShadowHorizontal,
+              shapeShadowBlur,
+              shapeShadowSpread,
+            ];
+
+            reset.forEach(function (obj) {
+              obj.value = "0";
+            });
+
             fillCheckbox.checked = true;
             borderCheckbox.checked = true;
             fillColorInput.value = "#555555";
             borderColorInput.value = "#555555";
             shapeBorderWidth.value = "1";
-            borderRadius1.value = "0";
-            borderRadius2.value = "0";
-            borderRadius3.value = "0";
-            borderRadius4.value = "0";
-            shapeShadowVertical.value = "0";
-            shapeShadowHorizontal.value = "0";
-            shapeShadowBlur.value = "0";
-            shapeShadowSpread.value = "0";
             shadowColorinput.value = "#555555";
             shadowChbox.checked = "false";
           }
+
+          //get style from configured obj
+
+          function getStyle() {
+            let configuredDiv = config.previousSibling;
+            let objComputedStyle = window.getComputedStyle(configuredDiv, null);
+
+            if (configuredDiv.style.backgroundColor == "transparent") {
+              fillCheckbox.checked = false;
+            } else {
+              fillCheckbox.checked = true;
+            }
+
+            if (configuredDiv.style.borderStyle == "none") {
+              borderCheckbox.checked = false;
+            } else {
+              borderCheckbox.checked = true;
+            }
+
+            shapeBorderWidth.value = configuredDiv.style.borderWidth.split(
+              "px"
+            )[0];
+
+            borderRadius1.value = objComputedStyle.borderTopLeftRadius.split(
+              "px"
+            )[0];
+            borderRadius2.value = objComputedStyle.borderTopRightRadius.split(
+              "px"
+            )[0];
+            borderRadius3.value = objComputedStyle.borderBottomRightRadius.split(
+              "px"
+            )[0];
+            borderRadius4.value = objComputedStyle.borderBottomLeftRadius.split(
+              "px"
+            )[0];
+
+            let boxShadowArr = objComputedStyle.boxShadow.split(") ");
+            let boxShadowPlacement = boxShadowArr[1];
+            let boxShadowColor = boxShadowArr[0].split(", ");
+
+            //shadow
+            let boxShadowR = boxShadowColor[0].split("rgb(")[1];
+            let boxShadowG = boxShadowColor[1];
+            let boxShadowB = boxShadowColor[2];
+            let boxShadowHex;
+
+            //bg
+            let bgColor = configuredDiv.style.backgroundColor.split(", ");
+            let backgroundR = bgColor[0].split("rgb(")[1];
+            let backgroundG = bgColor[1];
+            let backgroundB = bgColor[2].split(")")[0];
+
+            //border
+            let borderColor = configuredDiv.style.borderColor.split(", ");
+            let borderR = borderColor[0].split("rgb(")[1];
+            let borderG = borderColor[1];
+            let borderB = borderColor[2].split(")")[0];
+            let borderColorHex;
+
+            //rgb to hex
+            let fullHex = "";
+
+            function rgbToHex(R, G, B) {
+              fullHex = "";
+              return toHex(R) + toHex(G) + toHex(B);
+            }
+            function toHex(n) {
+              n = parseInt(n, 10);
+              if (isNaN(n)) return "00";
+              n = Math.max(0, Math.min(n, 255));
+              fullHex +=
+                "0123456789ABCDEF".charAt((n - (n % 16)) / 16) +
+                "0123456789ABCDEF".charAt(n % 16);
+            }
+            rgbToHex();
+
+            function getHex() {
+              rgbToHex(boxShadowR, boxShadowG, boxShadowB);
+              boxShadowHex = fullHex;
+
+              rgbToHex(backgroundR, backgroundG, backgroundB);
+              fillColorInput.value = "#" + fullHex;
+
+              rgbToHex(borderR, borderG, borderB);
+              borderColorHex = fullHex;
+            }
+            getHex();
+
+            //check if shadow is selected
+            if (configuredDiv.style.boxShadow != "none") {
+              let boxShadowv2 = boxShadowPlacement.split(" ");
+
+              shapeShadowVertical.value = boxShadowv2[1].split("px")[0];
+              shapeShadowHorizontal.value = boxShadowv2[0].split("px")[0];
+              shapeShadowBlur.value = boxShadowv2[2].split("px")[0];
+              shapeShadowSpread.value = boxShadowv2[3].split("px")[0];
+              shadowColorinput.value = "#" + boxShadowHex;
+              if (boxShadowArr[7] == "inset") {
+                shadowChbox.checked = true;
+              } else {
+                shadowChbox.checked = false;
+              }
+            }
+
+            //check if border is selected
+            if (configuredDiv.style.borderStyle != "none") {
+              borderColorInput.value = "#" + borderColorHex;
+            }
+          }
+          getStyle();
         })();
 
         ////////
@@ -642,7 +761,6 @@
 // - rotate
 // - dodawanie img z linku
 // - ogarnąć aspect ratio wstawianych zdj
-// - zrobic kształty tak samo jak tekst. główny div i do niego append kształtu
 // - Ogarnąć kod co typo na stackoverflow napisał
 // - przesówanie obiektu strzałkami
 // - skróty klawiszowe (ctrl+c , dokładne skalowanie - shift+mouse) itd...
