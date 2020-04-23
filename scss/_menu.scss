@@ -113,7 +113,7 @@
 //Object menu
 
 .object-menu {
-  width: 310px;
+  width: 320px;
   height: 460px;
   background: $primary-color;
   position: absolute;
@@ -171,7 +171,24 @@
 
     .shape-colors {
       width: 100%;
-      height: 200px;
+      height: 100%;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        width: 8px;
+        border-radius: 8px;
+        background: #dadada;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        width: 6px;
+        border-radius: 8px;
+        background: $secondary-color;
+      }
 
       .color-pickers {
         display: flex;
@@ -241,7 +258,10 @@
       .border-type,
       .border-radius,
       .border-style,
-      .shape-shadow {
+      .shape-shadow,
+      .text-decoration,
+      .font-size,
+      .font-color {
         width: 100%;
         height: 55px;
         display: flex;
@@ -262,10 +282,6 @@
         .shadow-chbox {
           margin-top: 3px;
         }
-      }
-
-      .shape-shadow {
-        border: none;
       }
 
       .border-type {

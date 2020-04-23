@@ -374,7 +374,6 @@
           }
 
           //get style from configured obj
-
           function getStyle() {
             let configuredDiv = config.previousSibling;
             let objComputedStyle = window.getComputedStyle(configuredDiv, null);
@@ -411,29 +410,59 @@
             let boxShadowArr = objComputedStyle.boxShadow.split(") ");
             let boxShadowPlacement = boxShadowArr[1];
             let boxShadowColor = boxShadowArr[0].split(", ");
-
-            //shadow
-            let boxShadowR = boxShadowColor[0].split("rgb(")[1];
-            let boxShadowG = boxShadowColor[1];
-            let boxShadowB = boxShadowColor[2];
-            let boxShadowHex;
-
-            //bg
-            let bgColor = configuredDiv.style.backgroundColor.split(", ");
-            let backgroundR = bgColor[0].split("rgb(")[1];
-            let backgroundG = bgColor[1];
-            let backgroundB = bgColor[2].split(")")[0];
-
-            //border
-            let borderColor = configuredDiv.style.borderColor.split(", ");
-            let borderR = borderColor[0].split("rgb(")[1];
-            let borderG = borderColor[1];
-            let borderB = borderColor[2].split(")")[0];
-            let borderColorHex;
-
-            //rgb to hex
             let fullHex = "";
 
+            //text
+            if (configuredDiv.classList.contains("text")) {
+              const fontSizeInput = document.querySelector(".font-size-input");
+              const fontColorInput = document.querySelector(
+                ".font-color-input"
+              );
+              console.log(configuredDiv.style.color);
+
+              /*
+              let fontColor = configuredDiv.style.color.split(", ");
+              let fontColorR = fontColor[0].split("rgb(")[1];
+              let fontColorG = fontColor[1];
+              let fontColorB = fontColor[2].split(")")[0];
+
+              rgbToHex(fontColorR, fontColorG, fontColorB);
+              fontColorInput.value = "#" + fullHex;
+              */
+            }
+
+            if (!configuredDiv.classList.contains("text")) {
+              //shadow
+              let boxShadowR = boxShadowColor[0].split("rgb(")[1];
+              let boxShadowG = boxShadowColor[1];
+              let boxShadowB = boxShadowColor[2];
+              let boxShadowHex;
+              rgbToHex(boxShadowR, boxShadowG, boxShadowB);
+              boxShadowHex = fullHex;
+
+              //bg
+              if (configuredDiv.style.backgroundColor != "transparent") {
+                let bgColor = configuredDiv.style.backgroundColor.split(", ");
+                let backgroundR = bgColor[0].split("rgb(")[1];
+                let backgroundG = bgColor[1];
+                let backgroundB = bgColor[2].split(")")[0];
+
+                rgbToHex(backgroundR, backgroundG, backgroundB);
+                fillColorInput.value = "#" + fullHex;
+              }
+
+              //border
+              if (configuredDiv.style.borderStyle != "none") {
+                let borderColor = configuredDiv.style.borderColor.split(", ");
+                let borderR = borderColor[0].split("rgb(")[1];
+                let borderG = borderColor[1];
+                let borderB = borderColor[2].split(")")[0];
+
+                rgbToHex(borderR, borderG, borderB);
+                borderColorInput.value = "#" + fullHex;
+              }
+            }
+            //rgb to hex
             function rgbToHex(R, G, B) {
               fullHex = "";
               return toHex(R) + toHex(G) + toHex(B);
@@ -447,45 +476,26 @@
                 "0123456789ABCDEF".charAt(n % 16);
             }
             rgbToHex();
+            if (!configuredDiv.classList.contains("text")) {
+              //check if shadow is selected
+              if (configuredDiv.style.boxShadow != "none") {
+                let boxShadowv2 = boxShadowPlacement.split(" ");
 
-            function getHex() {
-              rgbToHex(boxShadowR, boxShadowG, boxShadowB);
-              boxShadowHex = fullHex;
-
-              rgbToHex(backgroundR, backgroundG, backgroundB);
-              fillColorInput.value = "#" + fullHex;
-
-              rgbToHex(borderR, borderG, borderB);
-              borderColorHex = fullHex;
-            }
-            getHex();
-
-            //check if shadow is selected
-            if (configuredDiv.style.boxShadow != "none") {
-              let boxShadowv2 = boxShadowPlacement.split(" ");
-
-              shapeShadowVertical.value = boxShadowv2[1].split("px")[0];
-              shapeShadowHorizontal.value = boxShadowv2[0].split("px")[0];
-              shapeShadowBlur.value = boxShadowv2[2].split("px")[0];
-              shapeShadowSpread.value = boxShadowv2[3].split("px")[0];
-              shadowColorinput.value = "#" + boxShadowHex;
-              if (boxShadowArr[7] == "inset") {
-                shadowChbox.checked = true;
-              } else {
-                shadowChbox.checked = false;
+                shapeShadowVertical.value = boxShadowv2[1].split("px")[0];
+                shapeShadowHorizontal.value = boxShadowv2[0].split("px")[0];
+                shapeShadowBlur.value = boxShadowv2[2].split("px")[0];
+                shapeShadowSpread.value = boxShadowv2[3].split("px")[0];
+                shadowColorinput.value = "#" + boxShadowHex;
+                if (boxShadowArr[7] == "inset") {
+                  shadowChbox.checked = true;
+                } else {
+                  shadowChbox.checked = false;
+                }
               }
-            }
-
-            //check if border is selected
-            if (configuredDiv.style.borderStyle != "none") {
-              borderColorInput.value = "#" + borderColorHex;
             }
           }
           getStyle();
         })();
-
-        ////////
-        // Pododawać img krawędzi na border radiusie
       }
 
       //////////////////
@@ -495,6 +505,7 @@
         divParent.style.width = "200px";
         div.innerText = e.target.innerText;
         div.style.fontFamily = e.target.style.fontFamily;
+        divParent.firstChild.classList.add("text");
 
         let currentText;
 
@@ -520,7 +531,7 @@
         let imgSrc = e.target.getAttribute("src");
         imgChild = divParent.children[0];
 
-        imgCreateIndicator = divParent;
+        imgCreateIndicator = imgChild;
         imgChild.style.backgroundImage = "url('" + imgSrc + "')";
         imgChild.style.backgroundRepeat = "no-repeat";
         imgChild.style.backgroundSize = "cover";
@@ -774,81 +785,124 @@
 //    dopóki nie kliknie sie znowu na resizera
 
 /*
-.create-new-text {
-  background: none;
-  width: 120px;
-  height: 40px;
-  border: 1px solid $secondary-color;
-  font-family: "Roboto";
-  font-size: 18px;
-  transition: background-color 0.5s ease-in-out;
-  margin: 20px auto 20px auto;
-  text-align: center;
-  display: block;
+function getStyle() {
+            let configuredDiv = config.previousSibling;
+            let objComputedStyle = window.getComputedStyle(configuredDiv, null);
 
-  &:hover {
-    background: #f2f2f2;
-  }
-}
+            if (configuredDiv.style.backgroundColor == "transparent") {
+              fillCheckbox.checked = false;
+            } else {
+              fillCheckbox.checked = true;
+            }
 
-.text-input-wrapper {
-  color: $secondary-color;
-  margin: 10px auto 20px auto;
-  width: 500px;
-  height: 130px;
+            if (configuredDiv.style.borderStyle == "none") {
+              borderCheckbox.checked = false;
+            } else {
+              borderCheckbox.checked = true;
+            }
 
-  .text-input {
-    resize: none;
-    width: 500px;
-    height: 130px;
-  }
-}
+            shapeBorderWidth.value = configuredDiv.style.borderWidth.split(
+              "px"
+            )[0];
 
-.wrap-options,
-.color-options-wrapper {
-  margin: 0 auto;
-  width: 380px;
-  height: 100px;
-  display: flex;
-  justify-content: space-evenly;
-}
+            borderRadius1.value = objComputedStyle.borderTopLeftRadius.split(
+              "px"
+            )[0];
+            borderRadius2.value = objComputedStyle.borderTopRightRadius.split(
+              "px"
+            )[0];
+            borderRadius3.value = objComputedStyle.borderBottomRightRadius.split(
+              "px"
+            )[0];
+            borderRadius4.value = objComputedStyle.borderBottomLeftRadius.split(
+              "px"
+            )[0];
 
-.font-size-wrapper,
-.font-family-wrapper,
-.font-color-wrapper,
-.background-color-wrapper {
-  width: 150px;
-  height: 100px;
-  margin-top: 10px;
-  margin-left: 10px;
-}
+            let boxShadowArr = objComputedStyle.boxShadow.split(") ");
+            let boxShadowPlacement = boxShadowArr[1];
+            let boxShadowColor = boxShadowArr[0].split(", ");
 
-.color-options-wrapper {
-  display: flex;
-}
+            //shadow
+            let boxShadowR = boxShadowColor[0].split("rgb(")[1];
+            let boxShadowG = boxShadowColor[1];
+            let boxShadowB = boxShadowColor[2];
+            let boxShadowHex;
 
-.background-color-wrapper {
-  margin-top: -11px;
-}
+            //bg
 
-.color-preview,
-.background-preview {
-  width: 25px;
-  height: 25px;
-  margin: 8px auto 0 auto;
-  border: 1px solid #e2e2e2;
-}
+            let bgColor = configuredDiv.style.backgroundColor.split(", ");
+            let backgroundR = bgColor[0].split("rgb(")[1];
+            let backgroundG = bgColor[1];
+            let backgroundB = bgColor[2].split(")")[0];
 
-.font-size-input,
-.select-font {
-  margin-top: 5px;
-}
+            
+            console.log(bgColor);
+            console.log(backgroundR);
+            console.log(backgroundG);
+            console.log(backgroundB);
 
-.select-font {
-  width: 140px;
-}
+            //border
 
-.wrap-options {
-  display: flex;
-}
+            let borderColor = configuredDiv.style.borderColor.split(", ");
+            let borderR = borderColor[0].split("rgb(")[1];
+            let borderG = borderColor[1];
+            let borderB = borderColor[2].split(")")[0];
+            let borderColorHex;
+
+            console.log(borderColor);
+            console.log(borderR);
+            console.log(borderG);
+            console.log(borderB);
+
+            //rgb to hex
+            let fullHex = "";
+
+            function rgbToHex(R, G, B) {
+              fullHex = "";
+              return toHex(R) + toHex(G) + toHex(B);
+            }
+            function toHex(n) {
+              n = parseInt(n, 10);
+              if (isNaN(n)) return "00";
+              n = Math.max(0, Math.min(n, 255));
+              fullHex +=
+                "0123456789ABCDEF".charAt((n - (n % 16)) / 16) +
+                "0123456789ABCDEF".charAt(n % 16);
+            }
+            rgbToHex();
+
+            function getHex() {
+              rgbToHex(boxShadowR, boxShadowG, boxShadowB);
+              boxShadowHex = fullHex;
+
+              rgbToHex(backgroundR, backgroundG, backgroundB);
+              fillColorInput.value = "#" + fullHex;
+
+              rgbToHex(borderR, borderG, borderB);
+              borderColorHex = fullHex;
+            }
+            getHex();
+
+            //check if shadow is selected
+            if (configuredDiv.style.boxShadow != "none") {
+              let boxShadowv2 = boxShadowPlacement.split(" ");
+
+              shapeShadowVertical.value = boxShadowv2[1].split("px")[0];
+              shapeShadowHorizontal.value = boxShadowv2[0].split("px")[0];
+              shapeShadowBlur.value = boxShadowv2[2].split("px")[0];
+              shapeShadowSpread.value = boxShadowv2[3].split("px")[0];
+              shadowColorinput.value = "#" + boxShadowHex;
+              if (boxShadowArr[7] == "inset") {
+                shadowChbox.checked = true;
+              } else {
+                shadowChbox.checked = false;
+              }
+            }
+
+            //check if border is selected
+            if (configuredDiv.style.borderStyle != "none") {
+              borderColorInput.value = "#" + borderColorHex;
+            }
+          }
+          getStyle();
 */
