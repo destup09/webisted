@@ -289,6 +289,9 @@
         let shapeShadowSpread = document.querySelector(".shape-shadow-s");
         let shadowColorinput = document.querySelector(".shadow-color-input");
         let shadowChbox = document.querySelector(".shadow-chbox");
+        let fontSizeInput = document.querySelector(".font-size-input");
+        let fontColorInput = document.querySelector(".font-color-input");
+        let fontFamilyInput = document.querySelector(".font-family-select");
 
         styleApply.forEach(function (style) {
           style.addEventListener("input", function () {
@@ -334,8 +337,20 @@
               "px " +
               shadowColorinput.value +
               shadowInset;
+
+            //text styling
+            if (currentlyStyling.classList.contains("text")) {
+              currentlyStyling.style.fontSize = fontSizeInput.value + "px";
+              currentlyStyling.style.color = fontColorInput.value;
+              currentlyStyling.style.fontFamily = fontFamilyInput.value;
+            }
           });
         });
+
+        if (currentlyStyling.classList.contains("text")) {
+          currentlyStyling.style.backgroundColor = "transparent";
+          currentlyStyling.style.borderStyle = "none";
+        }
 
         (function objectConfig() {
           const shapeConfigClose = document.querySelector(".fa-times-circle");
@@ -413,55 +428,60 @@
             let fullHex = "";
 
             //text
-            if (configuredDiv.classList.contains("text")) {
-              const fontSizeInput = document.querySelector(".font-size-input");
-              const fontColorInput = document.querySelector(
-                ".font-color-input"
-              );
-              console.log(configuredDiv.style.color);
 
-              /*
-              let fontColor = configuredDiv.style.color.split(", ");
+            if (configuredDiv.classList.contains("text")) {
+              let fontColor = window
+                .getComputedStyle(configuredDiv, null)
+                .getPropertyValue("color")
+                .split(", ");
+
               let fontColorR = fontColor[0].split("rgb(")[1];
               let fontColorG = fontColor[1];
               let fontColorB = fontColor[2].split(")")[0];
 
               rgbToHex(fontColorR, fontColorG, fontColorB);
               fontColorInput.value = "#" + fullHex;
-              */
+
+              fontSizeInput.value = window
+                .getComputedStyle(configuredDiv, null)
+                .getPropertyValue("font-size")
+                .split("px")[0];
+
+              fontFamilyInput.value = configuredDiv.style.fontFamily;
+
+              console.log();
             }
 
-            if (!configuredDiv.classList.contains("text")) {
-              //shadow
-              let boxShadowR = boxShadowColor[0].split("rgb(")[1];
-              let boxShadowG = boxShadowColor[1];
-              let boxShadowB = boxShadowColor[2];
-              let boxShadowHex;
-              rgbToHex(boxShadowR, boxShadowG, boxShadowB);
-              boxShadowHex = fullHex;
+            //shadow
+            let boxShadowR = boxShadowColor[0].split("rgb(")[1];
+            let boxShadowG = boxShadowColor[1];
+            let boxShadowB = boxShadowColor[2];
+            let boxShadowHex;
+            rgbToHex(boxShadowR, boxShadowG, boxShadowB);
+            boxShadowHex = fullHex;
 
-              //bg
-              if (configuredDiv.style.backgroundColor != "transparent") {
-                let bgColor = configuredDiv.style.backgroundColor.split(", ");
-                let backgroundR = bgColor[0].split("rgb(")[1];
-                let backgroundG = bgColor[1];
-                let backgroundB = bgColor[2].split(")")[0];
+            //bg
+            if (configuredDiv.style.backgroundColor != "transparent") {
+              let bgColor = configuredDiv.style.backgroundColor.split(", ");
+              let backgroundR = bgColor[0].split("rgb(")[1];
+              let backgroundG = bgColor[1];
+              let backgroundB = bgColor[2].split(")")[0];
 
-                rgbToHex(backgroundR, backgroundG, backgroundB);
-                fillColorInput.value = "#" + fullHex;
-              }
-
-              //border
-              if (configuredDiv.style.borderStyle != "none") {
-                let borderColor = configuredDiv.style.borderColor.split(", ");
-                let borderR = borderColor[0].split("rgb(")[1];
-                let borderG = borderColor[1];
-                let borderB = borderColor[2].split(")")[0];
-
-                rgbToHex(borderR, borderG, borderB);
-                borderColorInput.value = "#" + fullHex;
-              }
+              rgbToHex(backgroundR, backgroundG, backgroundB);
+              fillColorInput.value = "#" + fullHex;
             }
+
+            //border
+            if (configuredDiv.style.borderStyle != "none") {
+              let borderColor = configuredDiv.style.borderColor.split(", ");
+              let borderR = borderColor[0].split("rgb(")[1];
+              let borderG = borderColor[1];
+              let borderB = borderColor[2].split(")")[0];
+
+              rgbToHex(borderR, borderG, borderB);
+              borderColorInput.value = "#" + fullHex;
+            }
+
             //rgb to hex
             function rgbToHex(R, G, B) {
               fullHex = "";
@@ -476,6 +496,7 @@
                 "0123456789ABCDEF".charAt(n % 16);
             }
             rgbToHex();
+
             if (!configuredDiv.classList.contains("text")) {
               //check if shadow is selected
               if (configuredDiv.style.boxShadow != "none") {
@@ -518,7 +539,6 @@
         workArea.addEventListener("click", function (e) {
           if (e.target.className == "work-area") {
             div.setAttribute("contenteditable", "false");
-            console.log("s");
             console.log(div);
           }
         });

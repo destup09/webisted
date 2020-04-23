@@ -43,6 +43,8 @@ function ApiFetch() {
 }
 ApiFetch();
 
+// google fonts api: AIzaSyAhZuGKfMdu2GJ4az_GZ4XljVCqGgzGdwU
+
 /*
 <!DOCTYPE html>
 <html lang="en">

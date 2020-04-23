@@ -984,7 +984,8 @@ button:focus {
 .object-menu .shape-config .shape-colors .shape-shadow,
 .object-menu .shape-config .shape-colors .text-decoration,
 .object-menu .shape-config .shape-colors .font-size,
-.object-menu .shape-config .shape-colors .font-color {
+.object-menu .shape-config .shape-colors .font-color,
+.object-menu .shape-config .shape-colors .font-family {
   width: 100%;
   height: 55px;
   display: -webkit-box;
@@ -1004,7 +1005,8 @@ button:focus {
 .object-menu .shape-config .shape-colors .shape-shadow .shape-border-style-input,
 .object-menu .shape-config .shape-colors .text-decoration .shape-border-style-input,
 .object-menu .shape-config .shape-colors .font-size .shape-border-style-input,
-.object-menu .shape-config .shape-colors .font-color .shape-border-style-input {
+.object-menu .shape-config .shape-colors .font-color .shape-border-style-input,
+.object-menu .shape-config .shape-colors .font-family .shape-border-style-input {
   width: 50px;
 }
 
@@ -1025,7 +1027,9 @@ button:focus {
 .object-menu .shape-config .shape-colors .font-size .fill-chbox,
 .object-menu .shape-config .shape-colors .font-size .border-chbox,
 .object-menu .shape-config .shape-colors .font-color .fill-chbox,
-.object-menu .shape-config .shape-colors .font-color .border-chbox {
+.object-menu .shape-config .shape-colors .font-color .border-chbox,
+.object-menu .shape-config .shape-colors .font-family .fill-chbox,
+.object-menu .shape-config .shape-colors .font-family .border-chbox {
   width: 17px;
   height: 17px;
   cursor: pointer;
@@ -1039,7 +1043,8 @@ button:focus {
 .object-menu .shape-config .shape-colors .shape-shadow .shadow-chbox,
 .object-menu .shape-config .shape-colors .text-decoration .shadow-chbox,
 .object-menu .shape-config .shape-colors .font-size .shadow-chbox,
-.object-menu .shape-config .shape-colors .font-color .shadow-chbox {
+.object-menu .shape-config .shape-colors .font-color .shadow-chbox,
+.object-menu .shape-config .shape-colors .font-family .shadow-chbox {
   margin-top: 3px;
 }
 
@@ -1172,6 +1177,17 @@ button:focus {
 .object-menu .shape-config .shape-colors .text-decoration .underline {
   text-decoration: underline;
   padding-top: 2px;
+}
+
+.object-menu .shape-config .shape-colors .font-color-input {
+  width: 30px;
+  height: 30px;
+  border: none;
+  padding: 0;
+}
+
+.object-menu .shape-config .shape-colors .font-family option {
+  font-size: 20px;
 }
 
 .wrapper {
