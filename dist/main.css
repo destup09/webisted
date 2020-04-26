@@ -985,7 +985,8 @@ button:focus {
 .object-menu .shape-config .shape-colors .text-decoration,
 .object-menu .shape-config .shape-colors .font-size,
 .object-menu .shape-config .shape-colors .font-color,
-.object-menu .shape-config .shape-colors .font-family {
+.object-menu .shape-config .shape-colors .font-family,
+.object-menu .shape-config .shape-colors .size {
   width: 100%;
   height: 55px;
   display: -webkit-box;
@@ -997,6 +998,74 @@ button:focus {
   border-bottom: 1px solid #dbdbdb;
 }
 
+.object-menu .shape-config .shape-colors .first .height,
+.object-menu .shape-config .shape-colors .first .width,
+.object-menu .shape-config .shape-colors .second .height,
+.object-menu .shape-config .shape-colors .second .width,
+.object-menu .shape-config .shape-colors .border-type .height,
+.object-menu .shape-config .shape-colors .border-type .width,
+.object-menu .shape-config .shape-colors .border-radius .height,
+.object-menu .shape-config .shape-colors .border-radius .width,
+.object-menu .shape-config .shape-colors .border-style .height,
+.object-menu .shape-config .shape-colors .border-style .width,
+.object-menu .shape-config .shape-colors .shape-shadow .height,
+.object-menu .shape-config .shape-colors .shape-shadow .width,
+.object-menu .shape-config .shape-colors .text-decoration .height,
+.object-menu .shape-config .shape-colors .text-decoration .width,
+.object-menu .shape-config .shape-colors .font-size .height,
+.object-menu .shape-config .shape-colors .font-size .width,
+.object-menu .shape-config .shape-colors .font-color .height,
+.object-menu .shape-config .shape-colors .font-color .width,
+.object-menu .shape-config .shape-colors .font-family .height,
+.object-menu .shape-config .shape-colors .font-family .width,
+.object-menu .shape-config .shape-colors .size .height,
+.object-menu .shape-config .shape-colors .size .width {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.object-menu .shape-config .shape-colors .first .height,
+.object-menu .shape-config .shape-colors .second .height,
+.object-menu .shape-config .shape-colors .border-type .height,
+.object-menu .shape-config .shape-colors .border-radius .height,
+.object-menu .shape-config .shape-colors .border-style .height,
+.object-menu .shape-config .shape-colors .shape-shadow .height,
+.object-menu .shape-config .shape-colors .text-decoration .height,
+.object-menu .shape-config .shape-colors .font-size .height,
+.object-menu .shape-config .shape-colors .font-color .height,
+.object-menu .shape-config .shape-colors .font-family .height,
+.object-menu .shape-config .shape-colors .size .height {
+  margin-right: 20px;
+}
+
+.object-menu .shape-config .shape-colors .first .height-input,
+.object-menu .shape-config .shape-colors .first .width-input,
+.object-menu .shape-config .shape-colors .second .height-input,
+.object-menu .shape-config .shape-colors .second .width-input,
+.object-menu .shape-config .shape-colors .border-type .height-input,
+.object-menu .shape-config .shape-colors .border-type .width-input,
+.object-menu .shape-config .shape-colors .border-radius .height-input,
+.object-menu .shape-config .shape-colors .border-radius .width-input,
+.object-menu .shape-config .shape-colors .border-style .height-input,
+.object-menu .shape-config .shape-colors .border-style .width-input,
+.object-menu .shape-config .shape-colors .shape-shadow .height-input,
+.object-menu .shape-config .shape-colors .shape-shadow .width-input,
+.object-menu .shape-config .shape-colors .text-decoration .height-input,
+.object-menu .shape-config .shape-colors .text-decoration .width-input,
+.object-menu .shape-config .shape-colors .font-size .height-input,
+.object-menu .shape-config .shape-colors .font-size .width-input,
+.object-menu .shape-config .shape-colors .font-color .height-input,
+.object-menu .shape-config .shape-colors .font-color .width-input,
+.object-menu .shape-config .shape-colors .font-family .height-input,
+.object-menu .shape-config .shape-colors .font-family .width-input,
+.object-menu .shape-config .shape-colors .size .height-input,
+.object-menu .shape-config .shape-colors .size .width-input {
+  width: 60px;
+}
+
 .object-menu .shape-config .shape-colors .first .shape-border-style-input,
 .object-menu .shape-config .shape-colors .second .shape-border-style-input,
 .object-menu .shape-config .shape-colors .border-type .shape-border-style-input,
@@ -1006,7 +1075,8 @@ button:focus {
 .object-menu .shape-config .shape-colors .text-decoration .shape-border-style-input,
 .object-menu .shape-config .shape-colors .font-size .shape-border-style-input,
 .object-menu .shape-config .shape-colors .font-color .shape-border-style-input,
-.object-menu .shape-config .shape-colors .font-family .shape-border-style-input {
+.object-menu .shape-config .shape-colors .font-family .shape-border-style-input,
+.object-menu .shape-config .shape-colors .size .shape-border-style-input {
   width: 50px;
 }
 
@@ -1029,7 +1099,9 @@ button:focus {
 .object-menu .shape-config .shape-colors .font-color .fill-chbox,
 .object-menu .shape-config .shape-colors .font-color .border-chbox,
 .object-menu .shape-config .shape-colors .font-family .fill-chbox,
-.object-menu .shape-config .shape-colors .font-family .border-chbox {
+.object-menu .shape-config .shape-colors .font-family .border-chbox,
+.object-menu .shape-config .shape-colors .size .fill-chbox,
+.object-menu .shape-config .shape-colors .size .border-chbox {
   width: 17px;
   height: 17px;
   cursor: pointer;
@@ -1044,7 +1116,8 @@ button:focus {
 .object-menu .shape-config .shape-colors .text-decoration .shadow-chbox,
 .object-menu .shape-config .shape-colors .font-size .shadow-chbox,
 .object-menu .shape-config .shape-colors .font-color .shadow-chbox,
-.object-menu .shape-config .shape-colors .font-family .shadow-chbox {
+.object-menu .shape-config .shape-colors .font-family .shadow-chbox,
+.object-menu .shape-config .shape-colors .size .shadow-chbox {
   margin-top: 3px;
 }
 

@@ -262,12 +262,28 @@
       .text-decoration,
       .font-size,
       .font-color,
-      .font-family {
+      .font-family,
+      .size {
         width: 100%;
         height: 55px;
         display: flex;
         align-items: center;
         border-bottom: 1px solid #dbdbdb;
+
+        .height,
+        .width {
+          display: flex;
+          justify-content: space-around;
+        }
+
+        .height {
+          margin-right: 20px;
+        }
+
+        .height-input,
+        .width-input {
+          width: 60px;
+        }
 
         .shape-border-style-input {
           width: 50px;

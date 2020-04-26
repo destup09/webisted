@@ -1,3 +1,31 @@
+///////////////////////
+// Copy / Paste
+
+(function () {
+  let copyObj;
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      let keyName = event.key;
+
+      console.log(keyName);
+    },
+    false
+  );
+
+  /*
+        let copiedStyle = window.getComputedStyle(copyObj);
+        Array.from(copiedStyle).forEach(function (key) {
+          return div.style.setProperty(
+            key,
+            copiedStyle.getPropertyValue(key),
+            copiedStyle.getPropertyPriority(key)
+          );
+        });
+        */
+})();
+
 (function menuControl() {
   function toggleMenu() {
     const menuLeft = document.querySelector(".m-l");
@@ -256,6 +284,12 @@
           });
         });
 
+      //width, height
+      let width;
+      let height;
+      let widthInput = document.querySelector(".width-input");
+      let heightInput = document.querySelector(".height-input");
+
       function updateShape() {
         let configBtnClassName = this.classList[0];
 
@@ -292,6 +326,7 @@
         let fontSizeInput = document.querySelector(".font-size-input");
         let fontColorInput = document.querySelector(".font-color-input");
         let fontFamilyInput = document.querySelector(".font-family-select");
+        //height i width 580
 
         styleApply.forEach(function (style) {
           style.addEventListener("input", function () {
@@ -314,6 +349,13 @@
             } else {
               currentlyStyling.style.borderColor = "transparent";
             }
+
+            //width, height
+            currentlyStyling.style.width = widthInput.value + "px";
+            currentlyStyling.parentNode.style.width = widthInput.value + "px";
+
+            currentlyStyling.style.height = heightInput.value + "px";
+            currentlyStyling.parentNode.style.height = heightInput.value + "px";
 
             //border radius
             currentlyStyling.style.borderRadius = `${borderRadius1.value}px ${borderRadius2.value}px ${borderRadius3.value}px ${borderRadius4.value}px`;
@@ -427,8 +469,11 @@
             let boxShadowColor = boxShadowArr[0].split(", ");
             let fullHex = "";
 
-            //text
+            //width, height
+            heightInput.value = configuredDiv.style.height.split("px")[0];
+            widthInput.value = configuredDiv.style.width.split("px")[0];
 
+            //text
             if (configuredDiv.classList.contains("text")) {
               let fontColor = window
                 .getComputedStyle(configuredDiv, null)
@@ -447,9 +492,13 @@
                 .getPropertyValue("font-size")
                 .split("px")[0];
 
-              fontFamilyInput.value = configuredDiv.style.fontFamily;
-
-              console.log();
+              let fontName = configuredDiv.style.fontFamily.split(" ");
+              if (fontName[1] !== undefined) {
+                fontFamilyInput.value =
+                  fontName[0].split('"')[1] + " " + fontName[1].split('"')[0];
+              } else {
+                fontFamilyInput.value = fontName[0];
+              }
             }
 
             //shadow
@@ -599,8 +648,6 @@
           currentResizer = e.target;
           isResizing = true;
 
-          //console.log(el);
-
           let prevX = e.clientX;
           let prevY = e.clientY;
 
@@ -608,6 +655,12 @@
           window.addEventListener("mouseup", mouseup);
 
           function mousemove(e) {
+            //get height, width style
+            height = currentResizer.parentNode.style.height;
+            width = currentResizer.parentNode.style.width;
+            heightInput.value = height.split("px")[0];
+            widthInput.value = width.split("px")[0];
+
             const rect = el.getBoundingClientRect();
 
             if (currentResizer.classList.contains("resizerSE")) {
